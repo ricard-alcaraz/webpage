@@ -1,7 +1,8 @@
 {
   "projects": {
     "default": "web-page-7ce48",
-    "web": "web-page-7ce48"
+    "web": "web-page-7ce48",
+    "webpage": "web-page-7ce48"
   },
   "targets": {},
   "etags": {},
