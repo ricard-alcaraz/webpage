@@ -1,5 +1,26 @@
 {
   "dependencies": {
     "firebase": "^10.12.4"
-  }
+  },
+  "name": "web-personal",
+  "version": "1.0.0",
+  "description": "personal web page",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ricard-alcaraz/webpage.git"
+  },
+  "keywords": [
+    "web"
+  ],
+  "author": "Ricard Alcaraz Mancebo",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ricard-alcaraz/webpage/issues"
+  },
+  "homepage": "https://github.com/ricard-alcaraz/webpage#readme"
 }
