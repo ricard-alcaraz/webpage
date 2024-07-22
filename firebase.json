@@ -1,4 +1,8 @@
 {
+  "functions": {
+    "predeploy": "npm run build",
+    "source": "functions"
+  },
   "database": {
     "rules": "database.rules.json"
   },
@@ -12,7 +16,7 @@
     "rewrites": [
       {
         "source": "**",
-        "destination": "/index.html"
+        "function": "app"
       }
     ]
   },
