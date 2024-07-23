@@ -1,0 +1,7 @@
+name = "my-next-app"
+
+compatibility_flags = ["nodejs_compat"]
+
+[[kv_namespaces]]
+binding = "kvtest"
+id = "e06396ae9b2543d4b64426fef100e873"
