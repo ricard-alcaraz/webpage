@@ -123,9 +123,12 @@ nav{
   position: fixed;
   z-index: 99;
   width: 100%;
-  background: #000000;
+  
   display: flex;
   top:0px;
+  border-bottom: 1px black;
+  backdrop-filter: blur(4px);
+  box-shadow: 0 0 100px 40px #ffffff08;
 }
 
 .nft{
