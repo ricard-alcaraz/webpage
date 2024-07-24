@@ -1,4 +1,94 @@
-nav .wrapper{
+.nft {
+  user-select: none;
+  max-width: 300px;
+  margin: 5rem auto;
+  border: 1px solid #ffffff22;
+  /*background-color: #282c34;
+  background: linear-gradient(0deg, rgba(40, 44, 52, 1) 0%, rgba(17, 0, 32, .5) 100%);*/
+  background-color: transparent;
+  box-shadow: 0 7px 20px 5px #00000088;
+  border-radius: .7rem;
+  backdrop-filter: blur(7px);
+  -webkit-backdrop-filter: blur(7px);
+  overflow: hidden;
+  transition: .5s all;
+}
+
+.nft hr {
+  width: 100%;
+  border: none;
+  border-bottom: 1px solid #88888855;
+  margin-top: 0;
+}
+
+.nft ins {
+  text-decoration: none;
+}
+
+.nft .mainCard {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  padding: 1rem;
+}
+
+.nft .mainCard .tokenImage {
+  border-radius: .5rem;
+  max-width: 100%;
+  height: 250px;
+  object-fit: cover;
+}
+
+.nft .mainCard .description {
+  margin: .5rem 0;
+  color: #a89ec9;
+}
+
+
+.nft .mainCard .creator {
+  display: flex;
+  align-items: center;
+  margin-top: .2rem;
+  margin-bottom: -.3rem;
+}
+
+.nft .mainCard .creator ins {
+  color: #a89ec9;
+  text-decoration: none;
+}
+
+.nft .mainCard::before {
+  position: fixed;
+  content: "";
+  box-shadow: 0 0 100px 40px #ffffff08;
+  top: -10%;
+  left: -100%;
+  transform: rotate(-45deg);
+  height: 60rem;
+  transition: .7s all;
+}
+
+.nft:hover {
+  border: 1px solid #ffffff44;
+  box-shadow: 0 7px 50px 10px #000000aa;
+  transform: scale(1.015);
+  filter: brightness(1.3);
+}
+
+.nft .mainCard:hover::before {
+  filter: brightness(.5);
+  top: -100%;
+  left: 200%;
+}
+
+
+
+.name {
+  font-size: 3rem;
+  font-weight: 900;
+}
+
+nav .wrapper {
   position: relative;
   max-width: 1300px;
   padding: 0px 30px;
@@ -9,41 +99,50 @@ nav .wrapper{
   align-items: center;
   justify-content: space-between;
 }
-.wrapper .logo a{
+
+.wrapper .logo a {
   color: #f2f2f2;
   font-size: 30px;
   font-weight: 600;
   text-decoration: none;
 }
-.wrapper .navlinks{
+
+.wrapper .navlinks {
   display: inline-flex;
 }
-.navlinks li{
+
+.navlinks li {
   list-style: none;
 }
-.navlinks li a{
+
+.navlinks li a {
   color: #f2f2f2;
   text-decoration: none;
   font-size: 18px;
   font-weight: 500;
   padding: 9px 15px;
   border-radius: 5px;
-  transition: all 0.3s ease;
+  /*transition: all 0.3s ease;*/
+  border: 1px solid rgba(var(--card-border-rgb), 0);
+  transition: background 200ms, border 200ms;
 }
-.navlinks li a:hover{
+
+/*.navlinks li a:hover{
   background: #3A3B3C;
-}
+}*/
 .wrapper .btn.close-btn {
   position: absolute;
   right: 30px;
   top: 10px;
 }
+
 .wrapper .btn {
   color: #fff;
   font-size: 20px;
   cursor: pointer;
   display: none;
 }
+
 .main {
   display: flex;
   flex-direction: column;
@@ -55,7 +154,8 @@ nav .wrapper{
   padding: 6rem;*/
   min-height: 100vh;
 }
-.content{
+
+.content {
   padding: 6rem;
 }
 
@@ -104,6 +204,7 @@ nav .wrapper{
   background: rgba(var(--card-rgb), 0);
   border: 1px solid rgba(var(--card-border-rgb), 0);
   transition: background 200ms, border 200ms;
+  backdrop-filter: blur(4px);
 }
 
 .card span {
@@ -160,8 +261,14 @@ nav .wrapper{
 .logo {
   position: relative;
 }
+
 /* Enable hover only on non-touch devices */
 @media (hover: hover) and (pointer: fine) {
+  .navlinks li a:hover {
+    background: rgba(var(--card-rgb), 0.1);
+    border: 1px solid rgba(var(--card-border-rgb), 0.15);
+  }
+
   .card:hover {
     background: rgba(var(--card-rgb), 0.1);
     border: 1px solid rgba(var(--card-border-rgb), 0.15);
@@ -180,6 +287,10 @@ nav .wrapper{
 
 /* Mobile */
 @media (max-width: 700px) {
+  .name {
+    text-align: center;
+  }
+
   .content {
     padding: 4rem;
   }
@@ -231,11 +342,9 @@ nav .wrapper{
     border-radius: 0;
     border: none;
     border-bottom: 1px solid rgba(var(--callout-border-rgb), 0.25);
-    background: linear-gradient(
-      to bottom,
-      rgba(var(--background-start-rgb), 1),
-      rgba(var(--callout-rgb), 0.5)
-    );
+    background: linear-gradient(to bottom,
+        rgba(var(--background-start-rgb), 1),
+        rgba(var(--callout-rgb), 0.5));
     background-clip: padding-box;
     backdrop-filter: blur(24px);
   }
@@ -246,11 +355,9 @@ nav .wrapper{
     inset: auto 0 0;
     padding: 2rem;
     height: 200px;
-    background: linear-gradient(
-      to bottom,
-      transparent 0%,
-      rgb(var(--background-end-rgb)) 40%
-    );
+    background: linear-gradient(to bottom,
+        transparent 0%,
+        rgb(var(--background-end-rgb)) 40%);
     z-index: 1;
   }
 }
@@ -276,6 +383,7 @@ nav .wrapper{
   from {
     transform: rotate(360deg);
   }
+
   to {
     transform: rotate(0deg);
   }
