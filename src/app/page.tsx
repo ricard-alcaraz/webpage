@@ -4,6 +4,8 @@ import Navigator from "./components/navigator";
 import About from "./components/about";
 import Projects from "./components/projects";
 import Experience from "./components/experiencia";
+import Footer from "./components/footer";
+
 
 export default function Home() {
   return (
@@ -15,6 +17,7 @@ export default function Home() {
         <Experience></Experience>
         <Projects></Projects>
       </div>
+      <Footer></Footer>
     </main>
   );
 }

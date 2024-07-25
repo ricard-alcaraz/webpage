@@ -15,7 +15,7 @@
 
 # production
 /build
-resources
+resources.txt
 # misc
 .DS_Store
 *.pem

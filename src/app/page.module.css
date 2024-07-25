@@ -2,9 +2,41 @@
   width: 2rem;
   height: 2rem;
 }
-
+.sectionTitle{
+  padding-top: 3rem;
+  font-size: 2rem;
+  display: flex;
+  max-width: 19rem;
+  font-weight: bold;
+}
+.about{
+  max-width: 40rem;
+}
+.contactBut{
+  font-size: 1rem;
+}
+.contact{
+  padding-bottom: 2rem;
+  display: flex;
+  justify-content: space-between;
+  max-width: 7rem;
+}
 .timelineTitle{
   font-weight: bold;
+  font-size: 1.3rem;
+}
+.timelineSub{
+  font-size: 1rem;
+}
+.timelineDesc{
+  font-size: 1rem;
+  padding-top: 10px;
+}
+.timelineTech{
+  padding-top: 20px;
+  display: flex;
+  justify-content: space-between;
+  max-width: 200px;
 }
 
 .nft {
@@ -111,13 +143,13 @@ nav .wrapper {
 
 .wrapper .logo a {
   color: #f2f2f2;
-  font-size: 30px;
+  font-size: 0.9rem;
   font-weight: 600;
   text-decoration: none;
 }
 
 .wrapper .navlinks {
-  display: inline-flex;
+  display: contents;
 }
 
 .navlinks li {
@@ -127,7 +159,7 @@ nav .wrapper {
 .navlinks li a {
   color: #f2f2f2;
   text-decoration: none;
-  font-size: 18px;
+  font-size: 1rem;
   font-weight: 500;
   padding: 9px 15px;
   border-radius: 5px;
@@ -147,7 +179,7 @@ nav .wrapper {
 
 .wrapper .btn {
   color: #fff;
-  font-size: 20px;
+  font-size: 0.8rem;
   cursor: pointer;
   display: none;
 }
@@ -277,7 +309,16 @@ nav .wrapper {
     background: rgba(var(--card-rgb), 0.1);
     border: 1px solid rgba(var(--card-border-rgb), 0.15);
   }
-
+  nav .wrapper {
+    position: relative;
+    padding: 0;
+    height: 70px;
+    line-height: 70px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
   .card:hover {
     background: rgba(var(--card-rgb), 0.1);
     border: 1px solid rgba(var(--card-border-rgb), 0.15);
@@ -295,11 +336,24 @@ nav .wrapper {
 }
 
 /* Mobile */
-@media (max-width: 700px) {
+@media (max-width: 62.5em) {
   .name {
     text-align: center;
   }
-
+  .wrapper .navlinks {
+    display: contents;
+  }
+  .sectionTitle{
+    padding-top: 3rem;
+    font-size: 1.5rem;
+  }
+  .contact{
+    padding-bottom: 2rem;
+    padding-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    max-width: 16rem;
+  }
   .content {
     padding: 4rem;
   }
