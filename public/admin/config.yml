@@ -4,6 +4,8 @@ backend:
   name: github          # Use GitHub for authentication and storage
   repo: ricard-alcaraz/webpage # IMPORTANT: Change this!
   branch: main          # The branch to publish to
+  auth_type: implicit
+  app_id: "Ov23li3QPTG1nIQPvRwK"
 
 publish_mode: editorial_workflow # Allows for drafts and reviews
 
