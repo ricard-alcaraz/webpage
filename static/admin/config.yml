@@ -4,7 +4,7 @@ backend:
   name: github          # Use GitHub for authentication and storage
   repo: ricard-alcaraz/webpage # IMPORTANT: Change this!
   branch: main          # The branch to publish to
-  auth_endpoint: /api/auth
+  auth_endpoint: api/auth
   base_url: https://ricard-alcaraz.com
 
 publish_mode: editorial_workflow # Allows for drafts and reviews
@@ -16,7 +16,7 @@ public_folder: "public/images/posts"   # The public path to the media files
 collections:
   - name: "blog" # Used in routes, e.g., /admin/collections/blog
     label: "Blog" # Used in the UI
-    folder: "src/pages/blog" # The folder where new posts will be created
+    folder: "src/pages/blog/posts" # The folder where new posts will be created
     create: true # Allow users to create new documents in this collection
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template
     fields: # The fields for each document, usually matching your Markdown frontmatter
