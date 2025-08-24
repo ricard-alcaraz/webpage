@@ -1,0 +1,25 @@
+# public/admin/config.yml
+
+backend:
+  name: github          # Use GitHub for authentication and storage
+  repo: ricard-alcaraz/webpage # IMPORTANT: Change this!
+  branch: main          # The branch to publish to
+
+publish_mode: editorial_workflow # Allows for drafts and reviews
+
+# Where to store images and other media that you upload in the CMS
+media_folder: "src/assets/images/uploads" # Folder where media files will be stored
+public_folder: "/assets/images/uploads"   # The public path to the media files
+
+collections:
+  - name: "blog" # Used in routes, e.g., /admin/collections/blog
+    label: "Blog" # Used in the UI
+    folder: "src/content/blog" # The folder where new posts will be created
+    create: true # Allow users to create new documents in this collection
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template
+    fields: # The fields for each document, usually matching your Markdown frontmatter
+      - { label: "Title", name: "title", widget: "string" }
+      - { label: "Description", name: "description", widget: "string" }
+      - { label: "Publish Date", name: "pubDate", widget: "datetime" }
+      - { label: "Hero Image", name: "heroImage", widget: "image", optional: true }
+      - { label: "Body", name: "body", widget: "markdown" }
