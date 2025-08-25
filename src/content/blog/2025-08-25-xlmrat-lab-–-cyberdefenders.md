@@ -41,7 +41,9 @@ We can see that there are some string variables that will combine, looking at th
 
 Combining the strings: *http://45.126.209.4:222/mdm.jpg* which is the file that is downloaded later.
 
-**Answer:** http://45.126.209.4:222/mdm.jpg
+**Answer:** 
+
+`http://45.126.209.4:222/mdm.jpg`
 
 ## Q2: Which hosting provider owns the associated IP address?
 
@@ -51,7 +53,9 @@ Here we can analyze the obtained IP address. For example using https://whois.dom
 
 With the info obtained the hosting provider is ReliableSite.Net
 
-**Answer:** ReliableSite.Net
+**Answer:** 
+
+`ReliableSite.Net`
 
 ## Q3: By analyzing the malicious scripts, two payloads were identified: a loader and a secondary executable. What is the SHA256 of the malware executable?
 Using wireshark we can obtain this downloaded file mdm.jpg
@@ -86,28 +90,36 @@ So im guessing that bbb.exe is the malware executable we are looking for. In pes
 
 ![file sha256](/images/xmlrat-lab/sha256.webp)
 
-**Answer:** 1EB7B02E18F67420F42B1D94E74F3B6289D92672A0FB1786C30C03D68E81D798
+**Answer:** 
+
+`1EB7B02E18F67420F42B1D94E74F3B6289D92672A0FB1786C30C03D68E81D798`
 
 ## Q4: What is the malware family label based on Alibaba?
 Pestudio already provide as this information from VirusTotal.com 
 
 ![alibaba clasification](/images/xmlrat-lab/alibaba.webp)
 
-**Answer:** AsyncRat
+**Answer:** 
+
+`AsyncRat`
 
 ## Q5: What is the timestamp of the malware's creation?
 Searching in VirusTotal we can find the date of creation.
 
 ![creation time](/images/xmlrat-lab/creation-time.webp)
 
-**Answer:** 2023-10-30 15:08
+**Answer:** 
+
+`2023-10-30 15:08`
 
 ## Q6: Which LOLBin is leveraged for stealthy process execution in this script? Provide the full path.
 In Q3 I already found the full path. Again, looking at the script inside the mdm.jpg and clearing it.
 
 ![mdm content4](/images/xmlrat-lab/mdm-content4.webp)
 
-**Answer:** C:\Windows\Microsoft\.NET\Framework\v4.0.30319\RegSvcs.exe
+**Answer:** 
+
+`C:\Windows\Microsoft\.NET\Framework\v4.0.30319\RegSvcs.exe`
 
 ## Q7: The script is designed to drop several files. List the names of the files dropped by the script.
 We have to look again at the script inside the mdm.jpg.
@@ -116,4 +128,6 @@ We have to look again at the script inside the mdm.jpg.
 
 And we see 3 files where content is droped because the function used is WriteAllText, these are: Conted.ps1, Conted.bat and Conted.vbs
 
-**Answer:** Conted.ps1, Conted.bat, Conted.vbs
+**Answer:** 
+
+`Conted.ps1, Conted.bat, Conted.vbs`
