@@ -8,9 +8,8 @@ tags:
 languages:
   - markdown
 image:
-  url: /images/posts/animated-borders-tailwind.webp
-  alt: Example of animated borders with Tailwind CSS in a dark design, featuring a
-    vibrant color gradient background.
+  url: /images/first-post/my_photo.webp
+  alt: A photo of me
 description: My first post
 ---
 
