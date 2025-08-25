@@ -1,17 +1,17 @@
 ---
-title: My first post
+pubDate: 2025-08-24T00:00:00.000+02:00
+heroImage: https://ricard-alcaraz.com/images/first-post/my_photo.webp
 author: Ricard Alcaraz
-description: My first post
-image:
-  url: /images/posts/animated-borders-tailwind.webp
-  alt: Example of animated borders with Tailwind CSS in a dark design, featuring a
-    vibrant color gradient background.
-pubDate: 2025-03-27
+title: My first post
 tags:
   - Blog
 languages:
   - markdown
-heroImage: https://ricard-alcaraz.com/images/first-post/my_photo.webp
+image:
+  url: /images/posts/animated-borders-tailwind.webp
+  alt: Example of animated borders with Tailwind CSS in a dark design, featuring a
+    vibrant color gradient background.
+description: My first post
 ---
 
 In this first post I would like to explain the purpouse of this webpage.
