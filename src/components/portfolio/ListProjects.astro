@@ -2,14 +2,14 @@
 import Project from "./Project.astro";
 import Heading from "../ui/Heading.astro";
 import { Icon } from "astro-icon/components";
-
-const allPosts = await Astro.glob("../../pages/portfolio/projects/*.md");
+import { getCollection } from 'astro:content';
+const allPosts = await getCollection('blog');
 
 // Sort by descending date (most recent first)
 allPosts.sort(
   (a, b) =>
-    new Date(b.frontmatter.pubDate).getTime() -
-    new Date(a.frontmatter.pubDate).getTime(),
+    new Date(b.data.pubDate).getTime() -
+    new Date(a.data.pubDate).getTime(),
 );
 ---
 
@@ -20,20 +20,20 @@ allPosts.sort(
   <div class="mx-auto max-w-7xl py-8">
     <div class="flex gap-4 items-center justify-center text-center">
       <Icon class="text-3xl dark:text-white text-blacktext" name="code" />
-      <Heading text="Projects" textGradient="Completed" level={2} />
+      <Heading text="Posts" textGradient="Completed" level={2} />
     </div>
 
     <p
       class="z-2 text-center mx-auto text-lg max-xl:text-base max-w-2xl dark:text-gray-200 text-blacktext my-6 leading-6 font-medium"
     >
-      I love <b
+      Sharing <b
         class="bg-linear-to-r from-riptide-500 to-mint-500 dark:from-riptide-300 dark:to-mint-200 text-transparent bg-clip-text"
-        >turning ideas into real projects.</b
+        >my knowledge to everyone</b
       >
       <br /> Here I show you some of the <b
         class="bg-linear-to-r from-riptide-500 to-mint-500 dark:from-riptide-300 dark:to-mint-200 text-transparent bg-clip-text"
-        >developments</b
-      > I've worked on, applying technology, design, and lots of creativity.
+        >things</b
+      > I've worked on.
       <b
         class="bg-linear-to-r from-riptide-500 to-mint-500 dark:from-riptide-300 dark:to-mint-200 text-transparent bg-clip-text"
         >Check them out!</b
@@ -49,12 +49,12 @@ allPosts.sort(
     {
       allPosts.map((post) => (
         <Project
-          url={post.url}
-          title={post.frontmatter.title}
-          description={post.frontmatter.description}
-          date={post.frontmatter.pubDate}
-          languages={post.frontmatter.languages}
-          image={post.frontmatter.image}
+          url={`/blog/${post.slug}/`}
+          title={post.data.title}
+          description={post.data.description}
+          date={post.data.pubDate}
+          languages={post.data.languages}
+          image={post.data.image}
         />
       ))
     }

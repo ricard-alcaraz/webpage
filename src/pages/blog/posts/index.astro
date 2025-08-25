@@ -1,20 +1,24 @@
 ---
+import { getCollection } from 'astro:content';
 import Layout from "../../../layouts/Layout.astro";
 import Hero from "../../../components/blog/Hero.astro";
 import Tags from "../../../components/blog/Tags.astro";
 import ListPosts from "../../../components/blog/ListPosts.astro";
-const pageTitle = "Web Development and Technology Blog | Fernando López | EFEELE";
-const description = "Welcome to my blog, where I share my passion for frontend development, web design, and the latest technology trends.";
-const ogimage = {
-  url: "/images/blogimage.webp",
-  alt: "EFEELE.dev logo with green background and light effect. Text: 'Web Development and Technology Blog' and URL 'www.efeele.dev'.",
-};
-const currentUrl = `${Astro.site}${Astro.url.pathname}`;
-const tweetText = encodeURIComponent(`"${pageTitle}"`);
 import Heading from "../../../components/ui/Heading.astro";
 import Share from "../../../components/ui/Share.astro";
 
 import Languages from "../../../components/blog/Languages.astro";
+const allPosts = await getCollection('blog');
+
+const pageTitle = "My personal Blog Blog | Ricard Alcaraz Mancebo";
+const description = "Welcome to my blog, where I share my passion for frontend development, web design, and the latest technology trends.";
+const ogimage = {
+  url: "/images/blogimage.webp",
+  alt: "image",
+};
+const currentUrl = `${Astro.site}${Astro.url.pathname}`;
+const tweetText = encodeURIComponent(`"${pageTitle}"`);
+
 ---
 
 <Layout pageTitle={pageTitle} description={description} ogimage={ogimage}>
@@ -23,7 +27,7 @@ import Languages from "../../../components/blog/Languages.astro";
       class="grid my-8 grid-cols-3 grid-rows-1 max-lg:grid-cols-1 max-lg:grid-rows-[1fr_auto] gap-12 max-md:gap-4"
     >
       <div class="lg:col-span-2">
-        <ListPosts all={true} />
+        <ListPosts all={true} allPosts={allPosts} />
       </div>
 
       <div class="lg:col-start-3">
@@ -32,7 +36,7 @@ import Languages from "../../../components/blog/Languages.astro";
         >
           <div class="flex flex-col gap-4 pl-0">
             <Heading textGradient="Categories" />
-            <Tags variant="compact" />
+            <Tags variant="compact" allPosts={allPosts}/>
           </div>
         </div>
 
@@ -41,7 +45,7 @@ import Languages from "../../../components/blog/Languages.astro";
         >
           <div class="flex flex-col gap-4 pl-0">
             <Heading textGradient="Technologies" level={2} />
-            <Languages level={2} />
+            <Languages level={2} allPosts={allPosts}/>
           </div>
         </div>
         <div class="my-8 flex justify-end">

@@ -1,5 +1,6 @@
 ---
-const allPosts = await Astro.glob("../../pages/blog/posts/*.md");
+import { getCollection } from 'astro:content';
+const allPosts = await getCollection('blog');
 
 import Tag from "../ui/Tag.astro";
 import ReadMore from "../ui/ReadMore.astro";
@@ -8,16 +9,16 @@ import DatePub from "./DatePub.astro";
 
 // Get the latest post using reduce
 const latestPost = allPosts.reduce((latest, current) => {
-  const latestDate = new Date(latest.frontmatter.pubDate).getTime();
-  const currentDate = new Date(current.frontmatter.pubDate).getTime();
+  const latestDate = new Date(latest.data.pubDate).getTime();
+  const currentDate = new Date(current.data.pubDate).getTime();
   return currentDate > latestDate ? current : latest;
 });
 
-const tags = [...new Set(latestPost.frontmatter.tags ?? [])];
-const languages = [...new Set(latestPost.frontmatter.languages ?? [])];
-const image = latestPost.frontmatter.image.url;
+const tags = [...new Set(latestPost.data.tags ?? [])];
+const languages = [...new Set(latestPost.data.languages ?? [])];
+const image = latestPost.data.image.url;
 const imageAlt =
-  latestPost.frontmatter.image.alt || latestPost.frontmatter.title;
+  latestPost.data.image.alt || latestPost.data.title;
 ---
 
 {
@@ -52,17 +53,17 @@ const imageAlt =
         </div>
 
         <a
-          href={latestPost.url}
+          href={`/blog/${latestPost.slug}/`}
           class="text-mint-50 gap-3 h-full flex items-end max-sm:px-6  rounded-lg transition-all"
-          aria-label={`Read article: ${latestPost.frontmatter.title}`}
+          aria-label={`Read article: ${latestPost.data.title}`}
         >
           <div class="gap-3 flex flex-col justify-end drop-shadow-[1px_6px_1px_rgba(0,0,0,0.3)]">
-            <DatePub date={latestPost.frontmatter.pubDate} class="text-mint-50" />
+            <DatePub date={latestPost.data.pubDate} class="text-mint-50" />
             <h2
               id="post-title"
               class="text-4xl max-xl:text-3xl max-sm:text-2xl font-bold"
             >
-              <span>{latestPost.frontmatter.title}</span>
+              <span>{latestPost.data.title}</span>
             </h2>
             <ReadMore class="text-mint-50" />
           </div>

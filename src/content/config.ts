@@ -38,6 +38,22 @@ const jsonDataCollection = defineCollection({
   }),
 });
 
+const blogCollection = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    pubDate: z.date(),
+    image: z.object({
+      url: z.string(),
+      alt: z.string(),
+    }),
+    tags: z.array(z.string()),
+    // ... other fields
+    languages: z.array(z.string()), // <-- ADD THIS LINE
+  }),
+});
+
 export const collections = {
-  staticData: jsonDataCollection,
+  'blog': blogCollection,
+  'staticData': jsonDataCollection,
 };

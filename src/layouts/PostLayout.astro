@@ -9,7 +9,7 @@ import NavigationArticles from "../components/layout/NavigationArticles.astro";
 import Share from "../components/ui/Share.astro";
 import { getCollection } from 'astro:content';
 const { post, slug } = Astro.props;
-const { frontmatter } = post;
+const { data: frontmatter } = post;
 const currentUrl = `${Astro.site}${Astro.url.pathname}`;
 const tweetText = encodeURIComponent(
   `"${frontmatter.title}" - by ${frontmatter.author}`
@@ -96,7 +96,7 @@ const allPosts = await getCollection('blog');
         >
           <div class="white flex items-center gap-4">
             <div
-              aria-label="Photo blog"
+              aria-label="Photo for the blog"
               class="size-10 bg-cover bg-center rounded-full drop-shadow-lg"
               style="background-image: url(/images/profile_photo.webp);"
             >
@@ -124,7 +124,7 @@ const allPosts = await getCollection('blog');
         }
       </figure>
 
-      <div class="markdown" id="content">
+      <div class="markdown prose dark:prose-invert max-w-none" id="content">
         <slot />
       </div>
       <Share currentUrl={currentUrl} tweetText={tweetText} />
@@ -135,7 +135,7 @@ const allPosts = await getCollection('blog');
     class="flex flex-col gap-6 max-w-4xl max-lg:py-2 py-3 max-xl:py-2 mx-auto"
   >
     <div class="px-8">
-      <NavigationArticles />
+      <NavigationArticles allPosts={allPosts} currentSlug={slug}/>
       <hr class="text-mint-300/50" />
     </div>
     <div class="px-8 max-sm:px-4">

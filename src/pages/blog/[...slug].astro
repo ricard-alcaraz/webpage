@@ -1,0 +1,39 @@
+---
+import { getCollection } from 'astro:content';
+import PostLayout from "../../layouts/PostLayout.astro"; // <-- IMPORTANT: Adjust this path to your main Layout.astro file
+import ListPosts from "../../components/blog/ListPosts.astro"; // <-- IMPORTANT: Adjust this path
+import Tags from "../../components/blog/Tags.astro"; // <-- Optional: Adjust path if you want to show tags on the post page
+import Languages from "../../components/blog/Languages.astro"; // <-- Optional: Adjust path
+import { Image } from 'astro:assets';
+// This function is required for static site generation.
+// It tells Astro which pages to build based on your content.
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.slug },
+    props: { post }, // Pass the full post object as props
+  }));
+}
+
+// 1. Get the data for this specific page
+const { post } = Astro.props;
+const { slug } = Astro.params; // Get the current post's slug to exclude it from "More Posts"
+
+// 2. This special function renders your Markdown content into HTML
+const { Content } = await post.render();
+
+// 3. Fetch all posts to pass to the "More Posts" component
+const allPosts = await getCollection('blog');
+
+// --- SEO and Metadata ---
+const pageTitle = `${post.data.title} | My Blog`;
+const description = post.data.description;
+const ogimage = {
+    url: post.data.image?.url || "/images/blogimage.webp", // Use post image or fallback
+    alt: post.data.image?.alt || post.data.title,
+};
+---
+
+<PostLayout post={post} slug={slug}>
+  <Content />
+</PostLayout>

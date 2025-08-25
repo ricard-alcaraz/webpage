@@ -1,34 +1,39 @@
 ---
 import BlogPost from "./BlogPost.astro";
 import Heading from "../ui/Heading.astro";
+//import { getCollection } from 'astro:content';
 
+//const allPosts = await getCollection('blog');
 // Prop to determine whether to exclude the latest post or a specific post
 export interface Props {
+  allPosts: any[];
   excludeLatest?: boolean;
-  currentPostUrl?: string;
+  currentPostSlug?: string;
   all?: boolean;
 }
 
-const { excludeLatest = false, currentPostUrl = "", all = false } = Astro.props;
+const { allPosts,excludeLatest = false, currentPostSlug = "", all = false } = Astro.props;
 
-const allPosts = await Astro.glob("../../pages/blog/posts/*.md");
+
 // Sort by date in descending order (newest first)
 allPosts.sort((a, b) => {
-  const dateA = new Date(a.frontmatter.pubDate).getTime();
-  const dateB = new Date(b.frontmatter.pubDate).getTime();
+  const dateA = new Date(a.data.pubDate).getTime();
+  const dateB = new Date(b.data.pubDate).getTime();
   return dateB - dateA;
 });
 
 // Filter posts according to props
 let postsToShow = allPosts;
 
-if (currentPostUrl) {
+if (currentPostSlug) {
   // Exclude current post if its URL is provided
   postsToShow = postsToShow.filter((post) => {
-    if (!post.url) return false; // If no URL, keep the post
+    const postUrl = `/blog/${post.slug}/`;
+    //if (!post.url) return false; // If no URL, keep the post
     // Normalize URLs for comparison
-    const normalizedPostUrl = post.url.replace(/\/$/, ""); // Remove trailing slash if exists
-    const normalizedCurrentUrl = currentPostUrl.replace(/\/$/, ""); // Remove trailing slash if exists
+
+    const normalizedPostUrl = postUrl.replace(/\/$/, ""); // Remove trailing slash if exists
+    const normalizedCurrentUrl = currentPostSlug.replace(/\/$/, ""); // Remove trailing slash if exists
     return normalizedPostUrl !== normalizedCurrentUrl;
   });
 } else if (excludeLatest) {
@@ -57,12 +62,12 @@ if (!all) {
     {
       postsToShow.map((post) => (
         <BlogPost
-          url={post.url}
-          title={post.frontmatter.title}
-          date={post.frontmatter.pubDate}
-          tags={post.frontmatter.tags}
-          languages={post.frontmatter.languages}
-          image={post.frontmatter.image}
+          url={`/blog/${post.slug}/`}
+          title={post.data.title}
+          date={post.data.pubDate}
+          tags={post.data.tags}
+          languages={post.data.languages}
+          image={post.data.image}
         />
       ))
     }

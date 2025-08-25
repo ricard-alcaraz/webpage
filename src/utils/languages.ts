@@ -13,6 +13,10 @@ export const languages: Record<string, Language> = {
     name: "Astro",
     iconName: "astro",
   },
+  vue: {
+    name: "Vue",
+    iconName: "material-icon-theme:vue",
+  },
   bootstrap: {
     name: "Bootstrap",
     iconName: "bootstrap",
@@ -110,6 +114,27 @@ export const languages: Record<string, Language> = {
     name: "Python",
     iconName: "python",
   },
+  gcp: {
+    name:"Google Cloud Platform",
+    iconName: "logos:google-cloud",
+  },
+  splunk: {
+    name: "Splunk",
+    iconName: "logos:splunk",
+  },
+  snort:{
+    name: "Snort",
+    iconName: "vscode-icons:file-type-snort",
+  },
+  powershell:{
+    name: "PowerShell",
+    iconName: "vscode-icons:file-type-powershell",
+  },
+  bash:{
+    name: "Bash",
+    iconName: "logos:bash-icon",
+  }
+
 };
 
 export const getLanguage = (lang: string): Language => {
