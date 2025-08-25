@@ -14,29 +14,30 @@
   --font-roboto: 'Roboto', sans-serif;
   --font-opensans: 'Open Sans', sans-serif;
   --color-blacktext: #171717;
-  --color-mint-50: #ecfdf5;
-  --color-mint-100: #d0fbe5;
-  --color-mint-200: #a4f4cf;
-  --color-mint-300: #6ce9b7;
-  --color-mint-400: #31d69a;
-  --color-mint-500: #0dbc82;
-  --color-mint-600: #03986a;
-  --color-mint-700: #027a58;
-  --color-mint-800: #056047;
-  --color-mint-900: #054f3c;
-  --color-mint-950: #012d22;
+  
+  --color-mint-50: #f0f9ff;
+  --color-mint-100: #e0f2fe;
+  --color-mint-200: #bae6fd;
+  --color-mint-300: #7dd3fc;
+  --color-mint-400: #38bdf8;
+  --color-mint-500: #0ea5e9;
+  --color-mint-600: #0284c7;
+  --color-mint-700: #0369a1;
+  --color-mint-800: #075985;
+  --color-mint-900: #0c4a6e;
+  --color-mint-950: #082f49;
 
-  --color-riptide-50: #f0fdfa;
-  --color-riptide-100: #cbfcf1;
-  --color-riptide-200: #96f7e4;
-  --color-riptide-300: #5cecd5;
-  --color-riptide-400: #2bd6c1;
-  --color-riptide-500: #12baa8;
-  --color-riptide-600: #0b9689;
-  --color-riptide-700: #0e776f;
-  --color-riptide-800: #105f5a;
-  --color-riptide-900: #124f4b;
-  --color-riptide-950: #03302f;
+  --color-riptide-50: #eff6ff;
+  --color-riptide-100: #dbeafe;
+  --color-riptide-200: #bfdbfe;
+  --color-riptide-300: #93c5fd;
+  --color-riptide-400: #60a5fa;
+  --color-riptide-500: #3b82f6;
+  --color-riptide-600: #2563eb;
+  --color-riptide-700: #1d4ed8;
+  --color-riptide-800: #1e40af;
+  --color-riptide-900: #1e3a8a;
+  --color-riptide-950: #172554;
 
   --animate-rotate: rotate 10s linear infinite;
 
@@ -62,11 +63,11 @@
 	border-radius: 20px;
 }
 .dark *{
-	scrollbar-color: #6ce9b7 #012d22;
+	scrollbar-color: #7dd3fc #082f49;
 	scrollbar-width: thin;
 }
  *{
-	scrollbar-color: #6ce9b7 #d0fbe5;
+	scrollbar-color: #7dd3fc #e0f2fe;
 	scrollbar-width: thin;
 	box-sizing: border-box;
 }
@@ -240,7 +241,7 @@ a.inline-block.leading-5.pl-12{
 	display: block;
 	width: 400px;
 	height: 400px;
-	background: #31d69a40;
+	background: #38bdf840;
 	bottom: -400px;
 	right: -300px;
 	position: fixed;
@@ -252,7 +253,7 @@ a.inline-block.leading-5.pl-12{
 
 
 .blur-circle {
-	background-color: rgba(87, 253, 228, 0.29);
+	background-color: rgba(56, 189, 248, 0.29);
 	position: absolute;
 	width: 200px;
 	height: 200px;
@@ -269,7 +270,7 @@ a.inline-block.leading-5.pl-12{
 	display: block;
 	width: 500px;
 	height: 500px;
-	background: #50fd8f25 !important;
+	background: #7dd3fc25 !important;
 	bottom: -150px;
 	right: -150px;
 	position: absolute;

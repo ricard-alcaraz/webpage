@@ -39,7 +39,6 @@ export const languages: Record<string, Language> = {
   },
   mysql: {
     name: "MySQL",
-    className: "bg-[#f6ece1]!",
     iconName: "mysql",
   },
   wordpress: {
@@ -120,7 +119,7 @@ export const languages: Record<string, Language> = {
   },
   splunk: {
     name: "Splunk",
-    iconName: "logos:splunk",
+    iconName: "splunk",
   },
   snort:{
     name: "Snort",
