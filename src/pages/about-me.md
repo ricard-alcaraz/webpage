@@ -12,26 +12,26 @@ Im a Computer Engineer with a passion for cloud development, cybersecurity and t
 
 Currently I am learning about Blue Team Cybersecurity, and I am always looking for new opportunities to apply my skills and knowledge, and im persuing my first Blue Team certification (I hope to update this soon with my certification completed!).
 
-## Education
+## 🎓 Education
 
-**Master of Science in Management, Organization and Business Economics**
+- **Master of Science in Management, Organization and Business Economics**\
 *Universitat Autonoma de Barcelona, Universidad Publica de Navarra, Barcelona-Pamplona | 2022 - 2023*
-- Focused on Business Economics.
 
-**Bachelor in Computer Engineering**
+- **Bachelor in Computer Engineering**\
 *Universitat Autonoma de Barcelona, Barcelona | 2017 - 2021*
-- Specialized in Technologies of Information, also studied in the field of Blockchain and Cryptography.
 
-**Web Development Technical Degree**
+- **Web Development Technical Degree**\
 *INS Badia del Valles, Badia del Valles | 2020 - 2022*
-- Focused on Web Development.
 
 ---
 
 ## Certificates
 
-| Certificate Name | Issuing Body | Date Issued | Credential |
-| :--- | :--- | :---: | :---: |
-| Google Cloud Associate Cloud Engineer | Google | Jun 2024 - Sep 2027 | [View Credential](https://www.credly.com/badges/8308fdf5-3f63-4579-988f-242245c49714/linked_in_profile) |
-| Data Build Tool + BigQuery Bootcamp | Upgrade | Feb 2024 | [View Credential](https://link-to-your.cred) |
-| Google Project Management | Google | Jun 2023 | [Validate](https://www.credly.com/badges/76e41d14-edd8-4f03-847b-27d90e1d7e05/public_url) |
+| Certificate Name | Issuer | Date | Credential |
+| :--- | :---: | :---: | :---: |
+| Google Cloud ACE &nbsp; | &nbsp; Google &nbsp; | &nbsp; Jun 2024 &nbsp; | &nbsp; [Validate](https://www.credly.com/badges/8308fdf5-3f63-4579-988f-242245c49714/linked_in_profile) &nbsp; |
+| Data Build Tool + BigQuery Bootcamp &nbsp; | &nbsp; Upgrade &nbsp; | &nbsp; Feb 2024 &nbsp; | &nbsp; [Validate](https://link-to-your.cred) &nbsp; |
+| Google Project Management &nbsp; | &nbsp; Google &nbsp; | &nbsp; Jun 2023 &nbsp; | &nbsp; [Validate](https://www.credly.com/badges/76e41d14-edd8-4f03-847b-27d90e1d7e05/public_url) &nbsp; |
+
+
+
