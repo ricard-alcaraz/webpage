@@ -132,6 +132,10 @@ export const languages: Record<string, Language> = {
   bash:{
     name: "Bash",
     iconName: "logos:bash-icon",
+  },
+  wireshark:{
+    name: "Wireshark",
+    iconName: "wireshark",
   }
 
 };
