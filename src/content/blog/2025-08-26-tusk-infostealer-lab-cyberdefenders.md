@@ -7,10 +7,10 @@ tags:
   - Cyberdefenders
   - Threat Intelligence
 languages:
-  - wireshark
+  - threatintel
 image:
-  url: https://cyberdefenders.org/media/terraform/XLMRat/terraform/XLMRat/xlmrat.webp
-  alt: xmlrat lab image
+  url: https://cyberdefenders.org/media/terraform/Tusk%20Infostealer/Tusk_Infostealer.webp
+  alt: tusk-infostealer-lab
 description: "My notes about Tusk Infostealer Lab "
 pubDate: 2025-08-26T20:52:00.000+02:00
 heroImage: https://cyberdefenders.org/media/terraform/Tusk%20Infostealer/Tusk_Infostealer.webp

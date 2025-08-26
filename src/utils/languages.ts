@@ -136,7 +136,12 @@ export const languages: Record<string, Language> = {
   wireshark:{
     name: "Wireshark",
     iconName: "wireshark",
-  }
+  },
+  threatintel:{
+    name: "Threat Intelligence",
+    className: "text-white",
+    iconName: "material-symbols:threat-intelligence",
+  },
 
 };
 
