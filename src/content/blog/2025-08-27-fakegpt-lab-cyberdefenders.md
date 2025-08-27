@@ -8,6 +8,7 @@ tags:
   - Malware Analysis
 languages:
   - malwareanalysis
+  - javascript
 image:
   url: https://cyberdefenders.org/media/terraform/FakeGPT/FakeGPT.webp
   alt: fake gpt image

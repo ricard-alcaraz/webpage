@@ -142,6 +142,11 @@ export const languages: Record<string, Language> = {
     className: "text-white",
     iconName: "material-symbols:threat-intelligence",
   },
+  malwareanalysis:{
+    name: "Malware Analysis",
+    className: "text-white",
+    iconName:"solar:magnifer-bug-bold",
+  }
 
 };
 
