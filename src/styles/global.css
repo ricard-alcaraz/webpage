@@ -279,3 +279,60 @@ a.inline-block.leading-5.pl-12{
 	filter: blur(10px);
 
 }
+
+/*Reveal answers*/
+
+.markdown details > summary {
+  cursor: pointer;
+  font-weight: 600;
+  padding: 0.5rem 1rem;
+  background-color: #f3f4f6; /* Light gray background */
+  border-radius: 0.5rem;
+  transition: background-color 0.2s ease-in-out;
+  list-style: none; /* Removes the default triangle marker on some browsers */
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Style for dark mode */
+.dark .markdown details > summary {
+  background-color: #1f2937; /* Dark gray background */
+}
+.dark .markdown details > summary {
+	color: #ffffff;
+}
+
+/* Hover effect */
+.markdown details > summary:hover {
+  background-color: #e5e7eb;
+}
+.dark .markdown details > summary:hover {
+  background-color: #374151;
+}
+
+/* Add a custom rotating arrow for a nice touch */
+.markdown details > summary::before {
+  content: '▶';
+  font-size: 0.8em;
+  transition: transform 0.2s ease-in-out;
+}
+
+/* Rotate the arrow when the details element is open */
+.markdown details[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+/* Style the hidden content area */
+.markdown details > div {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-left: 2px solid #0ea5e9; /* Your new blue color */
+  background-color: #f0f9ff; /* Lightest blue background */
+}
+
+.dark .markdown details > div {
+  border-left: 2px solid #0ea5e9;
+  background-color: #082f49; /* Darkest blue background */
+  color: #ffffff;
+}

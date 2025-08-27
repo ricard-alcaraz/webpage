@@ -36,19 +36,25 @@ Looking at app.js I found this:
 ```javascript
     const targets = [_0xabc1('d3d3LmZhY2Vib29rLmNvbQ==')];
 ```
-When I saw the "==" at the end of the string I thought about Base64, I used CyberChef and the result was `www.facebook.com`, so we just found the encoding method.
+When I saw the "==" at the end of the string I thought about one particular encoding, I used CyberChef and the result was `www.facebook.com`, so we just found the encoding method.
 
-**Answer:**
-
-`Base64` 
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    Base64
+  </div>
+</details>
 
 ## Q2: Which website does the extension monitor for data theft, targeting user accounts to steal sensitive information?
 
 I found it in the previous question by decoding the Base64 string.
 
-**Answer:**
-
-`www.facebook.com`
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    www.facebook.com
+  </div>
+</details>
 
  ## Q3: Which type of HTML element is utilized by the extension to send stolen data?
 
@@ -61,9 +67,12 @@ Here I was looking for for something related to sending data, it was not hard si
     }
 ```
 
-**Answer:**
-
-`<img>`
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    &#60;img>
+  </div>
+</details>
 
 ## Q4: What is the first specific condition in the code that triggers the extension to deactivate itself?
 
@@ -77,9 +86,12 @@ Now we should check the other `.js` files, because `app.js` doesn't seem to have
 ```
 This alert explains that it will disable itself, if the condition is fullfilled. The condition that has to be fullfilled is one or the other separated by the or "||", in this case the question asks for the first condition.
 
-**Answer:**
-
-`navigator.plugins.length === 0`
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    navigator.plugins.length === 0
+  </div>
+</details>
 
 ## Q5: Which event does the extension capture to track user input submitted through forms?
 
@@ -93,9 +105,12 @@ I had to comeback to `app.js`, now looking for an event and a form. And I found 
 ```
 The event that the extension captures is `submit` to track the user input through the form, that has two inputs, an user (or email) and a password, and if both are filled it will call the function `exfiltrateCredentials` with both parameters.
 
-**Answer:**
-
-`submit`
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    submit
+  </div>
+</details>
 
 ## Q6: Which API or method does the extension use to capture and monitor user keystrokes?
 
@@ -108,25 +123,34 @@ In the same file `app.js` just after the section of the code I previously mentio
 ```
 In this case a `keydown` event that calls to the function `exfiltrateData`.
 
-**Answer:**
-
-`keydown`
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    keydown
+  </div>
+</details>
 
 ## Q7: What is the domain where the extension transmits the exfiltrated data?
 
 We already know this information from the question **Q3** where I shared the piece of code of the function `sendToServer`.
 
-**Answer:**
-
-`Mo.Elshaheedy.com`
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    Mo.Elshaheedy.com
+  </div>
+</details>
 
 ## Q8: Which function in the code is used to exfiltrate user credentials, including the username and password?
 
-Also I mentioned this function in the **Q5** so coming back to that piece of code will give us the information, care with the final ";" which in JS is not needed but it is for the answer.
+Also I mentioned this function in the **Q5** so coming back to that piece of code will give us the information, care with the final ";" maybe in JS is not needed but it is for the answer.
 
-**Answer:**
-
-`exfiltrateCredentials(username, password);`
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    exfiltrateCredentials(username, password);
+  </div>
+</details>
 
 ## Q9: Which encryption algorithm is applied to secure the data before sending?
 
@@ -136,9 +160,12 @@ Now, we should check for anything related to encryption algorithms, in the same 
 ```
 So the encryption algorithm is AES, and also we can see that is using custom key and IV, where the key is `SuperSecretKey123` and a randomly generated IV.
 
-**Answer:**
-
-`AES`
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    AES
+  </div>
+</details>
 
 ## Q10: What does the extension access to store or manipulate session-related data and authentication information?
 
@@ -155,9 +182,12 @@ We have to take a look to another file to get this one, in this case it's intere
   ]
 ```
 
-And one that seems related to the question is the value `cookies` which is a session-related data and authentication information, so this is the answer.
+And one that seems related to the question is the value which is a session-related data and authentication information, so this is the answer.
 
-**Answer:**
-
-`cookies`
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    cookies
+  </div>
+</details>
 
