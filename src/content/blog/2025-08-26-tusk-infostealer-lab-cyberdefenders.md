@@ -4,14 +4,14 @@ title: Tusk Infostealer Lab - CyberDefenders
 tags:
   - Cybersecurity
   - Blue Team
-  - Cyberdefenders
+  - CyberDefenders
   - Threat Intelligence
 languages:
   - threatintel
 image:
   url: https://cyberdefenders.org/media/terraform/Tusk%20Infostealer/Tusk_Infostealer.webp
   alt: tusk-infostealer-lab
-description: "My notes about Tusk Infostealer Lab "
+description: "My notes about Tusk Infostealer Lab - CyberDefenders"
 pubDate: 2025-08-26T20:52:00.000+02:00
 heroImage: https://cyberdefenders.org/media/terraform/Tusk%20Infostealer/Tusk_Infostealer.webp
 ---
@@ -32,9 +32,9 @@ MD5: E5B8B2CF5B244500B22B665C87C11767
 
 ## Q1: In KB, what is the size of the malicious file?
 Looking at the content of the hash.txt we can see a MD5 Hash, I’m using VirusTotal to search more about this hash.
- 
+ ![pcap provided](/images/tusk-infostealer-lab/Picture1.webp)
 Here we can see many information related to the hash of the malware file, one of the information is the file size:
- 
+ ![pcap provided](/images/tusk-infostealer-lab/Picture2.webp)
 
 **Answer:**
 

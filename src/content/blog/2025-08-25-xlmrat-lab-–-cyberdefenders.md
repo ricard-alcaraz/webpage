@@ -2,17 +2,17 @@
 pubDate: 2025-08-25T17:25:00.000+02:00
 heroImage: https://cyberdefenders.org/media/terraform/XLMRat/terraform/XLMRat/xlmrat.webp
 author: Ricard Alcaraz
-title: XLMRat Lab – Cyberdefenders
+title: XLMRat Lab – CyberDefenders
 tags:
   - Cybersecurity
   - Blue Team
-  - Cyberdefenders
+  - CyberDefenders
 languages:
   - wireshark
 image:
   url: https://cyberdefenders.org/media/terraform/XLMRat/terraform/XLMRat/xlmrat.webp
   alt: xmlrat lab image
-description: Explanation of how I did the XLMRat Lab in Cyberdefenders
+description: Explanation of how I did the XLMRat Lab - CyberDefenders
 ---
 
 ## Scenario
