@@ -20,8 +20,24 @@ collections:
     create: true # Allow users to create new documents in this collection
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}" # Filename template
     fields: # The fields for each document, usually matching your Markdown frontmatter
+      - { label: "Author", name: "author", widget: "string" }
       - { label: "Title", name: "title", widget: "string" }
+      - label: "Tags"
+        name: "tags"
+        widget: "list"
+        allow_add: true
+        collapsed: false
+      - label: "Languages"
+        name: "languages"
+        widget: "list"
+        allow_add: true
+        collapsed: false
+      - label: "Image"
+        name: "image"
+        widget: "object"
+        fields:
+          - { label: "URL", name: "url", widget: "string" }
+          - { label: "Alt", name: "alt", widget: "string" }
       - { label: "Description", name: "description", widget: "string" }
       - { label: "Publish Date", name: "pubDate", widget: "datetime" }
-      - { label: "Hero Image", name: "heroImage", widget: "image", optional: true }
       - { label: "Body", name: "body", widget: "markdown" }
