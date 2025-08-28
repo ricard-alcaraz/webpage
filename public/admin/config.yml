@@ -27,11 +27,13 @@ collections:
         widget: "list"
         allow_add: true
         collapsed: false
+        field: { label: "Tag", name: "tag", widget: "string" }
       - label: "Languages"
         name: "languages"
         widget: "list"
         allow_add: true
         collapsed: false
+        field: { label: "Languages", name: "languages", widget: "string" }
       - label: "Image"
         name: "image"
         widget: "object"
