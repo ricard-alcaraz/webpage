@@ -5,6 +5,9 @@ tags:
   - TryHackMe
   - Incident Response
   - Digital Forensics
+languages:
+  - eztools
+  - autopsy
 image:
   url: https://ricard-alcaraz.com/images/unattended-thm/main.webp
   alt: main image
