@@ -146,8 +146,16 @@ export const languages: Record<string, Language> = {
     name: "Malware Analysis",
     className: "text-white",
     iconName:"solar:magnifer-bug-bold",
-  }
-
+  },
+  autopsy:{
+    name: "Autopsy",
+    className: "text-black",
+    iconName: "autopsy",
+  },
+  eztools:{
+    name: "EZ Tools",
+    iconName: "eztools",
+  },
 };
 
 export const getLanguage = (lang: string): Language => {

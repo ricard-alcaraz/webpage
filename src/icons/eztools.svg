@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="88" height="113" viewBox="0 0 88 113">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #6077ba;
+      }
+
+      .cls-1, .cls-2 {
+        fill-rule: evenodd;
+      }
+
+      .cls-2 {
+        fill: #332b29;
+      }
+    </style>
+  </defs>
+  <path id="Relleno_de_color_1" data-name="Relleno de color 1" class="cls-1" d="M0,0V113H88V90H23V68L54,45H23V23H88V0H0Z"/>
+  <path id="Relleno_de_color_2" data-name="Relleno de color 2" class="cls-2" d="M88,45V68H56Z"/>
+</svg>
