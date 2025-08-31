@@ -52,7 +52,11 @@ Clicking the suspicious file in the suspucious file, we can see that inside ther
 
 ## Q3: What application did the user use to download this file?
 
-So in this one there should be an easier way, but the way I did it was Downloading the `C:\Users\<username>\AppData\Local\ConnectedDevicesPlatform\0f17d47646a49d05\ActivitiesCache.db` and then use the EZ Tool `WxTCmd.exe` the reason is because I thought that I could find the program used looking to the date of the suspicious file and looking for some browser being open around that time, well looking at the `ActivitiesCache.db` I only saw one browser so I guessed that that was the one used to download the file.
+So in this one there should be an easier way, but the way I did it was downloading the 
+```cmd
+\AppData\Local\ConnectedDevicesPlatform\0f17d47646a49d05\ActivitiesCache.db
+``` 
+and then use the EZ Tool `WxTCmd.exe` the reason is because I thought that I could find the program used looking to the date of the suspicious file and looking for some browser being open around that time, well looking at the `ActivitiesCache.db` I only saw one browser so I guessed that that was the one used to download the file.
 
 <details>
   <summary>Click to reveal the answer</summary>
