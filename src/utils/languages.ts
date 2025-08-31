@@ -160,6 +160,10 @@ export const languages: Record<string, Language> = {
     name: "CyberChef",
     className: "text-white",
     iconName: "solar:chef-hat-bold",
+  },
+  ftkimager:{
+    name: "FTK Imager",
+    iconName: "ftkimager",
   }
 };
 
