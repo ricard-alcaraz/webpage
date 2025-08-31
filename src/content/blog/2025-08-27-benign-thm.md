@@ -5,13 +5,13 @@ tags:
   - Cybersecurity
   - Blue Team
   - TryHackMe
-  - Splunk
+  - Incident Response
 languages:
   - splunk
 image:
   url: https://ricard-alcaraz.com/images/benign-thm/main.webp
   alt: tusk-infostealer-lab
-description: My notes of Benign - THM
+description: My notes solving Benign - TryHackMe
 pubDate: 2025-08-27T09:40:00.000+02:00
 heroImage: https://ricard-alcaraz.com/images/benign-thm/main.webp
 ---

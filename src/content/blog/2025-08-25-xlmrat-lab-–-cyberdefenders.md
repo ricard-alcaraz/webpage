@@ -7,14 +7,14 @@ tags:
   - Cybersecurity
   - Blue Team
   - CyberDefenders
-  - Network Analysis
+  - Network Forensics
 languages:
   - wireshark
   - cyberchef
 image:
   url: https://cyberdefenders.org/media/terraform/XLMRat/terraform/XLMRat/xlmrat.webp
   alt: xmlrat lab image
-description: Explanation of how I did the XLMRat Lab - CyberDefenders
+description: My notes solving XLMRat Lab - CyberDefenders
 ---
 
 ## Scenario

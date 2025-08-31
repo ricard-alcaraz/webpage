@@ -13,7 +13,7 @@ languages:
 image:
   url: https://cyberdefenders.org/media/terraform/FakeGPT/FakeGPT.webp
   alt: fake gpt image
-description: My notes about FakeGPT Lab - CyberDefenders
+description: My notes solving FakeGPT Lab - CyberDefenders
 pubDate: 2025-08-27T17:47:00.000+02:00
 heroImage: https://cyberdefenders.org/media/terraform/FakeGPT/FakeGPT.webp
 ---
