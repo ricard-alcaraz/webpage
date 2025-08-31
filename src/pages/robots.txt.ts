@@ -6,18 +6,6 @@ const generateRobotsTxt = (sitemapURL: URL) => {
 User-agent: *
 Allow: /
 
-User-agent: GPTBot
-Disallow:
-
-User-agent: Googlebot
-Disallow:
-
-User-agent: Bytespider
-Disallow:
-
-User-agent: Meta-ExternalAgent
-Disallow:
-
 Sitemap: ${sitemapURL.href}
 `.trim();
 };
