@@ -156,6 +156,11 @@ export const languages: Record<string, Language> = {
     name: "EZ Tools",
     iconName: "eztools",
   },
+  cyberchef:{
+    name: "CyberChef",
+    className: "text-white",
+    iconName: "solar:chef-hat-bold",
+  }
 };
 
 export const getLanguage = (lang: string): Language => {
