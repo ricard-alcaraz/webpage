@@ -6,6 +6,7 @@ tags:
 languages:
   - eztools
   - cyberchef
+  - ftkimager
 image:
   url: https://cyberdefenders.org/media/terraform/Silent%20Breach/Silent_Breach.webp
   alt: image of the lab
