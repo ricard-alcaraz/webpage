@@ -2,6 +2,8 @@
 author: Ricard Alcaraz Mancebo
 title: Unattended - THM
 tags:
+  - Cybersecurity
+  - Blue Team
   - TryHackMe
   - Incident Response
   - Digital Forensics

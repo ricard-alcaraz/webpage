@@ -7,8 +7,10 @@ tags:
   - Cybersecurity
   - Blue Team
   - CyberDefenders
+  - Network Analysis
 languages:
   - wireshark
+  - cyberchef
 image:
   url: https://cyberdefenders.org/media/terraform/XLMRat/terraform/XLMRat/xlmrat.webp
   alt: xmlrat lab image

@@ -2,6 +2,8 @@
 author: Ricard Alcaraz Mancebo
 title: DanaBot Lab - CyberDefenders
 tags:
+  - Cybersecurity
+  - Blue Team
   - CyberDefenders
   - Network Forensics
   - Threat Intelligence

@@ -9,6 +9,7 @@ tags:
 languages:
   - malwareanalysis
   - javascript
+  - cyberchef
 image:
   url: https://cyberdefenders.org/media/terraform/FakeGPT/FakeGPT.webp
   alt: fake gpt image

@@ -2,7 +2,11 @@
 author: Ricard Alcaraz Mancebo
 title: Silent Breach Lab - CyberDefenders
 tags:
+  - Cybersecurity
+  - Blue Team
   - Digital Forensics
+  - CyberDefenders
+  - Malware Analysis
 languages:
   - eztools
   - cyberchef
