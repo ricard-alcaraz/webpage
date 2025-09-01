@@ -26,6 +26,7 @@
     "@iconify-json/logos": "^1.2.9",
     "@iconify-json/material-icon-theme": "^1.2.24",
     "@iconify-json/material-symbols": "^1.2.33",
+    "@iconify-json/simple-icons": "^1.2.50",
     "@iconify-json/solar": "^1.2.4",
     "@iconify-json/vscode-icons": "^1.2.30",
     "@tailwindcss/postcss": "^4.1.12",

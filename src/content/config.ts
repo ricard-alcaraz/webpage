@@ -41,6 +41,7 @@ const jsonDataCollection = defineCollection({
 const blogCollection = defineCollection({
   schema: z.object({
     title: z.string(),
+    author: z.string().optional(),
     description: z.string(),
     pubDate: z.date(),
     image: z.object({

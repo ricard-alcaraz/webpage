@@ -1,6 +1,6 @@
 ---
 author: Ricard Alcaraz Mancebo
-title: OpenWire Lab
+title: OpenWire Lab - CyberDefenders
 tags:
   - Cybersecurity
   - Blue Team

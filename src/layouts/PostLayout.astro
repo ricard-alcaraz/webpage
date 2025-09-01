@@ -10,9 +10,10 @@ import Share from "../components/ui/Share.astro";
 import { getCollection } from 'astro:content';
 const { post, slug } = Astro.props;
 const { data: frontmatter } = post;
+const authorName = frontmatter.author || "Ricard Alcaraz Mancebo";
 const currentUrl = `${Astro.site}${Astro.url.pathname}`;
 const tweetText = encodeURIComponent(
-  `"${frontmatter.title}" - by ${frontmatter.author}`
+  `"${frontmatter.title}" - by ${authorName}`
 );
 import Heading from "../components/ui/Heading.astro";
 const allPosts = await getCollection('blog');
