@@ -26,6 +26,9 @@ A cyber threat group was identified for initiating widespread phishing campaigns
 
 ## Q1: What is the name of the file associated with the given hash?
 We have here a hash SHA-1 that as the scenario says that is from an IcedID sample, so first we can go to ![VirusTotal](https://www.virustotal.com/gui/home/upload) and search the given hash.
+
+![virustotal analysis](/images/icedid-lab/q1.png)
+
 As we already know this from a malicious file, looking at the `Details` tab we will find names asociated with this file, we have the hint that it contains a dash so its not hard to guess the name for the answer.
 
 <details>
@@ -70,6 +73,8 @@ Right now I think its a bit hard to do because things have changed, still I look
 
 ## Q5: Could you specify the threat actor linked to the sample provided?
 To obtain this I searched the name of the malware in MITRE ATT&CK and I looked up the groups related to this malware, there are two groups related to it, one uses more techniques than the other so I think its possible to guess because of the techniques that they use, such as hide encoded data for malware DLLs in a PNG, in this case is a GIF but it's quite similar, compared to the other one that doesn't anything like this.
+
+![mitre icedid](/images/icedid-lab/q5.png)
 
 <details>
   <summary>Click to reveal the answer</summary>
