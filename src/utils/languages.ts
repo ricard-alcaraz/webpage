@@ -137,16 +137,6 @@ export const languages: Record<string, Language> = {
     name: "Wireshark",
     iconName: "wireshark",
   },
-  threatintel:{
-    name: "Threat Intelligence",
-    className: "text-white",
-    iconName: "material-symbols:threat-intelligence",
-  },
-  malwareanalysis:{
-    name: "Malware Analysis",
-    className: "text-white",
-    iconName:"solar:magnifer-bug-bold",
-  },
   autopsy:{
     name: "Autopsy",
     className: "text-black",

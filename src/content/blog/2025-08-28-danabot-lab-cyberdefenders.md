@@ -9,7 +9,7 @@ tags:
   - Threat Intelligence
 languages:
   - wireshark
-  - threatintel
+  - virustotal
 image:
   url: https://cyberdefenders.org/media/terraform/DanaBot/DanaBot.webp
   alt: image of the lab

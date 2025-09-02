@@ -7,7 +7,7 @@ tags:
   - CyberDefenders
   - Threat Intelligence
 languages:
-  - threatintel
+  - virustotal
 image:
   url: https://cyberdefenders.org/media/terraform/Tusk%20Infostealer/Tusk_Infostealer.webp
   alt: tusk-infostealer-lab

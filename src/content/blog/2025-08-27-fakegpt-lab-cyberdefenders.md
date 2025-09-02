@@ -7,7 +7,6 @@ tags:
   - CyberDefenders
   - Malware Analysis
 languages:
-  - malwareanalysis
   - javascript
   - cyberchef
 image:

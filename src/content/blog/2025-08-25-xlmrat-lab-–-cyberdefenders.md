@@ -11,6 +11,7 @@ tags:
 languages:
   - wireshark
   - cyberchef
+  - virustotal
 image:
   url: https://cyberdefenders.org/media/terraform/XLMRat/terraform/XLMRat/xlmrat.webp
   alt: xmlrat lab image
