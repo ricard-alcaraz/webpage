@@ -6,7 +6,6 @@ tags:
   - Blue Team
   - CyberDefenders
   - Threat Intelligence
-  - VirusTotal
 languages:
   - virustotal
 image:
