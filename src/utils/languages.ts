@@ -164,7 +164,12 @@ export const languages: Record<string, Language> = {
   ftkimager:{
     name: "FTK Imager",
     iconName: "ftkimager",
-  }
+  },
+  virustotal:{
+    name: "VirusTotal",
+    className: "text-white",
+    iconName: "simple-icons:virustotal",
+  },
 };
 
 export const getLanguage = (lang: string): Language => {
