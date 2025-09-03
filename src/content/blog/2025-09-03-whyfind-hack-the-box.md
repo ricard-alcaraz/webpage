@@ -7,6 +7,7 @@ tags:
   - Hack The Box
 languages:
   - autopsy
+  - eztools
 image:
   url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhs6oJRGZG2suzcDhW-iLWdYaMwJw3rllNyQ&s
   alt: hackthebox
