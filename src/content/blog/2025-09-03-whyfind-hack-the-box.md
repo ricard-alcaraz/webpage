@@ -25,7 +25,7 @@ We have been hot on the trail for a political dissident. They jump from café to
 First I opened Autopsy to analyze this KAPE output, it will provide us a easy way to look at this KAPE output. So we create a new case and select the `C/` folder inside the extraction provided.
 Then Autopsy will identify some `Data Artifacts` one of these is `Operating System Information`:
 
-![]()
+![autopsy image1](/images/whyfind-htb/q1.png)
 
 This will give us the information we need to answer the question.
 
@@ -40,7 +40,7 @@ This will give us the information we need to answer the question.
 
 Now we have to go to another artifact, in this case `Wireless Networks`:
 
-![]()
+![image 2](/images/whyfind-htb/q2.png)
 
 We will find 3 networks, it asks for the first one but checking the time all 3 have the same timestamp, so I just picked up the first one.
 
@@ -60,7 +60,7 @@ SYSTEM\ControlSet001\Services\Tcpip\Parameters\Interfaces\{18c11dbd-93ab-4ca9-a8
 
 Then we will find 3 folders, the same number as the Networks we found, then I noticed that Autopsy maybe was not giving the correct time for the network, instead the device timestamp, we can see the `Last write timestamp` and then we choose the first one.
 
-![]()
+![image 3](/images/whyfind-htb/q3.png)
 
 There we can see the parameter `LeaseObtainedTime`. right-clicking the value and then the `Data Interpreter` we can obtain the time format to answer the question.
 
@@ -280,7 +280,6 @@ I found this information at the `Login Data` database inside the table `logins`,
 ## Q21: What was the name of the VM they created?
 For this one we can take a look at the `$MFT` file, this time the trick of loking at the raw data didn't work so i did use the EZ tool `MFTECmd.exe` to extract the information, there we can consider to search for VM extensions and we can find the name of the VM. I just searched for `.vbox` and I could find the name of the VM.
 
-
 <details>
   <summary>Click to reveal the answer</summary>
   <div>
@@ -291,3 +290,43 @@ For this one we can take a look at the `$MFT` file, this time the trick of lokin
 
 ## Q22: What street was the first café on?
 
+We have some information to work with, we just need where to find it. There is a website that can help us: [wigle.net](https://wigle.net). Here we can find a wifi using a BSSID and the name of the network, and we have both. Doing a query here we can find the location of it.
+
+![wiglet image](/images/whyfind-htb/q22.png)
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    W Prospect Rd
+  </div>
+</details>
+
+## Q23: Investigators may want to follow up on the Wi-Fi credentials used at the first café the suspect visited. Which file stores the authentication details (including the encrypted password) for the first network?
+
+We are almost done, the location of this file is over here: 
+```cmd
+C:\ProgramData\Microsoft\Wlansvc\Profiles\Interfaces\{Interface ID}\{Profile ID}.xml
+```
+We can look each to find the name of the network until we can locate which is the one we need.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    {BAC95378-DC6B-4464-918E-4E005F747786}.xml
+  </div>
+</details>
+
+## Q24: What authentication method was used to connect to the first café's Wi-Fi?
+
+Final question, this information is already in the same file from last question, so we are done!
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    WPA2PSK
+  </div>
+</details>
+
+## Conlusion
+
+I enjoyed this one, it was long but very interesting I have learned a lot from it!
