@@ -245,8 +245,8 @@ Nothing new here, just the same process as **Q5** searching the name of the netw
 
 ## Q18: What was the first thing the user downloaded at the second café?
 
-We already know that previously another browser was downloaded, and also we can see that there is no more logs of searchs in Microsoft Edge, so they must have changed browsers.
-We now can take a look at the logs of this new browser, the path is similar to the one for Edge, but in this case go for this other browser. There we can go to the `History` and go to the `downloads` table, and we will find it.
+We already know that another browser was downloaded, and also we can see that there is no more logs of searchs in Microsoft Edge, so they must have changed browsers.
+We now can take a look at the logs of this new browser, im using Autopsy for it, the path is similar to the one for Edge, but in this case go for this other browser. There we can go to the `History` and go to the `downloads` table, and we will find it.
 
 <details>
   <summary>Click to reveal the answer</summary>
@@ -268,8 +268,7 @@ Lets go to the table `urls` of the `History` database, and lets analyze the hist
 
 ## Q20: What was their username on the site?
 
-I found this information at the `Login Data` database inside the table `logins`, we are still in the browser folder from previous questions.
-
+I found this information at the `Login Data` database inside the table `logins`, we are still in the browser folder from previous questions. And I also found it at the `Web Data` database on the table `autofill`.
 
 <details>
   <summary>Click to reveal the answer</summary>
@@ -277,3 +276,5 @@ I found this information at the `Login Data` database inside the table `logins`,
     FinanciallyFree3636
   </div>
 </details>
+
+## Q21: What was the name of the VM they created?
