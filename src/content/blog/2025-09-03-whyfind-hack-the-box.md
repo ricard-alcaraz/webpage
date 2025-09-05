@@ -100,7 +100,7 @@ Once there we will find some folders, one of them is the access point. At first 
 
 ## Q6: It looks like they started some sort of manifesto at the café, what is the name of the file they started to write?
 
-
+In Autopsy we can load the case with the module `Recent Documents` once there we can find the name of the file that can fit as a title of a manifesto.
 
 <details>
   <summary>Click to reveal the answer</summary>
