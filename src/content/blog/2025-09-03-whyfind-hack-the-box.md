@@ -122,3 +122,42 @@ Searching a bit we can try with the `$MFT` file, there are some parsers around, 
   </div>
 </details>
 
+## Q8: They started their research by watching a YouTube video of a speech, what is the name of the speech?
+
+Now we should look for the logs of the browsers available, in this case there is only one that is Microsoft Edge. We can see the information about the History in:
+```cmd
+C/Users/Ernes/AppData/Local/Microsoft/Edge/User Data/Default/History
+```
+And now we can just follow the timeline of events.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    The Ballot or the Bullet
+  </div>
+</details>
+
+
+## Q9: They continued their research by looking up a book on Wikipedia, what was the title of the book?
+
+We are already at the correct place, just follow the search history.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    The Iron Heel
+  </div>
+</details>
+
+## Q10: What was the last thing they downloaded before leaving the café?
+
+Following the history we can see that at the end they downloaded one new browser, the setup `.exe` of this browser is the answer to the question.
+
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    BraveBrowserSetup.exe
+  </div>
+</details>
+
