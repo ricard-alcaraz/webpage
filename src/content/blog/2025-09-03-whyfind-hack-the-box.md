@@ -84,3 +84,21 @@ We are already at the correct place from last question, we just have to look at 
 </details>
 
 ## Q5: 
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    E4-D1-24-96-A5-D1
+  </div>
+</details>
+
+## Q6
+
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    The Chains Not Seen.txt
+  </div>
+</details>
+
