@@ -83,7 +83,13 @@ We are already at the correct place from last question, we just have to look at 
   </div>
 </details>
 
-## Q5: 
+## Q5: What was the BSSID (MAC address) of the access point they connected to at the café?
+
+Here we have to got to load the `SOFTWARE` hive, and we have to locate the path 
+```cmd
+SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Signatures\Unmanaged
+```
+Once there we will find some folders, one of them is the access point. At first I didnt consider the `access point` part and just thought about the network, once the answer was wrong I found that there is a similar name of the network but adding a `2`, this is the one we are looking for.
 
 <details>
   <summary>Click to reveal the answer</summary>
