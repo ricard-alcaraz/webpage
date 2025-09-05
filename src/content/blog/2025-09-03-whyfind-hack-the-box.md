@@ -10,7 +10,7 @@ languages:
   - autopsy
   - eztools
 image:
-  url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhs6oJRGZG2suzcDhW-iLWdYaMwJw3rllNyQ&s
+  url: https://ricard-alcaraz.com/images/whyfind-htb/main.png
   alt: hackthebox
 description: My notes solving WhyFind - Hack The Box
 pubDate: 2025-09-05T20:50:00.000+02:00
