@@ -124,7 +124,7 @@ Searching a bit we can try with the `$MFT` file, there are some parsers around, 
 
 ## Q8: They started their research by watching a YouTube video of a speech, what is the name of the speech?
 
-Now we should look for the logs of the browsers available, in this case there is only one that is Microsoft Edge. We can see the information about the History in:
+Now we should look for the logs of the browsers available, in this case there are two browsers I will start analyzing Microsoft Edge. We can see the information about the History in:
 ```cmd
 C/Users/Ernes/AppData/Local/Microsoft/Edge/User Data/Default/History
 ```
@@ -153,11 +153,12 @@ We are already at the correct place, just follow the search history.
 
 Following the history we can see that at the end they downloaded one new browser, the setup `.exe` of this browser is the answer to the question.
 
-
 <details>
   <summary>Click to reveal the answer</summary>
   <div>
     BraveBrowserSetup.exe
   </div>
 </details>
+
+## Q11: When investigating changes to network profiles on a Windows system, which event log would you examine to find entries related to these profile-specific events, using event IDs such as 10000 or 10001?
 
