@@ -151,7 +151,7 @@ We are already at the correct place, just follow the search history.
 
 ## Q10: What was the last thing they downloaded before leaving the café?
 
-Following the history we can see that at the end they downloaded one new browser, the setup `.exe` of this browser is the answer to the question.
+Following the history we can see that at the end they downloaded the other browser, the setup `.exe` of this browser is the answer to the question.
 
 <details>
   <summary>Click to reveal the answer</summary>
