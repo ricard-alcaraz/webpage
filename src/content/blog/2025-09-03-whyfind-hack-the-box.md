@@ -89,7 +89,7 @@ Here we have to got to load the `SOFTWARE` hive, and we have to locate the path
 ```cmd
 SOFTWARE\Microsoft\Windows NT\CurrentVersion\NetworkList\Signatures\Unmanaged
 ```
-Once there we will find some folders, one of them is the access point. At first I didnt consider the `access point` part and just thought about the network, once the answer was wrong I found that there is a similar name of the network but adding a `2`, this is the one we are looking for.
+Once there we will find some folders, one of them is the access point. At first I looked for the name of the network we found previously, but the answer was wrong, so I found that there is a similar name of the network but adding a `2`, this is the one we are looking for, I guess it makes since in the timeline this one its first, so that place must have a couple or more networks.
 
 <details>
   <summary>Click to reveal the answer</summary>
@@ -128,7 +128,7 @@ Now we should look for the logs of the browsers available, in this case there ar
 ```cmd
 C/Users/Ernes/AppData/Local/Microsoft/Edge/User Data/Default/History
 ```
-And now we can just follow the timeline of events.
+And now we can just follow the timeline of events at the table `urls` of the `History` database.
 
 <details>
   <summary>Click to reveal the answer</summary>
@@ -136,7 +136,6 @@ And now we can just follow the timeline of events.
     The Ballot or the Bullet
   </div>
 </details>
-
 
 ## Q9: They continued their research by looking up a book on Wikipedia, what was the title of the book?
 
@@ -151,7 +150,7 @@ We are already at the correct place, just follow the search history.
 
 ## Q10: What was the last thing they downloaded before leaving the café?
 
-Following the history we can see that at the end they downloaded the other browser, the setup `.exe` of this browser is the answer to the question.
+Following the history we can see that at the end they downloaded another browser, the setup `.exe` of this browser is the answer to the question, you can find it in the `History` database on the table `downloads`.
 
 <details>
   <summary>Click to reveal the answer</summary>
@@ -213,5 +212,68 @@ Here considering we obtained the last question we already know this information.
 
 ## Q15: What IP address did the device receive when connecting to the second café?
 
+We have to revisit **Q4**, here we found 3 folders, the first one was the first network tht they connected, the second folder is this new one, so we just check the `DhcpIPAddress` and we have our answer.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    192.168.10.100
+  </div>
+</details>
+
+## Q16: When did the system obtain a lease for the second network?
+
+Following the previous question check the value `LeaseObtainedTime` and that's it, just like **Q3**.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    2025-05-30 19:06:02
+  </div>
+</details>
+
+## Q17: What was the BSSID (MAC address) of the access point they connected to at the second café?
+
+Nothing new here, just the same process as **Q5** searching the name of the network.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    4C-BA-7D-E1-8C-30
+  </div>
+</details>
+
+## Q18: What was the first thing the user downloaded at the second café?
+
+We already know that previously another browser was downloaded, and also we can see that there is no more logs of searchs in Microsoft Edge, so they must have changed browsers.
+We now can take a look at the logs of this new browser, the path is similar to the one for Edge, but in this case go for this other browser. There we can go to the `History` and go to the `downloads` table, and we will find it.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    VirtualBox-7.1.8-168469-Win.exe
+  </div>
+</details>
+
+## Q19: What online forum/social media site did they visit?
+
+Lets go to the table `urls` of the `History` database, and lets analyze the history search and we can find a famous forum/social media site. 
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    Reddit
+  </div>
+</details>
+
+## Q20: What was their username on the site?
+
+I found this information at the `Login Data` database inside the table `logins`, we are still in the browser folder from previous questions.
 
 
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    FinanciallyFree3636
+  </div>
+</details>
