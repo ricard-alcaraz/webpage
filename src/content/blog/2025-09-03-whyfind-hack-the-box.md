@@ -92,13 +92,27 @@ We are already at the correct place from last question, we just have to look at 
   </div>
 </details>
 
-## Q6
+## Q6: It looks like they started some sort of manifesto at the café, what is the name of the file they started to write?
+
 
 
 <details>
   <summary>Click to reveal the answer</summary>
   <div>
     The Chains Not Seen.txt
+  </div>
+</details>
+
+
+## Q7: What is the last sentence of the manifesto?
+
+For this one there are some places where we can check if there is more information about it, from previous question I noticed that it was inside the `OneDrive` folder so we can check if there is something around, but its not the case.
+Searching a bit we can try with the `$MFT` file, there are some parsers around, but i just opened it raw and then searched for the name of the file. Just below the name of the file we can find the answer.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    Freedom is a perspective away.
   </div>
 </details>
 
