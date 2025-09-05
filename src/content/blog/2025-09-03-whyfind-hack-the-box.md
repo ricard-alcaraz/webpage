@@ -5,6 +5,7 @@ tags:
   - Blue Team
   - Cybersecurity
   - Hack The Box
+  - Digital Forensics
 languages:
   - autopsy
   - eztools
@@ -12,12 +13,14 @@ image:
   url: https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhs6oJRGZG2suzcDhW-iLWdYaMwJw3rllNyQ&s
   alt: hackthebox
 description: My notes solving WhyFind - Hack The Box
-pubDate: 2025-09-03T18:57:00.000+02:00
+pubDate: 2025-09-05T20:50:00.000+02:00
 ---
 ## Scenario
+
 We have been hot on the trail for a political dissident. They jump from café to café using the Wi-Fi making it hard to nab them. During one of their trips, they unknowingly sat next to one of our agents and we captured them with their laptop on. We need to know where they have been and what they have been doing. Analyze the KAPE output and see if you can get us some answers.
 
 ## Documents Provided
+
 - KAPEOUT.zip
 
 ## Q1: What is the Computer name of the machine?
@@ -52,6 +55,7 @@ We will find 3 networks, it asks for the first one but checking the time all 3 h
 </details>
 
 ## Q3: When did the system obtain a lease for the network?
+
 For this one we have to investigate a little bit more deep so I just used RegistryExplorer, and then loaded the SYSTEM hive.
 Here we have to look for the DHCP lease information related to that network from previous question. for this we have to go to this path:
 ```cmd
@@ -108,7 +112,6 @@ In Autopsy we can load the case with the module `Recent Documents` once there we
     The Chains Not Seen.txt
   </div>
 </details>
-
 
 ## Q7: What is the last sentence of the manifesto?
 
@@ -278,6 +281,7 @@ I found this information at the `Login Data` database inside the table `logins`,
 </details>
 
 ## Q21: What was the name of the VM they created?
+
 For this one we can take a look at the `$MFT` file, this time the trick of loking at the raw data didn't work so i did use the EZ tool `MFTECmd.exe` to extract the information, there we can consider to search for VM extensions and we can find the name of the VM. I just searched for `.vbox` and I could find the name of the VM.
 
 <details>
@@ -286,7 +290,6 @@ For this one we can take a look at the `$MFT` file, this time the trick of lokin
     LastHope
   </div>
 </details>
-
 
 ## Q22: What street was the first café on?
 
