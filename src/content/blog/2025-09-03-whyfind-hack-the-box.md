@@ -162,3 +162,56 @@ Following the history we can see that at the end they downloaded the other brows
 
 ## Q11: When investigating changes to network profiles on a Windows system, which event log would you examine to find entries related to these profile-specific events, using event IDs such as 10000 or 10001?
 
+This is more like a thoerical question, so you just have to search about the name of the event logs related to network and you may find the answer.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    Microsoft-Windows-NetworkProfile/Operational
+  </div>
+</details>
+
+## Q12: Using the logs from the previous answer, when did they disconnect and leave the first café?
+
+Now we have to look at the event log from previous question, its located at:
+```cmd
+C:\Windows\System32\winevt\Logs\{Name of the log from previous question}
+```
+
+I exported it and then I opened it with the event viewer of windows, choose the way you want to view the logs.
+
+There we can find when they disconnected from the first café, we already know the name of the access point that they where conected so we have to look for a disconnection of that network. **Care with the time location** use the system time that you can find in details.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    2025-05-30 18:55:45
+  </div>
+</details>
+
+## Q13: Using the same logs, when did the user arrive at the second café?
+
+Similar to the previous question, but now search a connection to a new network.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    2025-05-30 19:05:26
+  </div>
+</details>
+
+## Q14: What is the SSID(decoded) of the second Wi-Fi they connected to on May 30th 2025?
+
+Here considering we obtained the last question we already know this information.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    Happy Trails Guest
+  </div>
+</details>
+
+## Q15: What IP address did the device receive when connecting to the second café?
+
+
+
