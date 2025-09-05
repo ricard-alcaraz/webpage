@@ -278,3 +278,16 @@ I found this information at the `Login Data` database inside the table `logins`,
 </details>
 
 ## Q21: What was the name of the VM they created?
+For this one we can take a look at the `$MFT` file, this time the trick of loking at the raw data didn't work so i did use the EZ tool `MFTECmd.exe` to extract the information, there we can consider to search for VM extensions and we can find the name of the VM. I just searched for `.vbox` and I could find the name of the VM.
+
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    LastHope
+  </div>
+</details>
+
+
+## Q22: What street was the first café on?
+
