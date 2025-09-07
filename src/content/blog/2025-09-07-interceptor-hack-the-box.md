@@ -10,7 +10,7 @@ languages:
   - virustotal
   - cyberchef
 image:
-  url: https://static.vitrine.ynov.com/cdn-cgi/image/width=650,height=422,fit=cover,format=auto/var/site/storage/images/1/8/0/3/193081-1-fre-FR/9e61ed312047-0x0.png
+  url: https://ricard-alcaraz.com/images/interceptor-htb/main.png
   alt: hack the box lab Interceptor
 description: My notes solving Interceptor - Hack The Box
 pubDate: 2025-09-07T11:34:00.000+02:00
@@ -25,9 +25,9 @@ A recent anomaly has been detected in our network traffic, suggesting a potentia
 
 First of all I did check the first packets of the PCAP, the first thing I noticed was a DNS query to a domain, so I wanted to check this domain using `VirusTotal` to see if it was a flagged domain:
 
-![]()
+![virustotal screenshot](/images/interceptor-htb/q1.png)
 
-The result is that 10 vendors flaged it as a malicious domain, so this seems to be the origin of the suspicious traffic, now we have to check the IP of this domain to find the answer. For example looking at the source address of the `Client Hello` from the TLS handshake protocol.
+The result is that 10 vendors flaged it as a malicious domain, so this seems to be already suspicious, now we can check the IP of this domain, and we will see that is the origin of the suspicious traffic. For example looking at the source address of the `Client Hello` from the TLS handshake protocol.
 
 <details>
   <summary>Click to reveal the answer</summary>
@@ -44,7 +44,7 @@ http.request.method == GET
 ```
 Then I found some files downloaded:
 
-![]()
+![wireshark http GET](/images/interceptor-htb/q2.png)
 
 Honestly I found suspicious the firsts two because the path was really long and with a weird naming, then I took a look at all the HTTP packets. And I saw that these two were the first HTTP packets so there is no previous method to retrieve properties, so it must be other one, following with all the HTTP packets we can see that at some point its starting to use one method that is used to retrieve properties, and then we will see a match with one of the other files that appear at the query of the GET method, this is the one we are looking for. We can see that first it retrieves the information and then it used the GET method.  So lets answer with the method used.
 
@@ -73,7 +73,6 @@ Now what I thought is about exporting the file, obtain it's hash sha256 and the 
 dcae57ec4b69236146f744c143c42cc8bdac9da6e991904e6dbf67ec1179286a
 ```
 Now just look it up on VirusTotal and you will find the answer.
-
 
 <details>
   <summary>Click to reveal the answer</summary>
@@ -154,7 +153,7 @@ For this question I found two ways of finding it, in both we have to go back to 
 
 The other way, which i think is the one that the lab wants you to go through, is looking in the HTTP protocol, and then checking the POST methods. There you can see one that goes to the path `/api/gateway`, there you can find this information.
 
-![]()
+![](/images/interceptor-htb/q11.png)
 
 <details>
   <summary>Click to reveal the answer</summary>
@@ -199,9 +198,9 @@ Same as last question, the information is already there.
 ## Q15: After decrypting the communication from the malware, what command is revealed to be sent to the C2 server?
 
 Ok, lets see what we have and then try to solve this last decrypting challenge.
-So we already have a key from **Q12** and now we need the message and the algorithm. If we follow the HTTP from the POST request for the key, we will see something that seems interesting later on, there is a POST request where the `id` that we found with the key is in the path:
+So we already have a key from **Q12** and now we need the message and the algorithm. If we follow the HTTP stream from the POST request for the key, we will see something that seems interesting later on, there is a POST request where the `id` that we found with the key is in the path:
 
-![]()
+![wireshark http stream](/images/interceptor-htb/q15-1.png)
 
 The response contains an `id` and a `job` parameters:
 
@@ -213,7 +212,7 @@ The job parameter seems to me the message we have to decrypt, also If we continu
 
 Now we have the key and the potential message to decrypt, and we need to know the algorithm. For this one I didn't know much about potential algorithms so I brute forced a little bit the posible decryptions that you can do using `CyberChef` this is a topic I need more knowledge about, and at least I could try to guess or discard some of the algorithms. And finally I found it after serveral time trying, the algorithm is `RC4`.
 
-![]()
+![cyberchef](/images/interceptor-htb/q15-2.png)
 
 <details>
   <summary>Click to reveal the answer</summary>
