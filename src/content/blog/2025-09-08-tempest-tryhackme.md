@@ -171,7 +171,9 @@ We can just search the name of the file downloaded and we will find an event of 
 </details>
 
 
-## Q13:
+## Q13: The stage 2 payload downloaded establishes a connection to a c2 server. What is the domain and port used by the attacker?
+
+Having the previous answer we also can obtain the ProcessID of it, so I started looking for other processes related with this ProcessID, mainly DNS queries. We will find a DNS query to a domain that you will see that already looks suspicious, having that you will also find the IP of that domain, and searching for that IP you will also find in a natwork connection event which port it is using for the connection.
 
 <details>
   <summary>Click to reveal the answer</summary>
@@ -180,5 +182,7 @@ We can just search the name of the file downloaded and we will find an event of 
   </div>
 </details>
 
+## Task 6
 
-
+## Q14: What is the URL of the malicious payload embedded in the document?
+What is the URL of the malicious payload embedded in the document?
