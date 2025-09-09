@@ -1,6 +1,13 @@
 ---
 author: Ricard Alcaraz Mancebo
 title: Tempest - TryHackMe
+tags:
+  - Cybersecurity
+  - Blue Team
+  - TryHackMe
+  - Digital Forensics
+languages:
+  - eztools
 image:
   url: https://assets.tryhackme.com/img/logo/tryhackme_logo_full.svg
   alt: tryhackme
