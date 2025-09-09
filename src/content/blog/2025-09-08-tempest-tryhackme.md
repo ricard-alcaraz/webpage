@@ -382,7 +382,7 @@ Going back to wireshark, looking for the executable of the previous question we 
 
 ### Q31: Upon achieving SYSTEM access, the attacker then created two users. What are the account names?
 
-Now lets take a look at the `windows.etvx`, if we search for new users created we will find the answer, the EventID for user creation is `4720`, and we will find the name of the users.
+Now lets take a look at the `windows.etvx`, if we search for new users created we will find the answer, search which is the EventID for user creation, and we will find the name of the users.
 
 <details>
   <summary>Click to reveal the answer</summary>
@@ -392,4 +392,60 @@ Now lets take a look at the `windows.etvx`, if we search for new users created w
 </details>
 
 ### Q32: Prior to the successful creation of the accounts, the attacker executed commands that failed in the creation attempt. What is the missing option that made the attempt fail?
+
+Now that we know the names we can search on the sysmon log about these names and check possible attempts, we will find the answer after searching the names.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    /add
+  </div>
+</details>
+
+### Q33: Based on windows event logs, the accounts were successfully created. What is the event ID that indicates the account creation activity?
+
+In **Q31** I already searched the users using this EventID, you can just search online about it, its also useful to remember this EventID.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    4720
+  </div>
+</details>
+
+### Q34: The attacker added one of the accounts in the local administrator's group. What is the command used by the attacker?
+
+Following the next commands in the sysmon logs we will find the answer.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    net localgroup administrators /add shion
+  </div>
+</details>
+
+### Q35: Based on windows event logs, the account was successfully added to a sensitive group. What is the event ID that indicates the addition to a sensitive local group?
+
+We can search this information on the internet.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    4732
+  </div>
+</details>
+
+### Q36: After the account creation, the attacker executed a technique to establish persistent administrative access. What is the command executed by the attacker to achieve this?
+
+If we continue following the next commands, we will find it. We are looking for something that can be executed by the victim machine itself, for example when the machine starts.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    C:\Windows\system32\sc.exe \\TEMPEST create TempestUpdate2 binpath= C:\ProgramData\final.exe start= auto
+  </div>
+</details>
+
+
+
 
