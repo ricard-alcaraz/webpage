@@ -321,6 +321,8 @@ In the sysmon logs we have to locate when does the socks command was executed I 
   </div>
 </details>
 
+## Task 8
+
 ### Q26: After discovering the privileges of the current user, the attacker then downloaded another binary to be used for privilege escalation. What is the name and the SHA256 hash of the binary?
 
 Still in the same search as before we can continue looking at the sysmon logs, and we will find another executable, searching for its name we will find the SHA256 hash of the file.
@@ -328,7 +330,7 @@ Still in the same search as before we can continue looking at the sysmon logs, a
 <details>
   <summary>Click to reveal the answer</summary>
   <div>
-    8524FBC0D73E711E69D60C64F1F1B7BEF35C986705880643DD4D5E17779E586D
+    spf.exe,8524FBC0D73E711E69D60C64F1F1B7BEF35C986705880643DD4D5E17779E586D
   </div>
 </details>
 
@@ -344,4 +346,50 @@ Same as before, we can use `VirusTotal` to seach the SHA256, and the we will fin
 </details>
 
 ### Q28: The tool exploits a specific privilege owned by the user. What is the name of the privilege?
+
+We just have to search a little bit about the previous tool on the internet to see what privilege its exploit.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    SeImpersonatePrivilege
+  </div>
+</details>
+
+### Q29: Then, the attacker executed the tool with another binary to establish a c2 connection. What is the name of the binary?
+
+Following the nexts process creations we can see the name of the another executable.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    final.exe
+  </div>
+</details>
+
+### Q30: The binary connects to a different port from the first c2 connection. What is the port used?
+
+Going back to wireshark, looking for the executable of the previous question we can see again a pattern we have seen before, if we take a look at the port used this time we will find the answer.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    8080
+  </div>
+</details>
+
+## Task 9
+
+### Q31: Upon achieving SYSTEM access, the attacker then created two users. What are the account names?
+
+Now lets take a look at the `windows.etvx`, if we search for new users created we will find the answer, the EventID for user creation is `4720`, and we will find the name of the users.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    shion,shuna
+  </div>
+</details>
+
+### Q32: Prior to the successful creation of the accounts, the attacker executed commands that failed in the creation attempt. What is the missing option that made the attempt fail?
 
