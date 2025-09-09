@@ -12,7 +12,7 @@ languages:
   - cyberchef
   - virustotal
 image:
-  url: https://assets.tryhackme.com/img/logo/tryhackme_logo_full.svg
+  url: https://sckull.github.io/images/posts/thm/rootme/cover.png
   alt: tryhackme
 description: My notes solving Tempest - TryHackMe
 pubDate: 2025-09-08T19:44:00.000+02:00
