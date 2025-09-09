@@ -184,5 +184,81 @@ Having the previous answer we also can obtain the ProcessID of it, so I started 
 
 ## Task 6
 
-## Q14: What is the URL of the malicious payload embedded in the document?
-What is the URL of the malicious payload embedded in the document?
+### Q14: What is the URL of the malicious payload embedded in the document?
+
+Now we have to open the network log file, I will use Wireshark. Then I will check the http packets, we have the clue on the task description. There we will see the previous `.doc` file that we detected on the system logs, and right after we will see a file retrieved from the same suspicious domain, this is the URL that was embedded and also called. If we could we also could analyse the `.doc` but its not available.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    http://phishteam.xyz/02dcf07/index.html
+  </div>
+</details>
+
+### Q15: What is the encoding used by the attacker on the c2 connection?
+
+Now we can analyze the different requests after the download of the malicious executable that we have identified, doing it we can see that there are several requests that contains long string, these seem to be the strings we have to decode. If we copy one of these and paste it as an input on `CyberChef` it will help us answer the question if we use the magic wand.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    base64
+  </div>
+</details>
+
+### Q16: The malicious c2 binary sends a payload using a parameter that contains the executed command results. What is the parameter used by the binary?
+
+We just have to analyze the previous requests and see the parameter used in order to execute the query that its requesting.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    q
+  </div>
+</details>
+
+### Q17: The malicious c2 binary connects to a specific URL to get the command to be executed. What is the URL used by the binary?
+
+The answer is already on the requests we are analyzing.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    /9ab62b5
+  </div>
+</details>
+
+### Q18: What is the HTTP method used by the binary?
+
+Nothing new, we already know what kind of requests are being used.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    GET
+  </div>
+</details>
+
+### Q19: Based on the user agent, what programming language was used by the attacker to compile the binary? 
+
+Analyzing the header of any of these requests we will find the answer on the `user-agent` parameter.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    nim
+  </div>
+</details>
+
+## Task 7
+
+### Q20: The attacker was able to discover a sensitive file inside the machine of the user. What is the password discovered on the aforementioned file?
+
+For this one I scrolled down untill I saw a requests that was different than the encoded ones, and then I stared to decode the last requests, if we do this we will find that the user had a file `automation.ps1` in the Desktop, that contained its password and he retrieved the information inside of it, so just use `CyberChef` and you will find the answer in one of the requests.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    infernotempest
+  </div>
+</details>
