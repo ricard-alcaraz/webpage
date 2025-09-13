@@ -4,10 +4,14 @@ title: Boogeyman 1 - TryHackMe
 tags:
   - Cybersecurity
   - Blue Team
+  - TryHackMe
+  - Network Forensics
+  - Network Analysis
 languages:
   - wireshark
+  - cyberchef
 image:
-  url: https://tryhackme-images.s3.amazonaws.com/user-avatars/af7feb2c43a2c7d5f111b98ccbd15048.png
+  url: https://ricard-alcaraz.com/images/boogeyman-1-thm/main.png
   alt: image
 description: My notes solving Boogeyman 1 - TryHackMe
 pubDate: 2025-09-10T20:22:00.000+02:00
@@ -232,13 +236,16 @@ There we can find the file that contains the credentials we need, but its not th
 ### Q19: What is the credit card number stored inside the exfiltrated file?
 
 Now we have 2 options, we know that the protocol used for the exfiltration is DNS, if we take a look at the DNS packets, using a filter to get he responses `dns.resp.type` we will find at the end. 
-![]()
+
+![wireshark](/images/boogeyman-1-thm/q19.png)
+
 We can see that the responses contain a string before the domain, if we get all of these we will find the data of the file.
-Also we can take a look at the POST requests, and one of the last ones also contain this information, but you have to clean it up.
+Also we can take a look at the POST requests, and one of the last ones also contain this information, the packet number `48732` but you have to clean it up.
 
 Finally we can use `CyberChef` and use the receipt `From Hex` and save the file as `.kbdx`.
 Once we have that we can open it with KeePass and use the master password that we obtained in the past question.
 
+![keepass](/images/boogeyman-1-thm/q20.png)
 
 <details>
   <summary>Click to reveal the answer</summary>
