@@ -14,7 +14,7 @@ image:
   url: https://ricard-alcaraz.com/images/bogeyman-1-thm/main.png
   alt: image
 description: My notes solving Boogeyman 1 - TryHackMe
-pubDate: 2025-09-10T20:22:00.000+02:00
+pubDate: 2025-09-13T20:33:00.000+02:00
 ---
 ## Scenario
 
