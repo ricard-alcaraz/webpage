@@ -218,4 +218,13 @@ For this one we just have to see where the HTTP packets ends and which ones star
 
 ### Q18: What is the password of the exfiltrated file?
 
-Extract the data from DNS querys
+For this one I started looking at the final POST requests, we know that they contain the information that its gathering and it sending it to the C2 server.
+Looking for the ones that have a longer lenght, I found out that the packet 40083 contains the output of the tool seatbelt that cointains different credentials using `CyberChef` we can decode it using the receipt `From Decimal`.
+There we can find the file that contains the credentials we need, but its not there, so I searched for the following ones untils I found it.
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+%p9^3!lL^Mz47E2GaT^y
+  </div>
+</details>
