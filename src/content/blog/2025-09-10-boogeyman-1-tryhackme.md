@@ -228,3 +228,22 @@ There we can find the file that contains the credentials we need, but its not th
 %p9^3!lL^Mz47E2GaT^y
   </div>
 </details>
+
+### Q19: What is the credit card number stored inside the exfiltrated file?
+
+Now we have 2 options, we know that the protocol used for the exfiltration is DNS, if we take a look at the DNS packets, using a filter to get he responses `dns.resp.type` we will find at the end. 
+![]()
+We can see that the responses contain a string before the domain, if we get all of these we will find the data of the file.
+Also we can take a look at the POST requests, and one of the last ones also contain this information, but you have to clean it up.
+
+Finally we can use `CyberChef` and use the receipt `From Hex` and save the file as `.kbdx`.
+Once we have that we can open it with KeePass and use the master password that we obtained in the past question.
+
+
+<details>
+  <summary>Click to reveal the answer</summary>
+  <div>
+4024007128269551
+  </div>
+</details>
+
