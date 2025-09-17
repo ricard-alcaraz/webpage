@@ -26,11 +26,13 @@ The course it good, however I think that It could be improved with just one vide
 
 ## The Exam
 
-The exam is focused on writing a report, divided by each of the incidents to investigate. They will provide you some incidents, context and the tools they provide to investigate. The course already provides you the knowledge you need in order to pass the exam, however I prefered to do more practice before it to solve the questions for each incident. You have two days with access to the environment to solve the questions and another two to write the report.
+The exam is focused on writing a report, divided by each of the incidents to investigate. They will provide you some incidents, context and tools to do your investigation. The course already provides you the knowledge you need in order to pass the exam, however I prefered to do more practice before it to solve the questions for each incident. You have two days with access to the environment to solve the questions and another two to write the report.
 
 ## Conclusion
 
 Im very happy with the certificate only because I did pass the exam, but because the knowledge I have adquired from the course I think it is very useful as a starting point, I highly recommend it, for me at least its been a great knowledge base to start and get more into blue team cybersecurity.
+
+My next step is going to be to continue my learning path obtaining the SAL1 certificate of TryHackMe.
 
 My PSAA certificate: [PSAA certificate](https://certified.tcm-sec.com/84419150-eea3-447b-9624-087dc1758d3c?key=a69ddca39072a059671ce1d05049f1435c3fe5a2946596c5df840de27fddb377#acc.IclnK15u)
 
