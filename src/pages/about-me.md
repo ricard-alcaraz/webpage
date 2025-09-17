@@ -29,6 +29,7 @@ Currently I am learning about Blue Team Cybersecurity, and I am always looking f
 
 | Certificate Name | Issuer | Date | Credential |
 | :--- | :---: | :---: | :---: |
+| Practical SOC Analyst Associate (PSAA) &nbsp; | &nbsp; TCM Security &nbsp; | &nbsp; Sep 2025 &nbsp; | &nbsp; [Validate](https://certified.tcm-sec.com/84419150-eea3-447b-9624-087dc1758d3c?key=a69ddca39072a059671ce1d05049f1435c3fe5a2946596c5df840de27fddb377) &nbsp; |
 | Google Cloud ACE &nbsp; | &nbsp; Google &nbsp; | &nbsp; Jun 2024 &nbsp; | &nbsp; [Validate](https://www.credly.com/badges/8308fdf5-3f63-4579-988f-242245c49714/linked_in_profile) &nbsp; |
 | Data Build Tool + BigQuery Bootcamp &nbsp; | &nbsp; Upgrade &nbsp; | &nbsp; Feb 2024 &nbsp; | &nbsp; [Validate](https://link-to-your.cred) &nbsp; |
 | Google Project Management &nbsp; | &nbsp; Google &nbsp; | &nbsp; Jun 2023 &nbsp; | &nbsp; [Validate](https://www.credly.com/badges/76e41d14-edd8-4f03-847b-27d90e1d7e05/public_url) &nbsp; |
