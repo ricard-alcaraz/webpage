@@ -5,6 +5,7 @@ tags:
   - Cybersecurity
   - Blue Team
   - TryHackMe
+  - Digital Forensics
 languages:
   - bash
 image:
