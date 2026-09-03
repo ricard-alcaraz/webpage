@@ -1,16 +1,22 @@
 ---
 layout: /src/layouts/MarkdownAbout.astro
 title: "Ricard Alcaraz Mancebo | Computer Engineer"
-description: "Cloud Data Engineer, Web developer and Cyber Security student."
+description: "Analytics Engineer, Business Analytics and Cyber Security student."
 author: "Ricard Alcaraz Mancebo"
 image:
   url: "/images/profile_photo.webp"
   alt: "Photo of Ricard Alcaraz Mancebo for the blog"
 ---
 
-Im a Computer Engineer with a passion for cloud development, cybersecurity and technology. I have a strong background in programming and have worked with various technologies such as Python and JavaScript. I am also a certified Google Cloud Platform (GCP) Associate Cloud Engineer. My experience includes working on projects ranging from web development to data analysis and data orchestration. 
-
-Currently I am learning about Blue Team Cybersecurity, and I am always looking for new opportunities to apply my skills and knowledge, and im persuing my first Blue Team certification (I hope to update this soon with my certification completed!).
+I'm a Analytics Engineer with five years of experience, In my previous job I was building and maintaining data infrastructure on Google Cloud Platform. Right now I work at Seidor OpenTrends, assigned to CaixaBank Tech in Barcelona, where I own the full data lifecycle: ingesting raw data from GCS and BigQuery, building transformation models in dbt, orchestrating pipelines with Airflow, and delivering the results as Looker dashboards that the business actually uses.
+ 
+What makes my background a bit different is that I combined a Computer Engineering degree with a Master's in Management, Organization and Business Economics. That mix means I don't just build pipelines, I think about why they matter to the people relying on the data at the end of it. I've also worked in the banking sector, where reliability and governance aren't nice-to-haves, they're the job.
+ 
+Technically, I work across GCP (BigQuery, GCS, Composer, Looker Core), dbt, Airflow, Python, and CI/CD tools like Jenkins and Git. I hold Google's Associate Cloud Engineer certification, along with a SOC L1 Analyst certification and a Google Project Management certification.
+ 
+Outside of my day-to-day role, I'm interested AI and I'm currently building small side projects around different ideas.
+ 
+I'm always open to connecting with people working in data engineering, cloud infrastructure, or anyone building something interesting with GCP.
 
 ## 🎓 Education
 
