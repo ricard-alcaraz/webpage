@@ -1,6 +1,6 @@
 ---
 author: Ricard Alcaraz Mancebo
-title: "Bridging the Gap: Turning Incident Knowledge into Automated Tests"
+title: Turning Incident Knowledge into Automated Tests
 tags:
   - Business Analysis
   - dbt
