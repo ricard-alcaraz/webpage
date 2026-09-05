@@ -8,45 +8,50 @@ tags:
 languages:
   - Markdown
 image:
-  url: https://www.bing.com/images/create/ai-image-generator/generate-a-image-that-illustrates-22bridging-the-ga/1-6a9af3b9c1f6406f87898871c98f495d?id=OIG3.dCxcTIwPCl2XU8bDayyc&view=detailv2&idpp=genimg&thid=OIG3.dCxcTIwPCl2XU8bDayyc&shtc=0&shth=OIG3.dCxcTIwPCl2XU8bDayyc&shsc=aigc&form=EX0050&shid=5b6c0b6b-90c4-47f5-9dc9-ecfc0faabfdc&shtp=GetUrl&shtk=QmluZw%3D%3D&shdk=SW50ZWxsaWdlbnQgc2VhcmNoIGZyb20gQmluZyBtYWtlcyBpdCBlYXNpZXIgdG8gcXVpY2tseSBmaW5kIHdoYXQgeW91J3JlIGxvb2tpbmcgZm9yIGFuZCByZXdhcmRzIHlvdS4%3D&shhk=0rVyOxPkZgLd1vafBWDf4tsyGZ0aBWAzIcwnAez9K%2BA%3D
+  url: https://th.bing.com/th/id/OIG3.dCxcTIwPCl2XU8bDayyc?pid=ImgGn
   alt: Bridging the gap
 description: Tool that allows to transform postmortem analysis on data incidents
   using unstructured natural language into preventive dbt tests
 pubDate: 2026-09-04T18:35:00.000+02:00
 ---
+[![GitHub Repository](https://img.shields.io/badge/GitHub-View_Source_Code-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/ricard-alcaraz/postmortem-dbt/)
 ## Executive Summary
 
-Data engineering teams currently lose an estimated **10 hours per quarter** re-investigating recurring data quality incidents. These incidents get documented in postmortems, but that knowledge rarely makes it back into the codebase as a preventive safeguard. This proposal outlines a solution that uses an LLM to automatically translate postmortem documentation into dbt tests, closing the gap between what a team *learns* from an incident and what it actually *enforces* in code.
+Data engineering teams currently lose an estimated **10 hours per quarter** investigating data quality incidents that have happend in the past. These incidents get documented in postmortem analysis, but that knowledge rarely is implemented in the code to prevent future similar data incidents, as a preventive safeguard. This proposal outlines a solution that uses an LLM to automatically translate postmortem documentation into dbt tests, closing the gap between what a team *learns* from an incident and what it actually *enforces* in code.
 
 > ### 🎯 The ROI
 > **Reduces incident remediation time by 75% and increases test coverage from incidents by 3x.**
 
 ---
 
-## 1. The Problem: Where Knowledge Goes to Die
+## 1. The Problem: Knowledge forgotten
 
-Here's what typically happens after an incident today. Notice where the process quietly breaks down.
+Here's what typically happens after an incident.
 
 ```mermaid
 flowchart TD
-    A[Data Quality Incident Occurs] --> B[Team Investigates & Applies Reactive Fix]
+    A[Data Quality  Incident Occurs] --> B[Team Investigates & Applies Reactive Fix]
     B --> C[Postmortem Written]
     C --> D[Postmortem Archived in Wiki Page]
     D -.->|"KNOWLEDGE GAP"| E[No Test Created / No Enforcement]
     E --> F[Business Logic Lives Only in Human Memory]
     F -.-> A
 
-    style D fill:#ff4d4f,stroke:#a8071a,stroke-width:2px,color:#fff
-    style E fill:#ff4d4f,stroke:#a8071a,stroke-width:2px,color:#fff
+    classDef default fill:#f9f9f9,stroke:#333,stroke-width:1px,color:#333
+    classDef highlight fill:#ff4d4f,stroke:#a8071a,stroke-width:2px,color:#fff
+    classDef warning fill:#faad14,stroke:#d48806,stroke-width:2px,color:#fff
+    
+    class D,E highlight
+    class A,B,C,F warning
 ```
 
-Reactive fixes are prioritized over durable prevention. The postmortem — which actually contains the business logic needed to stop recurrence — gets filed away instead of being turned into enforced code. That's an inefficient loop: the same class of incident can resurface months later, and the team re-investigates from scratch because nothing was ever encoded as a guardrail.
+Reactive fixes are prioritized over durable prevention. The postmortem which actually contains the business logic needed to prvent future incidents gets archived instead of being turned into enforced code. That's an inefficient loop: the same class of incident can happen months later, and the team has to investigate again the problem, taking a look at previous documentation, but its not encoded as a guardrail.
 
 ---
 
 ## 2. The Solution: An 8-Step Automated Workflow
 
-The proposed "To-Be" process closes that loop by inserting an LLM-powered translation step between "we understand what went wrong" and "the system now prevents it from happening again."
+The proposed process closes that loop by inserting an LLM-powered translation step between "we understand what went wrong" and "the system now prevents it from happening again."
 
 ```mermaid
 flowchart TD
@@ -62,7 +67,7 @@ flowchart TD
     style S8 fill:#52c41a,stroke:#237804,stroke-width:2px,color:#fff
 ```
 
-The two steps worth calling out: **Step 5** (PII scanning) exists specifically to satisfy InfoSec before anything touches an external API, and **Step 7** (human-in-the-loop review) is non-negotiable — no LLM-generated test is merged without explicit sign-off from a senior engineer.
+The two steps worth calling out: **Step 5** (PII scanning) exists specifically to satisfy InfoSec before anything is sended to an external API, and **Step 7** (human-in-the-loop review) is needed, no LLM-generated test is merged without explicit validation from a senior engineer.
 
 **Scope for v1:**
 - ✅ In scope: dbt projects with SQL-based tests, postmortems written in English, Confluence/Notion as the source system
@@ -77,10 +82,10 @@ The two steps worth calling out: **Step 5** (PII scanning) exists specifically t
 
 | Stakeholder | Category | Power / Influence | Interest Level | Key Concerns & Expectations | Engagement Strategy |
 |---|---|---|---|---|---|
-| Data / Analytics Engineers | Primary Users (SMEs) | Medium | High | "Will this add friction to my workflow? Will the LLM generate wrong tests I have to fix?" | **Manage Closely** — involve them in early testing; integrate seamlessly into their existing IDE/PR workflow |
+| Data / Analytics Engineers | Primary Users (SMEs) | Medium | High | "Will this add friction to my workflow? Will the LLM generate wrong tests I have to fix?" | **Manage Closely** — involve them in early testing; integrate into their existing IDE/PR workflow |
 | Head of Data / Engineering Manager | Project Sponsor | High | Medium | "What is the ROI? Will this reduce incident resolution time and improve velocity?" | **Keep Satisfied** — monthly metrics on time saved and incidents prevented, framed around business value and LLM API costs |
-| Data Quality / Governance Lead | Approver | High | High | "Will this improve our Data Quality SLAs? Are we creating a sustainable, version-controlled safety net?" | **Manage Closely** — align tool output with existing data quality frameworks; use them to champion the structured postmortem template |
-| Downstream Data Consumers (BI Analysts, PMs) | Beneficiaries | Low | High | "I just want dashboards to stop breaking because of null timestamps or missing data." | **Keep Informed** — communicate reliability improvements; no build involvement, but they're the ultimate beneficiaries |
+| Data Quality / Governance Lead | Approver | High | High | "Will this improve our Data Quality SLAs? Are we creating a sustainable, version-controlled safety net?" | **Manage Closely** — align tool output with existing data quality frameworks; use them to support the structured postmortem template |
+| Downstream Data Consumers (BI Analysts, PMs) | Beneficiaries | Low | High | "I just want dashboards to stop breaking because of null timestamps or missing data." | **Keep Informed** — communicate reliability improvements; no build involvement, but they're the real beneficiaries |
 | InfoSec / IT Security | Gatekeeper | High | Medium | "Are we sending proprietary schema details, table names, or sample data to an external LLM API?" | **Keep Satisfied** — proactively address via an enterprise-grade, private LLM instance or anonymized schema metadata |
 
 **Power/Interest Grid**
@@ -96,14 +101,14 @@ quadrantChart
     quadrant-4 Keep Informed
     Data Quality Lead: [0.85, 0.85]
     Engineering Manager: [0.55, 0.85]
-    InfoSec: [0.45, 0.85]
+    InfoSec: [0.45, 0.90]
     Data Engineers: [0.8, 0.55]
     Downstream Consumers: [0.85, 0.2]
 ```
 
-- **High Power, High Interest — Manage Closely:** Data Quality Lead, Engineering Manager. These are the decision-makers and champions — engage them weekly.
-- **High Power, Low Interest — Keep Satisfied:** InfoSec, Head of Data. They can block the project but don't need the details — give them high-level summaries and compliance assurances.
-- **Low Power, High Interest — Keep Informed:** Downstream Data Consumers. They love the outcome but can't build it — send release notes about "improved data reliability."
+- **High Power, High Interest — Manage Closely:** Data Quality Lead, Engineering Manager. These are the decision-makers its needed to engage them weekly.
+- **High Power, Low Interest — Keep Satisfied:** InfoSec, Head of Data. They can block the project but don't need the details, give them high-level summaries and compliance assurances.
+- **Low Power, High Interest — Keep Informed:** Downstream Data Consumers. They love the outcome but can't build it send release notes about "improved data reliability."
 - **Low Power, Low Interest — Monitor:** External vendors or unrelated teams. Minimal effort required.
 
 </details>
@@ -116,7 +121,7 @@ quadrantChart
 | Gap Category | Description | Impact |
 |---|---|---|
 | **Process Gap** | No standardized, enforced step in the incident resolution workflow requires the creation of a preventive test. | Postmortems remain passive documents; recurring incidents keep draining engineering resources. |
-| **Technology Gap** | No existing tooling bridges unstructured text (postmortem analysis) and structured code (dbt SQL/YAML tests). | Engineers must manually translate business logic from text into code — time-consuming and easy to skip. |
+| **Technology Gap** | No existing tooling bridges unstructured text (postmortem analysis) and structured code (dbt SQL/YAML tests). | Engineers must manually translate business logic from text into code time-consuming and easy to skip. |
 | **People / Knowledge Gap** | Engineering bandwidth is prioritized for new features over "technical debt" like test writing; knowledge lives in the author's head or a wiki, not in version control. | High risk of knowledge loss if the original engineer leaves; data quality depends on human memory rather than automated guardrails. |
 
 ### Recommendations & Action Plan
@@ -126,7 +131,7 @@ quadrantChart
 | Process Gap | Update the Incident Response SOP to make "Preventive Test Generation" a mandatory exit criterion for P1/P2 incidents. | Data Engineering Manager | High |
 | Technology Gap | Build and deploy the LLM-based prototype that parses wiki pages and outputs dbt test files, piloted with 2–3 engineers. | Data Platform Team | High |
 | Knowledge Gap | Implement a standardized Postmortem Template with required fields: Root Cause, Affected dbt Model(s), Expected Data State. | Data Quality Lead | Medium |
-| Risk Mitigation | Establish a Human-in-the-Loop review step — no LLM-generated test merges without senior engineer approval. | All Data Engineers | High |
+| Risk Mitigation | Establish a Human-in-the-Loop review step no LLM-generated test merges without senior engineer approval. | All Data Engineers | High |
 
 ### Risk Register
 
@@ -198,7 +203,7 @@ WHERE status = 'shipped'
 
 ## 4. Conclusion & Next Steps
 
-This tool exists to help data and analytics engineers improve data quality by making it easier to implement prevention tests. It bridges the gap between knowledge that's already been documented and the implementations or improvements that should follow from it. It isn't meant to replace human judgment — it's meant to make sure lessons learned from incidents actually turn into prevention, not just documentation.
+This tool exists to help data and analytics engineers improve data quality by making it easier to implement prevention tests. It bridges the gap between knowledge that's already been documented and the implementations or improvements that should follow from it. It isn't meant to replace human judgment it's meant to make sure lessons learned from incidents actually turn into prevention, not just documentation.
 
 As data teams mature, the focus shifts from reactive incident response to proactive quality assurance. Tools that operationalize incident knowledge are a step in that direction.
 
@@ -206,6 +211,10 @@ As data teams mature, the focus shifts from reactive incident response to proact
 
 ## 5. BA Reflection
 
-- **Managing stakeholder expectations around AI hallucination is just as important as the technical implementation.** InfoSec and the Data Quality Lead weren't worried about whether the LLM *could* generate a test — they were worried about what happens when it generates a *wrong* one. Designing the Human-in-the-Loop step wasn't a technical afterthought; it was the thing that got the project approved.
-- **A gap analysis is only useful if it separates process, technology, and people.** It would have been easy to frame this as "we need better tooling," but the real blocker was partly organizational: engineering bandwidth is structurally prioritized toward features over test debt. No tool fixes that on its own — the SOP change had to be part of the recommendation.
+- **Managing stakeholder expectations around AI hallucination is just as important as the technical implementation.** InfoSec and the Data Quality Lead weren't worried about whether the LLM *could* generate a test they were worried about what happens when it generates a *wrong* one. Designing the Human-in-the-Loop step wasn't a technical afterthought; it was the thing that got the project approved.
+- **A gap analysis is only useful if it separates process, technology, and people.** It would have been easy to frame this as "we need better tooling," but the real blocker was partly organizational: engineering bandwidth is structurally prioritized toward features over test debt. No tool fixes that on its own the SOP change had to be part of the recommendation.
 - **The most convincing artifact wasn't the diagram, it was the SQL.** Talking about "closing the knowledge-to-code gap" is abstract. Showing the actual `shipped_at IS NULL` test generated from a real incident made the value concrete for engineers and tech leads in a way that no process map could.
+
+## 🔗 Links & Resources
+
+- 💻 **Source Code:** [View this project on GitHub](https://github.com/ricard-alcaraz/postmortem-dbt/)

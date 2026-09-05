@@ -336,3 +336,148 @@ a.inline-block.leading-5.pl-12{
   background-color: #082f49; /* Darkest blue background */
   color: #ffffff;
 }
+/* Base table */
+.markdown table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 1.5rem 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  background: #ffffff;
+  border: 1px solid #e1e4e8;
+  border-radius: 10px;
+  overflow-x: auto;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  min-width: 600px;
+  display: block;
+}
+
+/* Header */
+.markdown table thead {
+  background: linear-gradient(to bottom, #f8f9fa 0%, #f1f3f5 100%);
+  border-bottom: 2px solid #d1d5db;
+}
+
+.markdown table th {
+  padding: 14px 18px;
+  text-align: left;
+  font-weight: 600;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+  color: #374151;
+  border-bottom: 2px solid #d1d5db;
+  white-space: nowrap;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+/* Cells */
+.markdown table td {
+  padding: 14px 18px;
+  color: #4b5563;
+  border-bottom: 1px solid #e5e7eb;
+  vertical-align: top;
+  transition: background-color 0.15s ease;
+}
+
+/* Vertical column separators */
+.markdown table th:not(:last-child),
+.markdown table td:not(:last-child) {
+  border-right: 1px solid #e5e7eb;
+}
+
+/* Remove bottom border from final row */
+.markdown table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+/* Row hover */
+.markdown table tbody tr:hover {
+  background: #f0f4f8;
+}
+
+.markdown table tbody tr:hover td {
+  color: #1f2937;
+}
+
+/* Zebra striping */
+.markdown table tbody tr:nth-child(even) {
+  background: #fafbfc;
+}
+
+.markdown table tbody tr:nth-child(even):hover {
+  background: #e8eef3;
+}
+
+/* First column emphasis */
+.markdown table td:first-child,
+.markdown table th:first-child {
+  font-weight: 500;
+  color: #1f2937;
+  background: rgba(0, 0, 0, 0.01);
+}
+
+/* Dark mode */
+:root.dark .markdown table {
+  background: #1f2937;
+  border-color: #374151;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+:root.dark .markdown table thead {
+  background: linear-gradient(to bottom, #111827 0%, #1f2937 100%);
+  border-bottom-color: #4b5563;
+}
+
+:root.dark .markdown table th {
+  color: #e5e7eb;
+  border-bottom-color: #4b5563;
+}
+
+:root.dark .markdown table td {
+  color: #d1d5db;
+  border-bottom-color: #374151;
+}
+
+:root.dark .markdown table th:not(:last-child),
+:root.dark .markdown table td:not(:last-child) {
+  border-right-color: #374151;
+}
+
+:root.dark .markdown table tbody tr:hover {
+  background: #374151;
+}
+
+:root.dark .markdown table tbody tr:hover td {
+  color: #f9fafb;
+}
+
+:root.dark .markdown table tbody tr:nth-child(even) {
+  background: #111827;
+}
+
+:root.dark .markdown table tbody tr:nth-child(even):hover {
+  background: #1f2937;
+}
+
+:root.dark .markdown table td:first-child,
+:root.dark .markdown table th:first-child {
+  color: #f9fafb;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .markdown table {
+    font-size: 0.85rem;
+    min-width: 500px;
+  }
+
+  .markdown table th,
+  .markdown table td {
+    padding: 12px 14px;
+  }
+}
