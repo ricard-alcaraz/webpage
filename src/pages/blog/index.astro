@@ -4,10 +4,12 @@ import { getCollection } from "astro:content";
 
 const posts = await getCollection("blog");
 const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+const featuredPost = sortedPosts[0];
+const remainingPosts = sortedPosts.slice(1);
 ---
 
 <Layout pageTitle="Blog" description="My thoughts on data engineering, analytics, and security">
-  <main class="min-h-screen bg-background text-text-primary px-4 py-12 md:px-8 max-w-4xl mx-auto transition-colors duration-300">
+  <main class="min-h-screen bg-background text-text-primary px-4 py-12 md:px-8 max-w-6xl mx-auto transition-colors duration-300">
     
     <div class="mb-12 text-center md:text-left">
       <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">
@@ -18,9 +20,38 @@ const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
       </p>
     </div>
     
-    <div class="space-y-4">
-      {sortedPosts.map((post) => (
-        <a href={`/blog/${post.slug}`} class="group block p-5 rounded-xl bg-surface border border-white/10 dark:border-white/10 border-black/10 hover:border-accent/40 transition-all duration-300">
+    <!-- Featured Post Hero -->
+    {featuredPost && (
+      <a href={`/blog/${featuredPost.slug}`} class="fancy-blog-card group block mb-10 rounded-2xl bg-surface border border-white/10 dark:border-white/10 border-black/10 overflow-hidden transition-all duration-300 hover:-translate-y-1">
+        <div class="md:flex">
+          {featuredPost.data.image?.url && (
+            <div class="md:w-2/5 h-64 md:h-auto relative overflow-hidden">
+              <img src={featuredPost.data.image.url} alt={featuredPost.data.image.alt} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <div class="absolute inset-0 bg-gradient-to-t from-background/60 to-transparent md:bg-gradient-to-r"></div>
+            </div>
+          )}
+          <div class="md:w-3/5 p-6 md:p-8 flex flex-col justify-center">
+            <span class="text-[10px] font-mono font-bold uppercase tracking-wider bg-accent/10 text-accent px-2 py-1 rounded w-fit mb-4">Featured</span>
+            <h2 class="text-2xl md:text-3xl font-bold mb-3 group-hover:text-accent transition-colors">{featuredPost.data.title}</h2>
+            <p class="text-text-secondary mb-4 line-clamp-3">{featuredPost.data.description}</p>
+            <div class="flex items-center gap-3 text-xs font-mono text-text-secondary">
+              <span>{featuredPost.data.pubDate.toLocaleDateString()}</span>
+              <span>•</span>
+              <div class="flex flex-wrap gap-2">
+                {featuredPost.data.tags.slice(0, 2).map((tag: string) => (
+                  <span class="px-2 py-0.5 rounded border border-white/10 dark:border-white/10 border-black/10">{tag}</span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </a>
+    )}
+
+    <!-- Remaining Posts List -->
+    <div class="space-y-6">
+      {remainingPosts.map((post) => (
+        <a href={`/blog/${post.slug}`} class="fancy-blog-card group block p-5 rounded-xl bg-surface border border-white/10 dark:border-white/10 border-black/10 transition-all duration-300 hover:-translate-y-0.5">
           <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
             <h2 class="text-lg font-bold group-hover:text-accent transition-colors">{post.data.title}</h2>
             <span class="text-xs font-mono text-text-secondary whitespace-nowrap">{post.data.pubDate.toLocaleDateString()}</span>
@@ -37,4 +68,28 @@ const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
       ))}
     </div>
   </main>
+
+  <!-- Spotlight Effect -->
+  <script>
+    document.querySelectorAll('.fancy-blog-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+  </script>
+
+  <style>
+    .fancy-blog-card { position: relative; overflow: hidden; }
+    .fancy-blog-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; border-radius: 0.75rem;
+      background: radial-gradient(600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(66, 133, 244, 0.06), transparent 40%);
+      opacity: 0; transition: opacity 0.3s ease; pointer-events: none; z-index: 0;
+    }
+    .fancy-blog-card:hover::before { opacity: 1; }
+    .fancy-blog-card > * { position: relative; z-index: 1; }
+  </style>
 </Layout>

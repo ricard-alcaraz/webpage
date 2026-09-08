@@ -1,57 +1,44 @@
 ---
 import { getCollection } from 'astro:content';
 import Layout from "../../../layouts/Layout.astro";
-import Hero from "../../../components/blog/Hero.astro";
-import Tags from "../../../components/blog/Tags.astro";
 import ListPosts from "../../../components/blog/ListPosts.astro";
-import Heading from "../../../components/ui/Heading.astro";
-import Share from "../../../components/ui/Share.astro";
-
+import Tags from "../../../components/blog/Tags.astro";
 import Languages from "../../../components/blog/Languages.astro";
+
 const allPosts = await getCollection('blog');
-
-const pageTitle = "My personal Blog Blog | Ricard Alcaraz Mancebo";
-const description = "Welcome to my blog, where I share about my journey in the world of technology and analytics.";
-const ogimage = {
-  url: "/images/blogimage.webp",
-  alt: "image",
-};
-const currentUrl = `${Astro.site}${Astro.url.pathname}`;
-const tweetText = encodeURIComponent(`"${pageTitle}"`);
-
 ---
-<Layout pageTitle={pageTitle} description={description} ogimage={ogimage}>
-  <div class="relative mx-auto max-w-7xl px-8 max-sm:px-4 gap-6">
-    <div
-      class="grid my-8 grid-cols-3 grid-rows-1 max-lg:grid-cols-1 max-lg:grid-rows-[1fr_auto] gap-12 max-md:gap-4"
-    >
-      <div class="lg:col-span-2">
+
+<Layout pageTitle="All Posts | Ricard Alcaraz Mancebo" description="Browse all articles on data engineering, analytics, and security.">
+  <main class="min-h-screen bg-background text-text-primary px-4 py-12 md:px-8 max-w-7xl mx-auto transition-colors duration-300">
+    
+    <div class="mb-12 text-center md:text-left">
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+        All <span class="text-accent">Posts</span>
+      </h1>
+      <p class="text-xl text-text-secondary max-w-2xl">
+        The complete archive of case studies, tutorials, and cybersecurity write-ups.
+      </p>
+    </div>
+
+    <!-- Main Grid -->
+    <div class="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      
+      <!-- Left: Posts List -->
+      <div class="lg:col-span-3">
         <ListPosts all={true} allPosts={allPosts} />
       </div>
 
-      <div class="lg:col-start-3">
-        <div
-          class="bg-white dark:bg-transparent w-full mt-0 rounded-2xl dark:border-0 border border-neutral-100 top-14 px-6 pt-8 pb-12"
-        >
-          <div class="flex flex-col gap-4 pl-0">
-            <Heading textGradient="Categories" />
-            <Tags variant="compact" allPosts={allPosts}/>
-          </div>
+      <!-- Right: Sidebar Filters -->
+      <aside class="lg:col-span-1 lg:sticky lg:top-24 h-fit space-y-6">
+        <div class="bento-card bg-surface border border-white/10 dark:border-white/10 border-black/10 rounded-2xl p-5">
+          <h3 class="text-sm font-bold uppercase tracking-widest text-text-secondary mb-4">Categories</h3>
+          <Tags variant="compact" allPosts={allPosts} />
         </div>
-
-        <div
-          class="bg-white dark:bg-transparent w-full mt-8 rounded-2xl dark:border-0 border border-neutral-100 top-14 px-6 pt-8 pb-12"
-        >
-          <div class="flex flex-col gap-4 pl-0">
-            <Heading textGradient="Technologies" level={2} />
-            <Languages level={2} allPosts={allPosts}/>
-          </div>
+        <div class="bento-card bg-surface border border-white/10 dark:border-white/10 border-black/10 rounded-2xl p-5">
+          <h3 class="text-sm font-bold uppercase tracking-widest text-text-secondary mb-4">Technologies</h3>
+          <Languages level={2} allPosts={allPosts} />
         </div>
-        <div class="my-8 flex justify-end">
-          <Share currentUrl={currentUrl} tweetText={tweetText} />
-        </div>
-      </div>
+      </aside>
     </div>
-</div>
-
+  </main>
 </Layout>

@@ -1,10 +1,6 @@
 ---
-import BlogPost from "./BlogPost.astro";
 import Heading from "../ui/Heading.astro";
-//import { getCollection } from 'astro:content';
 
-//const allPosts = await getCollection('blog');
-// Prop to determine whether to exclude the latest post or a specific post
 export interface Props {
   allPosts: any[];
   excludeLatest?: boolean;
@@ -12,8 +8,7 @@ export interface Props {
   all?: boolean;
 }
 
-const { allPosts,excludeLatest = false, currentPostSlug = "", all = false } = Astro.props;
-
+const { allPosts, excludeLatest = false, currentPostSlug = "", all = false } = Astro.props;
 
 // Sort by date in descending order (newest first)
 allPosts.sort((a, b) => {
@@ -26,62 +21,97 @@ allPosts.sort((a, b) => {
 let postsToShow = allPosts;
 
 if (currentPostSlug) {
-  // Exclude current post if its URL is provided
   postsToShow = postsToShow.filter((post) => {
     const postUrl = `/blog/${post.slug}/`;
-    //if (!post.url) return false; // If no URL, keep the post
-    // Normalize URLs for comparison
-
-    const normalizedPostUrl = postUrl.replace(/\/$/, ""); // Remove trailing slash if exists
-    const normalizedCurrentUrl = currentPostSlug.replace(/\/$/, ""); // Remove trailing slash if exists
+    const normalizedPostUrl = postUrl.replace(/\/$/, "");
+    const normalizedCurrentUrl = currentPostSlug.replace(/\/$/, "");
     return normalizedPostUrl !== normalizedCurrentUrl;
   });
 } else if (excludeLatest) {
-  // If no specific URL but want to exclude the latest
   postsToShow = postsToShow.slice(1);
 }
 
-// Limit to 4 posts if all is false
 if (!all) {
   postsToShow = postsToShow.slice(0, 4);
 }
 ---
 
-<section
-  class="py-8 max-lg:px-4 max-md:px-8 max-sm:px-0 max-md:py-4 max-w-4xl mx-auto"
->
-  {
-    all && (
-      <div class="flex gap-4 pb-6 items-center text-center justify-center">
-        <Heading text="All" textGradient="Posts" level={2} />
-      </div>
-    )
-  }
+<section class="py-8 max-lg:px-4 max-md:px-8 max-sm:px-0 max-md:py-4 max-w-4xl mx-auto">
 
-  <div class="flex flex-col gap-8 w-full mx-auto">
-    {
-      postsToShow.map((post) => (
-        <BlogPost
-          url={`/blog/${post.slug}/`}
-          title={post.data.title}
-          date={post.data.pubDate}
-          tags={post.data.tags}
-          languages={post.data.languages}
-          image={post.data.image}
-        />
-      ))
-    }
+
+  <div class="flex flex-col gap-4 w-full mx-auto">
+    {postsToShow.map((post) => (
+      <a
+        href={`/blog/${post.slug}/`}
+        class="fancy-post-card group block p-5 rounded-xl bg-surface border border-white/10 dark:border-white/10 border-black/10 transition-all duration-300 hover:-translate-y-0.5"
+      >
+        <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
+          <h2 class="text-lg font-bold group-hover:text-accent transition-colors">{post.data.title}</h2>
+          <span class="text-xs font-mono text-text-secondary whitespace-nowrap">
+            {new Date(post.data.pubDate).toLocaleDateString()}
+          </span>
+        </div>
+        <p class="text-sm text-text-secondary line-clamp-2 mb-3">{post.data.description}</p>
+        <div class="flex flex-wrap gap-2">
+          {post.data.tags.slice(0, 3).map((tag: string) => (
+            <span class="text-[10px] font-mono uppercase tracking-wider bg-white/5 dark:bg-white/5 bg-black/5 text-text-secondary px-2 py-0.5 rounded border border-white/10 dark:border-white/10 border-black/10">
+              {tag}
+            </span>
+          ))}
+        </div>
+      </a>
+    ))}
   </div>
-  {
-    !all && (
-      <div id="morePosts" class="w-full flex justify-center text-center my-12">
-        <a
-          href="/blog/posts/"
-          class="font-bold cursor-pointer text-mint-400 dark:text-mint-100 hover:text-mint-500 dark:hover:text-mint-300 transition-all"
-        >
-          View all posts...
-        </a>
-      </div>
-    )
-  }
+
+  {!all && (
+    <div id="morePosts" class="w-full flex justify-center text-center my-12">
+      <a
+        href="/blog/posts/"
+        class="font-bold cursor-pointer text-accent hover:text-accent-hover transition-all"
+      >
+        View all posts...
+      </a>
+    </div>
+  )}
 </section>
+
+<script>
+  document.querySelectorAll('.fancy-post-card').forEach(card => {
+    card.addEventListener('mousemove', (e) => {
+      const rect = card.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+      card.style.setProperty('--mouse-x', `${x}px`);
+      card.style.setProperty('--mouse-y', `${y}px`);
+    });
+  });
+</script>
+
+<style>
+  .fancy-post-card {
+    position: relative;
+    overflow: hidden;
+  }
+  .fancy-post-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    border-radius: 0.75rem;
+    background: radial-gradient(
+      600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+      rgba(66, 133, 244, 0.06),
+      transparent 40%
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .fancy-post-card:hover::before {
+    opacity: 1;
+  }
+  .fancy-post-card > * {
+    position: relative;
+    z-index: 1;
+  }
+</style>
