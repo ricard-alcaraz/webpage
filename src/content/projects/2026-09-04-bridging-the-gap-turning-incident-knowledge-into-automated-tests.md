@@ -4,9 +4,13 @@ title: Turning Incident Knowledge into Automated Tests
 tags:
   - Business Analysis
   - dbt
-  - Data Egineering
-languages:
-  - Markdown
+  - Data Engineering
+  - LLM
+stack:
+  - dbt
+  - Python
+  - LLM API
+outcome: "Reduces incident remediation time by 75% and increases preventive test coverage from incidents by 3x."
 image:
   url: https://th.bing.com/th/id/OIG3.dCxcTIwPCl2XU8bDayyc?pid=ImgGn
   alt: Bridging the gap

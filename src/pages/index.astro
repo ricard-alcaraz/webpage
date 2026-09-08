@@ -1,13 +1,24 @@
 ---
+// src/pages/index.astro
 import Layout from "../layouts/Layout.astro";
-import Experience from "../components/portfolio/Experience.astro";
-import HeroIndex from "../components/portfolio/HeroIndex.astro";
-import Contact from "../components/portfolio/Contact.astro";
-import ListProjects from "../components/portfolio/ListProjects.astro";
 import { getCollection } from "astro:content";
+import SkillsRadar from "../components/home/SkillsRadar.astro";
 
-const [staticData] = await getCollection("staticData");
+const posts = await getCollection("blog");
+const projects = await getCollection("projects");
+
+const staticData = (await getCollection("staticData"))[0];
 const { pageTitle, pageDescription, OGImage } = staticData.data;
+
+const postCount = posts.length;
+const projectCount = projects.length;
+const yearsExp = 5;
+const certCount = 4;
+
+// Get 1 featured project (the dbt one)
+const featuredProject = projects.find(p => p.slug.includes("dbt")) || projects[0];
+// Get 2 latest posts
+const latestPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()).slice(0, 2);
 ---
 
 <Layout
@@ -15,8 +26,102 @@ const { pageTitle, pageDescription, OGImage } = staticData.data;
   description={pageDescription}
   ogimage={{ alt: OGImage.alt, url: OGImage.url }}
 >
-  <HeroIndex />
-  <Experience />
-  <ListProjects />
-  <Contact />
+  <main class="min-h-screen bg-background text-text-primary px-4 py-12 md:px-8 max-w-7xl mx-auto">
+    
+    <!-- Header / Intro -->
+    <header class="mb-12 text-center md:text-left">
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+        Hi, I'm <span class="text-accent">Ricard</span>.
+      </h1>
+      <p class="text-xl text-text-secondary max-w-2xl">
+        Analytics Engineer & Data Professional. I build scalable data pipelines, 
+        automate quality checks, and turn complex data into actionable insights.
+      </p>
+    </header>
+
+    <!-- Bento Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[minmax(180px,auto)]">
+      
+      <!-- 1. Stats Card (Spans 2 cols on md, 1 on lg) -->
+      <div class="bg-surface border border-white/5 rounded-2xl p-6 flex flex-col justify-center md:col-span-2 lg:col-span-1 shadow-lg hover:border-accent/30 transition-colors">
+        <h3 class="text-text-secondary text-sm font-semibold uppercase tracking-wider mb-4">By the Numbers</h3>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <div class="text-3xl font-mono font-bold text-accent">{yearsExp}+</div>
+            <div class="text-xs text-text-secondary mt-1">Years Experience</div>
+          </div>
+          <div>
+            <div class="text-3xl font-mono font-bold text-accent">{certCount}</div>
+            <div class="text-xs text-text-secondary mt-1">Certifications</div>
+          </div>
+          <div>
+            <div class="text-3xl font-mono font-bold text-accent">{postCount}</div>
+            <div class="text-xs text-text-secondary mt-1">Articles Written</div>
+          </div>
+          <div>
+            <div class="text-3xl font-mono font-bold text-accent">{projectCount}</div>
+            <div class="text-xs text-text-secondary mt-1">Key Projects</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Skills Radar Chart (Tall card) -->
+      <div class="bg-surface border border-white/5 rounded-2xl p-6 md:col-span-1 lg:col-span-1 lg:row-span-2 flex flex-col items-center justify-center shadow-lg hover:border-accent/30 transition-colors">
+        <h3 class="text-text-secondary text-sm font-semibold uppercase tracking-wider mb-2 w-full text-left">Core Competencies</h3>
+        <SkillsRadar />
+      </div>
+
+      <!-- 3. Featured Project (Spans 2 cols) -->
+      {featuredProject && (
+        <a href={`/projects/${featuredProject.slug}`} class="bg-surface border border-white/5 rounded-2xl p-6 md:col-span-2 lg:col-span-2 shadow-lg hover:border-accent/50 transition-all group">
+          <div class="flex justify-between items-start mb-3">
+            <span class="text-xs font-mono text-accent bg-accent/10 px-2 py-1 rounded">FEATURED PROJECT</span>
+            <svg class="w-5 h-5 text-text-secondary group-hover:text-accent group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+          </div>
+          <h3 class="text-xl font-bold mb-2 group-hover:text-accent transition-colors">{featuredProject.data.title}</h3>
+          <p class="text-text-secondary text-sm mb-4 line-clamp-2">{featuredProject.data.description}</p>
+          <div class="flex flex-wrap gap-2">
+            {featuredProject.data.stack.map((tech: string) => (
+              <span class="text-xs bg-white/5 text-text-secondary px-2 py-1 rounded-md border border-white/5">{tech}</span>
+            ))}
+          </div>
+        </a>
+      )}
+
+      <!-- 4. Certifications (Placeholder) -->
+      <div class="bg-surface border border-white/5 rounded-2xl p-6 lg:col-span-1 shadow-lg hover:border-accent/30 transition-colors">
+        <h3 class="text-text-secondary text-sm font-semibold uppercase tracking-wider mb-4">Certifications</h3>
+        <div class="space-y-3">
+          <!-- Replace these placeholders with your actual badge images -->
+          <div class="flex items-center gap-3 p-2 rounded-lg bg-white/5 border border-white/5">
+            <div class="w-8 h-8 bg-accent/20 rounded flex items-center justify-center text-accent font-bold text-xs">PSAA</div>
+            <div class="text-sm font-medium">Professional Data Cert</div>
+          </div>
+          <div class="flex items-center gap-3 p-2 rounded-lg bg-white/5 border border-white/5">
+            <div class="w-8 h-8 bg-accent/20 rounded flex items-center justify-center text-accent font-bold text-xs">GCP</div>
+            <div class="text-sm font-medium">Cloud Engineer</div>
+          </div>
+          <div class="text-xs text-text-secondary mt-2 italic">+ 2 more</div>
+        </div>
+      </div>
+
+      <!-- 5. Latest Posts (Spans full width on mobile, 2 on lg) -->
+      <div class="bg-surface border border-white/5 rounded-2xl p-6 md:col-span-2 lg:col-span-3 shadow-lg hover:border-accent/30 transition-colors">
+        <div class="flex justify-between items-center mb-4">
+          <h3 class="text-text-secondary text-sm font-semibold uppercase tracking-wider">Latest Writings</h3>
+          <a href="/blog" class="text-xs text-accent hover:underline">View all posts →</a>
+        </div>
+        <div class="grid md:grid-cols-2 gap-4">
+          {latestPosts.map((post) => (
+            <a href={`/blog/${post.slug}`} class="block p-4 rounded-xl bg-white/5 border border-white/5 hover:border-accent/30 transition-colors group">
+              <div class="text-xs text-text-secondary mb-1 font-mono">{post.data.pubDate.toLocaleDateString()}</div>
+              <h4 class="font-bold text-lg mb-2 group-hover:text-accent transition-colors line-clamp-1">{post.data.title}</h4>
+              <p class="text-sm text-text-secondary line-clamp-2">{post.data.description}</p>
+            </a>
+          ))}
+        </div>
+      </div>
+
+    </div>
+  </main>
 </Layout>

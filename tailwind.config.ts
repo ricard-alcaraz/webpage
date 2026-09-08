@@ -1,59 +1,29 @@
 // tailwind.config.ts
-import type { Config } from 'tailwindcss'
-import typography from '@tailwindcss/typography'
-import animated from 'tailwindcss-animated'
+import type { Config } from 'tailwindcss';
+import typography from '@tailwindcss/typography';
+import animated from 'tailwindcss-animated';
 
 export default {
   content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
   theme: {
     extend: {
       colors: {
-        sky: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          200: '#bae6fd',
-          300: '#7dd3fc',
-          400: '#38bdf8',
-          500: '#0ea5e9',
-          600: '#0284c7',
-          700: '#0369a1',
-          800: '#075985',
-          900: '#0c4a6e',
-          950: '#082f49',
+        background: '#0E0E11', // Your requested dark theme
+        surface: '#18181B',    // Slightly lighter for cards
+        accent: {
+          DEFAULT: '#4285F4',  // BigQuery/Looker inspired blue
+          hover: '#3367D6',
+          light: '#93C5FD',
         },
-        // We make the old "mint" name an ALIAS for our new "sky" color
-        mint: {
-          50: '#f0f9ff',
-          100: '#e0f2fe',
-          200: '#bae6fd',
-          300: '#7dd3fc',
-          400: '#38bdf8',
-          500: '#0ea5e9',
-          600: '#0284c7',
-          700: '#0369a1',
-          800: '#075985',
-          900: '#0c4a6e',
-          950: '#082f49',
-        },
-        // We make the old "riptide" name an ALIAS for our new "royal" color
-        riptide: {
-          50: '#eff6ff',
-          100: '#dbeafe',
-          200: '#bfdbfe',
-          300: '#93c5fd',
-          400: '#60a5fa',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
-          800: '#1e40af',
-          900: '#1e3a8a',
-          950: '#172554',
+        text: {
+          primary: '#F4F4F5',
+          secondary: '#A1A1AA',
         }
+      },
+      fontFamily: {
+        mono: ['"Fira Code"', 'ui-monospace', 'SFMono-Regular', 'Menlo', 'Monaco', 'Consolas', 'monospace'],
       }
     },
   },
-  plugins: [
-    typography(),
-    animated,
-  ],
-} satisfies Config
+  plugins: [typography, animated],
+} satisfies Config;

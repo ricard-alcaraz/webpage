@@ -53,8 +53,26 @@ const blogCollection = defineCollection({
     languages: z.array(z.string()), // <-- ADD THIS LINE
   }),
 });
+const projectsCollection = defineCollection({
+  schema: z.object({
+    title: z.string(),
+    description: z.string(),
+    pubDate: z.coerce.date(),
+    image: z.object({
+      url: z.string(),
+      alt: z.string(),
+    }),
+    tags: z.array(z.string()),
+    stack: z.array(z.string()), // e.g., ['dbt', 'Python', 'BigQuery']
+    outcome: z.string(), // The business/technical impact
+    repoUrl: z.string().url().optional(),
+    liveUrl: z.string().url().optional(),
+  }),
+});
 
 export const collections = {
   'blog': blogCollection,
-  'staticData': jsonDataCollection,
+  'staticData': jsonDataCollection,  
+  'projects': projectsCollection,
+
 };
