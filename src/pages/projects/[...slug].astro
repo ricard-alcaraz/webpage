@@ -1,0 +1,70 @@
+---
+// src/pages/projects/[slug].astro
+import Layout from "../../layouts/Layout.astro";
+import { getEntry } from "astro:content";
+import { getCollection } from 'astro:content';
+
+const { slug } = Astro.params;
+const project = await getEntry("projects", slug);
+
+if (!project) {
+  return Astro.redirect("/404");
+}
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project }, // Pass the full project object as props
+  }));
+}
+const { title, description, pubDate, image, tags, stack, outcome, repoUrl, liveUrl } = project.data;
+const Content = project.render;
+---
+
+<Layout pageTitle={title} description={description} ogimage={{ alt: image.alt, url: image.url }}>
+  <article class="min-h-screen bg-background text-text-primary px-4 py-12 md:px-8 max-w-4xl mx-auto transition-colors duration-300">
+    
+    <a href="/" class="inline-flex items-center gap-2 text-sm font-mono text-text-secondary hover:text-accent transition-colors mb-8">
+      <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+      Back to Home
+    </a>
+    
+    <header class="mb-8">
+      <div class="flex flex-wrap gap-2 mb-4">
+        {tags.map((tag: string) => (
+          <span class="text-xs font-mono font-bold uppercase tracking-wider bg-accent/10 text-accent px-2 py-1 rounded">{tag}</span>
+        ))}
+      </div>
+      <h1 class="text-3xl md:text-5xl font-bold mb-4 tracking-tight">{title}</h1>
+      <p class="text-xl text-text-secondary mb-6 leading-relaxed">{description}</p>
+      
+      <div class="flex flex-wrap gap-6 text-sm text-text-secondary font-mono border-y border-white/10 dark:border-white/10 border-black/10 py-4 mb-8">
+        <span>Published: {pubDate.toLocaleDateString()}</span>
+        {repoUrl && <a href={repoUrl} target="_blank" rel="noopener noreferrer" class="text-accent hover:underline flex items-center gap-1">View Repository <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg></a>}
+        {liveUrl && <a href={liveUrl} target="_blank" rel="noopener noreferrer" class="text-accent hover:underline flex items-center gap-1">Live Demo <svg class="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg></a>}
+      </div>
+    </header>
+
+    <img src={image.url} alt={image.alt} class="w-full h-64 md:h-96 object-cover rounded-2xl mb-8 border border-white/10 dark:border-white/10 border-black/10 shadow-lg" />
+
+    <div class="mb-10 p-6 bg-surface border border-white/10 dark:border-white/10 border-black/10 rounded-xl">
+      <h3 class="text-xs font-bold uppercase tracking-widest text-text-secondary mb-2">Outcome & Impact</h3>
+      <p class="text-lg font-medium text-text-primary leading-relaxed">{outcome}</p>
+    </div>
+
+    <div class="mb-10">
+      <h3 class="text-xs font-bold uppercase tracking-widest text-text-secondary mb-3">Tech Stack</h3>
+      <div class="flex flex-wrap gap-2">
+        {stack.map((tech: string) => (
+          <span class="px-3 py-1.5 text-sm font-mono rounded-md bg-white/5 dark:bg-white/5 bg-black/5 border border-white/10 dark:border-white/10 border-black/10 text-text-primary">{tech}</span>
+        ))}
+      </div>
+    </div>
+
+    <!-- Renders the Markdown content -->
+    <div class="markdown">
+      <Content />
+    </div>
+
+  </article>
+</Layout>
