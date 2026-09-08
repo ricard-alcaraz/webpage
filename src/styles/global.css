@@ -6,6 +6,28 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  :root {
+    /* Light Mode Defaults */
+    --color-bg: #F8FAFC;
+    --color-surface: #FFFFFF;
+    --color-text-primary: #0F172A;
+    --color-text-secondary: #475569;
+    --color-accent: #2563EB;
+    --color-accent-hover: #1D4ED8;
+    --color-accent-light: #93C5FD;
+  }
+  .dark {
+    /* Dark Mode Overrides (Your identity) */
+    --color-bg: #0E0E11;
+    --color-surface: #18181B;
+    --color-text-primary: #F4F4F5;
+    --color-text-secondary: #A1A1AA;
+    --color-accent: #4285F4; /* BigQuery Blue */
+    --color-accent-hover: #3367D6;
+    --color-accent-light: #1E3A8A;
+  }
+}
   
 @custom-variant dark (&:where(.dark, .dark *));
 

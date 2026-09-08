@@ -1,4 +1,3 @@
-// tailwind.config.ts
 import type { Config } from 'tailwindcss';
 import typography from '@tailwindcss/typography';
 import animated from 'tailwindcss-animated';
@@ -8,16 +7,16 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: '#0E0E11', // Your requested dark theme
-        surface: '#18181B',    // Slightly lighter for cards
+        background: 'var(--color-bg)',
+        surface: 'var(--color-surface)',
         accent: {
-          DEFAULT: '#4285F4',  // BigQuery/Looker inspired blue
-          hover: '#3367D6',
-          light: '#93C5FD',
+          DEFAULT: 'var(--color-accent)',
+          hover: 'var(--color-accent-hover)',
+          light: 'var(--color-accent-light)',
         },
         text: {
-          primary: '#F4F4F5',
-          secondary: '#A1A1AA',
+          primary: 'var(--color-text-primary)',
+          secondary: 'var(--color-text-secondary)',
         }
       },
       fontFamily: {

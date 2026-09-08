@@ -6,7 +6,6 @@ import SkillsRadar from "../components/home/SkillsRadar.astro";
 
 const posts = await getCollection("blog");
 const projects = await getCollection("projects");
-
 const staticData = (await getCollection("staticData"))[0];
 const { pageTitle, pageDescription, OGImage } = staticData.data;
 
@@ -15,113 +14,155 @@ const projectCount = projects.length;
 const yearsExp = 5;
 const certCount = 4;
 
-// Get 1 featured project (the dbt one)
 const featuredProject = projects.find(p => p.slug.includes("dbt")) || projects[0];
-// Get 2 latest posts
 const latestPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()).slice(0, 2);
 ---
 
-<Layout
-  pageTitle={pageTitle}
-  description={pageDescription}
-  ogimage={{ alt: OGImage.alt, url: OGImage.url }}
->
-  <main class="min-h-screen bg-background text-text-primary px-4 py-12 md:px-8 max-w-7xl mx-auto">
+<Layout pageTitle={pageTitle} description={pageDescription} ogimage={{ alt: OGImage.alt, url: OGImage.url }}>
+  <main class="min-h-screen bg-background px-4 py-12 md:px-8 max-w-7xl mx-auto transition-colors duration-300">
     
-    <!-- Header / Intro -->
-    <header class="mb-12 text-center md:text-left">
-      <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">
-        Hi, I'm <span class="text-accent">Ricard</span>.
-      </h1>
-      <p class="text-xl text-text-secondary max-w-2xl">
-        Analytics Engineer & Data Professional. I build scalable data pipelines, 
-        automate quality checks, and turn complex data into actionable insights.
-      </p>
-    </header>
-
-    <!-- Bento Grid -->
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[minmax(180px,auto)]">
+    <!-- Bento Grid Container -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[180px]">
       
-      <!-- 1. Stats Card (Spans 2 cols on md, 1 on lg) -->
-      <div class="bg-surface border border-white/5 rounded-2xl p-6 flex flex-col justify-center md:col-span-2 lg:col-span-1 shadow-lg hover:border-accent/30 transition-colors">
-        <h3 class="text-text-secondary text-sm font-semibold uppercase tracking-wider mb-4">By the Numbers</h3>
-        <div class="grid grid-cols-2 gap-4">
-          <div>
-            <div class="text-3xl font-mono font-bold text-accent">{yearsExp}+</div>
-            <div class="text-xs text-text-secondary mt-1">Years Experience</div>
-          </div>
-          <div>
-            <div class="text-3xl font-mono font-bold text-accent">{certCount}</div>
-            <div class="text-xs text-text-secondary mt-1">Certifications</div>
-          </div>
-          <div>
-            <div class="text-3xl font-mono font-bold text-accent">{postCount}</div>
-            <div class="text-xs text-text-secondary mt-1">Articles Written</div>
-          </div>
-          <div>
-            <div class="text-3xl font-mono font-bold text-accent">{projectCount}</div>
-            <div class="text-xs text-text-secondary mt-1">Key Projects</div>
-          </div>
+      <!-- 1. Intro (Spans 2 cols, 1 row) -->
+      <div class="bento-card group bg-surface border border-white/5 dark:border-white/5 border-black/5 rounded-2xl p-6 md:col-span-2 lg:col-span-2 row-span-1 flex flex-col justify-center">
+        <h1 class="text-3xl md:text-4xl font-bold tracking-tight mb-2">
+          Hi, I'm <span class="text-accent">Ricard</span>.
+        </h1>
+        <p class="text-text-secondary max-w-md">
+          Analytics Engineer & Data Professional. I build scalable data pipelines, automate quality checks, and turn complex data into actionable insights.
+        </p>
+      </div>
+
+      <!-- 2. Stats (Spans 1 col, 1 row) -->
+      <div class="bento-card group bg-surface border border-white/5 dark:border-white/5 border-black/5 rounded-2xl p-6 lg:col-span-1 row-span-1 flex flex-col justify-center">
+        <h3 class="text-text-secondary text-[10px] font-bold uppercase tracking-widest mb-3">By the Numbers</h3>
+        <div class="grid grid-cols-2 gap-3">
+          <div><div class="text-2xl font-mono font-bold text-accent">{yearsExp}+</div><div class="text-[10px] text-text-secondary uppercase">Years Exp</div></div>
+          <div><div class="text-2xl font-mono font-bold text-accent">{certCount}</div><div class="text-[10px] text-text-secondary uppercase">Certs</div></div>
+          <div><div class="text-2xl font-mono font-bold text-accent">{postCount}</div><div class="text-[10px] text-text-secondary uppercase">Posts</div></div>
+          <div><div class="text-2xl font-mono font-bold text-accent">{projectCount}</div><div class="text-[10px] text-text-secondary uppercase">Projects</div></div>
         </div>
       </div>
 
-      <!-- 2. Skills Radar Chart (Tall card) -->
-      <div class="bg-surface border border-white/5 rounded-2xl p-6 md:col-span-1 lg:col-span-1 lg:row-span-2 flex flex-col items-center justify-center shadow-lg hover:border-accent/30 transition-colors">
-        <h3 class="text-text-secondary text-sm font-semibold uppercase tracking-wider mb-2 w-full text-left">Core Competencies</h3>
-        <SkillsRadar />
+      <!-- 3. Skills Radar (Spans 1 col, 2 rows - Tall) -->
+      <div class="bento-card group bg-surface border border-white/5 dark:border-white/5 border-black/5 rounded-2xl p-6 lg:col-span-1 row-span-2 flex flex-col items-center justify-center">
+        <h3 class="text-text-secondary text-[10px] font-bold uppercase tracking-widest mb-2 w-full text-left">Core Competencies</h3>
+        <div class="flex-1 flex items-center justify-center w-full">
+          <SkillsRadar />
+        </div>
       </div>
 
-      <!-- 3. Featured Project (Spans 2 cols) -->
+      <!-- 4. Featured Project (Spans 2 cols, 1 row) -->
       {featuredProject && (
-        <a href={`/projects/${featuredProject.slug}`} class="bg-surface border border-white/5 rounded-2xl p-6 md:col-span-2 lg:col-span-2 shadow-lg hover:border-accent/50 transition-all group">
-          <div class="flex justify-between items-start mb-3">
-            <span class="text-xs font-mono text-accent bg-accent/10 px-2 py-1 rounded">FEATURED PROJECT</span>
-            <svg class="w-5 h-5 text-text-secondary group-hover:text-accent group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
-          </div>
-          <h3 class="text-xl font-bold mb-2 group-hover:text-accent transition-colors">{featuredProject.data.title}</h3>
-          <p class="text-text-secondary text-sm mb-4 line-clamp-2">{featuredProject.data.description}</p>
-          <div class="flex flex-wrap gap-2">
-            {featuredProject.data.stack.map((tech: string) => (
-              <span class="text-xs bg-white/5 text-text-secondary px-2 py-1 rounded-md border border-white/5">{tech}</span>
-            ))}
+        <a href={`/projects/${featuredProject.slug}`} class="bento-card group bg-surface border border-white/5 dark:border-white/5 border-black/5 rounded-2xl p-6 md:col-span-2 lg:col-span-2 row-span-1 transition-all hover:border-accent/30">
+          <div class="flex flex-col h-full justify-between">
+            <div>
+              <div class="flex justify-between items-start mb-3">
+                <span class="text-[10px] font-mono font-bold text-accent bg-accent/10 px-2 py-1 rounded uppercase tracking-wider">Featured Project</span>
+                <svg class="w-5 h-5 text-text-secondary group-hover:text-accent group-hover:translate-x-1 transition-all" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path></svg>
+              </div>
+              <h3 class="text-xl font-bold mb-2 group-hover:text-accent transition-colors">{featuredProject.data.title}</h3>
+              <p class="text-text-secondary text-sm mb-4 line-clamp-2">{featuredProject.data.description}</p>
+            </div>
+            <div class="flex flex-wrap gap-2">
+              {featuredProject.data.stack.map((tech: string) => (
+                <span class="text-[10px] font-mono bg-white/5 dark:bg-white/5 bg-black/5 text-text-secondary px-2 py-1 rounded-md border border-white/5 dark:border-white/5 border-black/5">{tech}</span>
+              ))}
+            </div>
           </div>
         </a>
       )}
 
-      <!-- 4. Certifications (Placeholder) -->
-      <div class="bg-surface border border-white/5 rounded-2xl p-6 lg:col-span-1 shadow-lg hover:border-accent/30 transition-colors">
-        <h3 class="text-text-secondary text-sm font-semibold uppercase tracking-wider mb-4">Certifications</h3>
-        <div class="space-y-3">
-          <!-- Replace these placeholders with your actual badge images -->
-          <div class="flex items-center gap-3 p-2 rounded-lg bg-white/5 border border-white/5">
-            <div class="w-8 h-8 bg-accent/20 rounded flex items-center justify-center text-accent font-bold text-xs">PSAA</div>
-            <div class="text-sm font-medium">Professional Data Cert</div>
+      <!-- 5. Certifications (Spans 1 col, 1 row) -->
+      <div class="bento-card group bg-surface border border-white/5 dark:border-white/5 border-black/5 rounded-2xl p-6 lg:col-span-1 row-span-1">
+        <h3 class="text-text-secondary text-[10px] font-bold uppercase tracking-widest mb-3">Certifications</h3>
+        <div class="space-y-2">
+          <div class="flex items-center gap-3 p-2 rounded-lg bg-white/5 dark:bg-white/5 bg-black/5 border border-white/5 dark:border-white/5 border-black/5 hover:border-accent/30 transition-colors">
+            <div class="w-8 h-8 bg-accent/20 rounded flex items-center justify-center text-accent font-bold text-[10px]">PSAA</div>
+            <div class="text-xs font-medium text-text-primary">Professional Data</div>
           </div>
-          <div class="flex items-center gap-3 p-2 rounded-lg bg-white/5 border border-white/5">
-            <div class="w-8 h-8 bg-accent/20 rounded flex items-center justify-center text-accent font-bold text-xs">GCP</div>
-            <div class="text-sm font-medium">Cloud Engineer</div>
+          <div class="flex items-center gap-3 p-2 rounded-lg bg-white/5 dark:bg-white/5 bg-black/5 border border-white/5 dark:border-white/5 border-black/5 hover:border-accent/30 transition-colors">
+            <div class="w-8 h-8 bg-accent/20 rounded flex items-center justify-center text-accent font-bold text-[10px]">GCP</div>
+            <div class="text-xs font-medium text-text-primary">Cloud Engineer</div>
           </div>
-          <div class="text-xs text-text-secondary mt-2 italic">+ 2 more</div>
         </div>
       </div>
 
-      <!-- 5. Latest Posts (Spans full width on mobile, 2 on lg) -->
-      <div class="bg-surface border border-white/5 rounded-2xl p-6 md:col-span-2 lg:col-span-3 shadow-lg hover:border-accent/30 transition-colors">
-        <div class="flex justify-between items-center mb-4">
-          <h3 class="text-text-secondary text-sm font-semibold uppercase tracking-wider">Latest Writings</h3>
-          <a href="/blog" class="text-xs text-accent hover:underline">View all posts →</a>
+      <!-- 6. Latest Posts (Spans 2 cols, 1 row) -->
+      <div class="bento-card group bg-surface border border-white/5 dark:border-white/5 border-black/5 rounded-2xl p-6 md:col-span-2 lg:col-span-2 row-span-1">
+        <div class="flex justify-between items-center mb-3">
+          <h3 class="text-text-secondary text-[10px] font-bold uppercase tracking-widest">Latest Writings</h3>
+          <a href="/blog" class="text-[10px] font-mono text-accent hover:underline">View all →</a>
         </div>
-        <div class="grid md:grid-cols-2 gap-4">
+        <div class="grid grid-cols-1 gap-3">
           {latestPosts.map((post) => (
-            <a href={`/blog/${post.slug}`} class="block p-4 rounded-xl bg-white/5 border border-white/5 hover:border-accent/30 transition-colors group">
-              <div class="text-xs text-text-secondary mb-1 font-mono">{post.data.pubDate.toLocaleDateString()}</div>
-              <h4 class="font-bold text-lg mb-2 group-hover:text-accent transition-colors line-clamp-1">{post.data.title}</h4>
-              <p class="text-sm text-text-secondary line-clamp-2">{post.data.description}</p>
+            <a href={`/blog/${post.slug}`} class="block p-3 rounded-xl bg-white/5 dark:bg-white/5 bg-black/5 border border-white/5 dark:border-white/5 border-black/5 hover:border-accent/30 transition-colors group/post">
+              <div class="text-[10px] text-text-secondary mb-1 font-mono">{post.data.pubDate.toLocaleDateString()}</div>
+              <h4 class="font-bold text-sm mb-1 group-hover/post:text-accent transition-colors line-clamp-1">{post.data.title}</h4>
+              <p class="text-xs text-text-secondary line-clamp-1">{post.data.description}</p>
             </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- 7. Tech Stack (Spans 2 cols, 1 row) -->
+      <div class="bento-card group bg-surface border border-white/5 dark:border-white/5 border-black/5 rounded-2xl p-6 md:col-span-2 lg:col-span-2 row-span-1 flex flex-col justify-center">
+        <h3 class="text-text-secondary text-[10px] font-bold uppercase tracking-widest mb-3">Tech Stack</h3>
+        <div class="flex flex-wrap gap-2">
+          {['Python', 'SQL', 'dbt', 'BigQuery', 'Airflow', 'Git', 'Docker', 'Terraform', 'Looker'].map(tech => (
+            <span class="px-3 py-1.5 text-xs font-mono rounded-md bg-white/5 dark:bg-white/5 bg-black/5 border border-white/5 dark:border-white/5 border-black/5 text-text-secondary group-hover:border-accent/30 group-hover:text-accent transition-colors cursor-default">{tech}</span>
           ))}
         </div>
       </div>
 
     </div>
   </main>
+
+  <!-- FANCY SPOTLIGHT EFFECT SCRIPT -->
+  <script>
+    document.querySelectorAll('.bento-card').forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
+    });
+  </script>
+
+  <style>
+    .bento-card {
+      position: relative;
+      overflow: hidden;
+      transition: border-color 0.3s ease, transform 0.2s ease;
+    }
+    .bento-card:hover {
+      transform: translateY(-2px);
+    }
+    /* The Spotlight Glow */
+    .bento-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: radial-gradient(
+        600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(66, 133, 244, 0.08), /* Subtle BigQuery blue glow */
+        transparent 40%
+      );
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+      z-index: 1;
+    }
+    .bento-card:hover::before {
+      opacity: 1;
+    }
+    /* Ensure content stays above the glow */
+    .bento-card > * {
+      position: relative;
+      z-index: 2;
+    }
+  </style>
 </Layout>
