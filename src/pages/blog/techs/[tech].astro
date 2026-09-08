@@ -5,18 +5,18 @@ import ListPosts from "../../../components/blog/ListPosts.astro";
 
 export async function getStaticPaths() {
   const posts = await getCollection('blog');
-  const tags = [...new Set(posts.flatMap(post => post.data.tags))];
+  const languages = [...new Set(posts.flatMap(post => post.data.languages || []))];
   
-  return tags.map(tag => ({
-    params: { tag: tag.toLowerCase().replace(/\s+/g, '-') },
-    props: { tagName: tag, posts: posts.filter(p => p.data.tags.includes(tag)) }
+  return languages.map(lang => ({
+    params: { tech: lang.toLowerCase() },
+    props: { langName: lang, posts: posts.filter(p => (p.data.languages || []).includes(lang)) }
   }));
 }
 
-const { tagName, posts } = Astro.props;
+const { langName, posts } = Astro.props;
 ---
 
-<Layout pageTitle={`${tagName} | Blog`} description={`Posts tagged with ${tagName}`}>
+<Layout pageTitle={`${langName} | Blog`} description={`Posts about ${langName}`}>
   <main class="min-h-screen bg-background text-text-primary px-4 py-12 md:px-8 max-w-5xl mx-auto transition-colors duration-300">
     
     <div class="mb-12">
@@ -25,7 +25,7 @@ const { tagName, posts } = Astro.props;
         Back to Blog
       </a>
       <h1 class="text-3xl md:text-4xl font-bold tracking-tight mb-2">
-        <span class="text-accent">{tagName}</span>
+        <span class="text-accent">{langName}</span>
       </h1>
       <p class="text-text-secondary">{posts.length} {posts.length === 1 ? 'post' : 'posts'}</p>
     </div>

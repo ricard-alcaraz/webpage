@@ -1,33 +1,35 @@
 ---
-import { getCollection } from 'astro:content';
-const allPosts = await getCollection('blog');
-import Tag from "../ui/Tag.astro";
+export interface Props {
+  allPosts: any[];
+  variant?: "compact" | "full";
+}
 
-const tags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
-type VariantType = "default" | "vertical" | "compact";
-const { variant = "default" } = Astro.props as { variant?: VariantType };
+const { allPosts, variant = "full" } = Astro.props;
 
-// Common base classes
-const baseClasses = "max-w-7xl";
-
-// Variant-specific classes
-const variantClasses: Record<VariantType, string> = {
-    default: "max-lg:px-8 py-8 max-md:py-4 flex-wrap mx-auto gap-4 max-sm:gap-3 justify-center items-center flex flex-row",
-    vertical: "gap-6 justify-start items-start flex flex-col",
-    compact: "flex-wrap mx-auto gap-2 max-sm:gap-3 justify-start flex flex-row"
-};
-
-// Combine base classes with variant-specific classes
-const classes = `${baseClasses} ${variantClasses[variant]}`;
+// Extract all unique tags
+const allTags = [...new Set(allPosts.flatMap(post => post.data.tags))].sort();
 ---
 
-<div id="tags" class={classes}>
-    {tags.map((tag) => <Tag tag={tag}></Tag>)}
-</div>
-
-
-
-
-
-
-
+{variant === "compact" ? (
+  <div class="flex flex-wrap gap-2">
+    {allTags.map(tag => (
+      <a 
+        href={`/blog/tags/${tag.toLowerCase().replace(/\s+/g, '-')}`} 
+        class="text-xs font-mono px-3 py-1.5 rounded-md bg-white/5 dark:bg-white/5 bg-black/5 text-text-secondary border border-white/10 dark:border-white/10 border-black/10 hover:border-accent/40 hover:text-accent transition-colors"
+      >
+        {tag}
+      </a>
+    ))}
+  </div>
+) : (
+  <div class="space-y-2">
+    {allTags.map(tag => (
+      <a 
+        href={`/blog/tags/${tag.toLowerCase().replace(/\s+/g, '-')}`} 
+        class="block px-4 py-2 rounded-lg bg-white/5 dark:bg-white/5 bg-black/5 text-text-primary border border-white/10 dark:border-white/10 border-black/10 hover:border-accent/40 hover:text-accent transition-colors"
+      >
+        {tag}
+      </a>
+    ))}
+  </div>
+)}

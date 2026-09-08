@@ -1,29 +1,22 @@
 ---
-import { getCollection } from 'astro:content';
-const allPosts = await getCollection('blog');
+export interface Props {
+  allPosts: any[];
+  level?: number;
+}
 
-const languages = [
-    ...new Set(allPosts.map((post) => post.data.languages).flat()),
-];
-import Capsule from "../ui/Capsule.astro";
+const { allPosts, level = 2 } = Astro.props;
 
-const { variant = "default" } = Astro.props;
-
-const baseClasses = "flex flex-wrap";
-
-const variantClasses = {
-    default: "gap-3 max-lg:gap-1",
-    vertical: "gap-6 flex-col"
-} as const;
-
-const classes = `${baseClasses} ${variantClasses[variant as keyof typeof variantClasses] || variantClasses.default}`;
+// Extract all unique languages
+const allLanguages = [...new Set(allPosts.flatMap(post => post.data.languages || []))].sort();
 ---
 
-<div class={classes}>
-    {languages.map((language) => (
-        <Capsule lang={language} linkEnabled={true} size="md" />
-    ))}
+<div class="flex flex-wrap gap-2">
+  {allLanguages.map(lang => (
+    <a 
+      href={`/blog/techs/${lang.toLowerCase()}`} 
+      class="text-xs font-mono px-3 py-1.5 rounded-md bg-white/5 dark:bg-white/5 bg-black/5 text-text-secondary border border-white/10 dark:border-white/10 border-black/10 hover:border-accent/40 hover:text-accent transition-colors"
+    >
+      {lang}
+    </a>
+  ))}
 </div>
-
-
-
