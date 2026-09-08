@@ -1,0 +1,22 @@
+---
+// src/components/ui/Reveal.astro
+const { delay = 0 } = Astro.props;
+---
+<div class="reveal-on-scroll opacity-0 translate-y-8 transition-all duration-700 ease-out" style="transition-delay: {delay}ms">
+  <slot />
+</div>
+
+<script>
+  // Lightweight Intersection Observer for scroll animations
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('opacity-100', 'translate-y-0');
+        entry.target.classList.remove('opacity-0', 'translate-y-8');
+        observer.unobserve(entry.target); // Only animate once
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+  document.querySelectorAll('.reveal-on-scroll').forEach((el) => observer.observe(el));
+</script>

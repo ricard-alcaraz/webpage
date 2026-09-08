@@ -3,7 +3,8 @@
 import Layout from "../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 import SkillsRadar from "../components/home/SkillsRadar.astro";
-
+import TerminalHero from "../components/home/TerminalHero.astro";
+import Reveal from "../components/ui/Reveal.astro";
 const posts = await getCollection("blog");
 const projects = await getCollection("projects");
 const staticData = (await getCollection("staticData"))[0];
@@ -16,8 +17,24 @@ const latestPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
 ---
 
 <Layout pageTitle={pageTitle} description={pageDescription} ogimage={{ alt: OGImage.alt, url: OGImage.url }}>
+  
   <main class="min-h-screen bg-background px-4 py-12 md:px-8 max-w-7xl mx-auto transition-colors duration-300">
-    
+    <header class="mb-12 grid md:grid-cols-2 gap-8 items-center">
+  <div class="text-center md:text-left space-y-4">
+    <h1 class="text-4xl md:text-5xl font-bold tracking-tight">
+      Hi, I'm <span class="text-accent">Ricard</span>.
+    </h1>
+    <p class="text-xl text-text-secondary leading-relaxed">
+      Analytics Engineer and Business Analyst. I build scalable data pipelines, automate quality checks, and turn complex data into actionable business insights.
+    </p>
+    <div class="flex gap-4 justify-center md:justify-start pt-2">
+      <a href="/projects" class="px-6 py-2.5 bg-accent text-background font-semibold rounded-lg hover:bg-accent/90 transition-all">View Projects</a>
+      <a href="/about-me" class="px-6 py-2.5 border border-white/10 rounded-lg hover:bg-white/5 transition-all">More About Me</a>
+    </div>
+  </div>
+  <!-- The Clever Hook -->
+  <TerminalHero />
+</header>
     <!-- Grid: minmax ensures rows grow if content needs it, preventing cut-off text -->
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[minmax(220px,auto)]">
       
@@ -30,7 +47,7 @@ const latestPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
           Analytics Engineer & Data Professional. I build scalable data pipelines, automate quality checks, and turn complex data into actionable insights.
         </p>
       </div>
-
+      <Reveal delay={100}>  
       <!-- 2. Stats (1 col) -->
       <div class="bento-card group bg-surface border border-white/10 dark:border-white/10 border-black/10 rounded-2xl p-6 lg:col-span-1 flex flex-col justify-center">
         <h3 class="text-text-secondary text-[10px] font-bold uppercase tracking-widest mb-4">By the Numbers</h3>
@@ -41,19 +58,23 @@ const latestPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
           <div><div class="text-2xl font-mono font-bold text-accent">{projectCount}</div><div class="text-[10px] text-text-secondary uppercase mt-1">Projects</div></div>
         </div>
       </div>
-
+      </Reveal>
       <!-- 3. Skills Radar (1 col, 2 rows tall) -->
+      <Reveal delay={200}>  
       <div class="bento-card group bg-surface border border-white/10 dark:border-white/10 border-black/10 rounded-2xl p-6 lg:col-span-1 lg:row-span-2 flex flex-col items-center justify-center">
         <h3 class="text-text-secondary text-[10px] font-bold uppercase tracking-widest mb-2 w-full text-left">Core Competencies</h3>
         <div class="flex-1 flex items-center justify-center w-full py-4">
           <SkillsRadar />
         </div>
       </div>
-
+      </Reveal>
       <!-- 4. Featured Project (2 cols) -->
+       
       {featuredProject && (
         <a href={`/projects/${featuredProject.slug}`} class="bento-card group bg-surface border border-white/10 dark:border-white/10 border-black/10 rounded-2xl p-6 md:col-span-2 lg:col-span-2 transition-all hover:border-accent/40">
+          
           <div class="flex flex-col h-full justify-between">
+            <Reveal delay={100}>
             <div>
               <div class="flex justify-between items-start mb-3">
                 <span class="text-[10px] font-mono font-bold text-accent bg-accent/10 px-2 py-1 rounded uppercase tracking-wider">Featured Project</span>
@@ -62,15 +83,20 @@ const latestPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
               <h3 class="text-xl font-bold mb-2 group-hover:text-accent transition-colors">{featuredProject.data.title}</h3>
               <p class="text-text-secondary text-sm mb-4 line-clamp-2">{featuredProject.data.description}</p>
             </div>
+            </Reveal>
+            <Reveal delay={300}>
             <div class="flex flex-wrap gap-2">
               {featuredProject.data.stack.map((tech: string) => (
                 <span class="text-[10px] font-mono bg-white/5 dark:bg-white/5 bg-black/5 text-text-secondary px-2 py-1 rounded-md border border-white/10 dark:border-white/10 border-black/10">{tech}</span>
               ))}
             </div>
+            </Reveal>
           </div>
+          
         </a>
       )}
 
+<Reveal delay={400}>
       <!-- 5. Certifications (1 col) -->
       <div class="bento-card group bg-surface border border-white/10 dark:border-white/10 border-black/10 rounded-2xl p-6 lg:col-span-1">
         <h3 class="text-text-secondary text-[10px] font-bold uppercase tracking-widest mb-3">Certifications</h3>
@@ -85,7 +111,23 @@ const latestPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
           </div>
         </div>
       </div>
-
+</Reveal>
+<Reveal delay={500}>
+      <!-- 7. Tech Stack (2 cols, 2 rows tall to balance the grid) -->
+      <div class="bento-card group bg-surface border border-white/10 dark:border-white/10 border-black/10 rounded-2xl p-6 md:col-span-2 lg:col-span-2 lg:row-span-2 flex flex-col justify-center">
+        <h3 class="text-text-secondary text-[10px] font-bold uppercase tracking-widest mb-4">Tech Stack</h3>
+        <div class="flex flex-wrap gap-2">
+          {['Python', 'SQL', 'dbt', 'BigQuery', 'Airflow', 'Git', 'Docker', 'Looker', 'GCP'].map(tech => (
+            <span class="px-3 py-2 text-xs font-mono rounded-md bg-white/5 dark:bg-white/5 bg-black/5 border border-white/10 dark:border-white/10 border-black/10 text-text-secondary group-hover:border-accent/40 group-hover:text-accent transition-colors cursor-default">{tech}</span>
+          ))}
+        </div>
+        <div class="mt-auto pt-6 border-t border-white/10 dark:border-white/10 border-black/10">
+          <p class="text-sm text-text-secondary">Open to new opportunities in Data Engineering and Analytics.</p>
+          <a href="mailto:ricard.alcarazm@gmail.com" class="inline-block mt-3 text-sm font-bold text-accent hover:underline">Get in touch →</a>
+        </div>
+      </div>
+</Reveal>
+<Reveal delay={600}>
       <!-- 6. Latest Posts (2 cols, 2 rows tall to prevent clipping) -->
       <div class="bento-card group bg-surface border border-white/10 dark:border-white/10 border-black/10 rounded-2xl p-6 md:col-span-2 lg:col-span-2 lg:row-span-2">
         <div class="flex justify-between items-center mb-4">
@@ -102,20 +144,7 @@ const latestPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
           ))}
         </div>
       </div>
-
-      <!-- 7. Tech Stack (2 cols, 2 rows tall to balance the grid) -->
-      <div class="bento-card group bg-surface border border-white/10 dark:border-white/10 border-black/10 rounded-2xl p-6 md:col-span-2 lg:col-span-2 lg:row-span-2 flex flex-col justify-center">
-        <h3 class="text-text-secondary text-[10px] font-bold uppercase tracking-widest mb-4">Tech Stack</h3>
-        <div class="flex flex-wrap gap-2">
-          {['Python', 'SQL', 'dbt', 'BigQuery', 'Airflow', 'Git', 'Docker', 'Looker', 'GCP'].map(tech => (
-            <span class="px-3 py-2 text-xs font-mono rounded-md bg-white/5 dark:bg-white/5 bg-black/5 border border-white/10 dark:border-white/10 border-black/10 text-text-secondary group-hover:border-accent/40 group-hover:text-accent transition-colors cursor-default">{tech}</span>
-          ))}
-        </div>
-        <div class="mt-auto pt-6 border-t border-white/10 dark:border-white/10 border-black/10">
-          <p class="text-sm text-text-secondary">Open to new opportunities in Data Engineering and Analytics.</p>
-          <a href="mailto:ricard.alcarazm@gmail.com" class="inline-block mt-3 text-sm font-bold text-accent hover:underline">Get in touch →</a>
-        </div>
-      </div>
+</Reveal>
 
     </div>
   </main>
