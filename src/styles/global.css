@@ -7,8 +7,11 @@
 @tailwind utilities;
 
 @layer base {
+  html {
+    background-color: var(--color-bg);
+    color: var(--color-text-primary);
+  }
   :root {
-    /* Light Mode */
     --color-bg: #F8FAFC;
     --color-surface: #FFFFFF;
     --color-text-primary: #0F172A;
@@ -17,7 +20,6 @@
     --color-accent-hover: #1D4ED8;
   }
   .dark {
-    /* Dark Mode (Your Identity) */
     --color-bg: #0E0E11;
     --color-surface: #18181B;
     --color-text-primary: #F4F4F5;

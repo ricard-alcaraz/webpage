@@ -1,0 +1,28 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getCollection } from "astro:content";
+
+const projects = await getCollection("projects");
+const sortedProjects = projects.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+---
+
+<Layout pageTitle="Projects" description="My data engineering and analytics projects">
+  <main class="min-h-screen bg-background text-text-primary px-4 py-12 md:px-8 max-w-5xl mx-auto transition-colors duration-300">
+    <h1 class="text-3xl md:text-4xl font-bold mb-2">Projects</h1>
+    <p class="text-text-secondary mb-8 max-w-2xl">Deep dives into data pipelines, automation tools, and analytics engineering case studies.</p>
+    
+<div class="bento-card group bg-surface border border-white/10 dark:border-white/10 border-black/10 rounded-2xl p-4 lg:col-span-1 lg:row-span-2 flex flex-col items-center justify-center">      {sortedProjects.map((project) => (
+        <a href={`/projects/${project.slug}`} class="group block p-6 rounded-2xl bg-surface border border-white/10 dark:border-white/10 border-black/10 hover:border-accent/40 transition-all">
+          <h2 class="text-xl font-bold mb-2 group-hover:text-accent transition-colors">{project.data.title}</h2>
+          <p class="text-text-secondary text-sm mb-4 line-clamp-3">{project.data.description}</p>
+          <div class="flex flex-wrap gap-2">
+            {project.data.stack.slice(0, 3).map((tech: string) => (
+              <span class="text-[10px] font-mono bg-white/5 dark:bg-white/5 bg-black/5 text-text-secondary px-2 py-1 rounded-md border border-white/10 dark:border-white/10 border-black/10">{tech}</span>
+            ))}
+            {project.data.stack.length > 3 && <span class="text-[10px] font-mono text-text-secondary px-2 py-1">+{project.data.stack.length - 3}</span>}
+          </div>
+        </a>
+      ))}
+    </div>
+  </main>
+</Layout>

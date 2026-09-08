@@ -34,6 +34,10 @@ const ogimage = {
 };
 ---
 
-<PostLayout post={post} slug={slug}>
+<PostLayout   title={post.data.title} 
+  description={post.data.description} 
+  pubDate={post.data.pubDate} 
+  image={post.data.image} 
+  tags={post.data.tags}>
   <Content />
 </PostLayout>
