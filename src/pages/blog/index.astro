@@ -1,26 +1,40 @@
 ---
-import { getCollection } from 'astro:content';
 import Layout from "../../layouts/Layout.astro";
-import Hero from "../../components/blog/Hero.astro";
-import Tags from "../../components/blog/Tags.astro";
-import ListPosts from "../../components/blog/ListPosts.astro";
-const allPosts = await getCollection('blog');
-const sortedPosts = allPosts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
-const pageTitle = "My personal Blog | Ricard Alcaraz Mancebo";
-const description = "Welcome to my blog, where I share about my journey in the world of technology and analytics.";
-const ogimage ={
-    url: "/images/blogimage.webp",
-    alt: "image"
-};
-const latestPosts = sortedPosts.slice(0, 5);
+import { getCollection } from "astro:content";
+
+const posts = await getCollection("blog");
+const sortedPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
 ---
 
-<Layout  pageTitle={pageTitle} description={description} ogimage={ogimage}>
-   
-    <Hero />
-    <Tags allPosts={allPosts}/>
-    <div class="px-8 max-sm:px-4">
-        <ListPosts allPosts={latestPosts} />
+<Layout pageTitle="Blog" description="My thoughts on data engineering, analytics, and security">
+  <main class="min-h-screen bg-background text-text-primary px-4 py-12 md:px-8 max-w-4xl mx-auto transition-colors duration-300">
+    
+    <div class="mb-12 text-center md:text-left">
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tight mb-4">
+        Latest <span class="text-accent">Writings</span>
+      </h1>
+      <p class="text-xl text-text-secondary max-w-2xl">
+        Notes, case studies, and deep dives into data engineering, analytics, and cybersecurity.
+      </p>
     </div>
-
+    
+    <div class="space-y-4">
+      {sortedPosts.map((post) => (
+        <a href={`/blog/${post.slug}`} class="group block p-5 rounded-xl bg-surface border border-white/10 dark:border-white/10 border-black/10 hover:border-accent/40 transition-all duration-300">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-2 mb-2">
+            <h2 class="text-lg font-bold group-hover:text-accent transition-colors">{post.data.title}</h2>
+            <span class="text-xs font-mono text-text-secondary whitespace-nowrap">{post.data.pubDate.toLocaleDateString()}</span>
+          </div>
+          <p class="text-sm text-text-secondary line-clamp-2 mb-3">{post.data.description}</p>
+          <div class="flex flex-wrap gap-2">
+            {post.data.tags.slice(0, 3).map((tag: string) => (
+              <span class="text-[10px] font-mono uppercase tracking-wider bg-white/5 dark:bg-white/5 bg-black/5 text-text-secondary px-2 py-0.5 rounded border border-white/10 dark:border-white/10 border-black/10">
+                {tag}
+              </span>
+            ))}
+          </div>
+        </a>
+      ))}
+    </div>
+  </main>
 </Layout>
