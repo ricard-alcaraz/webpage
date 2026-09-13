@@ -44,15 +44,18 @@ export default defineConfig({
         !page.includes("/blog/tags") &&
         !page.includes("/blog/techs"),
     }),
-    {
-      name: 'pagefind',
-      hooks: {
-        'astro:build:done': async ({ dir }) => {
-          const { pagefind } = await import('pagefind');
-          await pagefind({ site: dir.pathname });
-        }
+  {
+    name: 'pagefind',
+    hooks: {
+      'astro:build:done': async ({ dir }) => {
+        const { exec } = await import('node:child_process');
+        const { promisify } = await import('node:util');
+        const execAsync = promisify(exec);
+        
+        await execAsync(`npx pagefind --site ${dir.pathname}`);
       }
     }
+  }
   ],
   vite: {
     plugins: [tailwindcss()],
