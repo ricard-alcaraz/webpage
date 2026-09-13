@@ -60,7 +60,7 @@ The proposed process closes that loop by inserting an LLM-powered translation st
 ```mermaid
 flowchart TD
     S1[1. Incident Occurs & Is Resolved] --> S2[2. Postmortem Written Using Structured Template]
-    S2 --> S3[3. Postmortem Stored in Confluence / Notion]
+    S2 --> S3[3. Postmortem Stored]
     S3 --> S4[4. LLM Tool Ingests Postmortem + Latest dbt manifest.json / catalog.json]
     S4 --> S5[5. PII Scan & Anonymization Pre-Processing]
     S5 --> S6[6. LLM Generates dbt SQL Test + YAML Config]
