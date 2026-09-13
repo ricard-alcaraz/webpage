@@ -48,7 +48,7 @@ export default defineConfig({
       name: 'pagefind',
       hooks: {
         'astro:build:done': async ({ dir }) => {
-          const { default: pagefind } = await import('pagefind');
+          const { pagefind } = await import('pagefind');
           await pagefind({ site: dir.pathname });
         }
       }
