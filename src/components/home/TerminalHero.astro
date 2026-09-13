@@ -8,7 +8,7 @@
     <div class="w-3 h-3 rounded-full bg-red-500/80"></div>
     <div class="w-3 h-3 rounded-full bg-yellow-500/80"></div>
     <div class="w-3 h-3 rounded-full bg-green-500/80"></div>
-    <span class="ml-2 text-xs text-text-secondary">pipeline_execution.sh</span>
+    <span class="ml-2 text-xs text-gray-200">pipeline_execution.sh</span>
   </div>
   
   <!-- Terminal Body -->
@@ -16,17 +16,17 @@
     <div class="flex gap-2 items-center">
       <span class="text-green-400">➜</span>
       <span class="text-blue-400">~</span>
-      <span id="line-1" class="text-text-primary opacity-0 transition-all duration-300 translate-x-2">
+      <span id="line-1" class="text-gray-100 opacity-0 transition-all duration-300 translate-x-2">
         dbt run --select staging+
       </span>
     </div>
     
-    <div id="line-2" class="text-text-secondary pl-6 text-xs leading-relaxed opacity-0 transition-all duration-500">
+    <div id="line-2" class="text-gray-100 pl-6 text-xs leading-relaxed opacity-0 transition-all duration-500">
       <span class="text-blue-400">12:04:01</span> Running with dbt=1.7.0<br>
       <span class="text-blue-400">12:04:02</span> Found 42 models, 120 tests...
     </div>
 
-    <div id="line-3" class="text-text-secondary pl-6 text-xs leading-relaxed opacity-0 transition-all duration-500">
+    <div id="line-3" class="text-gray-100 pl-6 text-xs leading-relaxed opacity-0 transition-all duration-500">
       <span class="text-blue-400">12:04:15</span> START relation `analytics.stg_payments`<br>
       <span class="text-green-400">12:04:18</span> OK created in 3.2s
     </div>
@@ -36,7 +36,7 @@
         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
         SUCCESS
       </div>
-      <div class="text-text-secondary text-xs mt-1">Pipeline orchestrated. Looker dashboards updated.</div>
+      <div class="text-gray-100 text-xs mt-1">Pipeline orchestrated. Looker dashboards updated.</div>
     </div>
   </div>
 </div>

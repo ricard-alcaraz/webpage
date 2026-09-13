@@ -88,7 +88,7 @@ const latestPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
       </div>
       </Reveal>
 
-      <Reveal delay={300}> 
+      <Reveal delay={300} class="lg:col-span-2 lg:row-span-2">
       <!-- 6. Latest Posts (CHANGED: NOW 3 COLS WIDE, 2 rows tall) -->
       <div class="bento-card group bg-surface border border-white/10 dark:border-white/10 border-black/10 rounded-2xl p-6 lg:col-span-3 lg:row-span-2" style="grid-column: span 3 / span 3;">
         <div class="flex justify-between items-center mb-4">
@@ -114,11 +114,15 @@ const latestPosts = posts.sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDa
         <div class="space-y-2">
           <div class="flex items-center gap-3 p-2 rounded-lg bg-white/5 dark:bg-white/5 bg-black/5 border border-white/10 dark:border-white/10 border-black/10 hover:border-accent/40 transition-colors">
             <div class="w-8 h-8 bg-accent/20 rounded flex items-center justify-center text-accent font-bold text-[10px]">PSAA</div>
-            <div class="text-xs font-medium text-text-primary">Professional Data</div>
+            <div class="text-xs font-medium text-text-primary">SOC Analyst L1</div>
           </div>
           <div class="flex items-center gap-3 p-2 rounded-lg bg-white/5 dark:bg-white/5 bg-black/5 border border-white/10 dark:border-white/10 border-black/10 hover:border-accent/40 transition-colors">
-            <div class="w-8 h-8 bg-accent/20 rounded flex items-center justify-center text-accent font-bold text-[10px]">GCP</div>
-            <div class="text-xs font-medium text-text-primary">Cloud Engineer</div>
+            <div class="w-8 h-8 bg-accent/20 rounded flex items-center justify-center text-accent font-bold text-[10px]">ACE</div>
+            <div class="text-xs font-medium text-text-primary">Google Associate Cloud Data Engineer</div>
+          </div>
+          <div class="flex items-center gap-3 p-2 rounded-lg bg-white/5 dark:bg-white/5 bg-black/5 border border-white/10 dark:border-white/10 border-black/10 hover:border-accent/40 transition-colors">
+            <div class="w-8 h-8 bg-accent/20 rounded flex items-center justify-center text-accent font-bold text-[10px]">PMC</div>
+            <div class="text-xs font-medium text-text-primary">Google Project Management Certificate</div>
           </div>
         </div>
       </div>
