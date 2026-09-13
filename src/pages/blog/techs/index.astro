@@ -2,21 +2,19 @@
 import Layout from "../../../layouts/Layout.astro";
 import Languages from "../../../components/blog/Languages.astro";
 import Heading from "../../../components/ui/Heading.astro";
-import { getCollection } from 'astro:content';
-const allPosts = await getCollection('blog');
+import { getCollection } from "astro:content";
 
-const pageTitle = "Technologies"; // Fixed: Title was "Languages" but heading shows "Technologies"
-//const allPosts = await Astro.glob("../posts/*.md");
-const languages = [
-    ...new Set(allPosts.map((post) => post.data.languages).flat()),
-];
+// 1. Fetch all blog posts
+const allPosts = await getCollection("blog");
+const pageTitle = "Technologies";
 ---
 
 <Layout pageTitle={pageTitle}>
-    <section class="py-8">
-        <div class="flex flex-col gap-8 max-w-3xl mx-auto">
-            <Heading text="Technologies" />
-            <Languages variant="vertical" languages={languages} /> <!-- Fixed: Missing languages prop -->
-        </div>
-    </section>
+  <section class="py-8">
+    <div class="flex flex-col gap-8 max-w-3xl mx-auto">
+      <Heading text="Technologies" />
+      <!-- 2. Pass 'allPosts' to the component, NOT 'languages' -->
+      <Languages allPosts={allPosts} />
+    </div>
+  </section>
 </Layout>
